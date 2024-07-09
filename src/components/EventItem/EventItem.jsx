@@ -1,5 +1,6 @@
-import DateHeader from "../DateHeader/DateHeader";
 import styles from "./EventItem.module.css";
+import DateHeader from "../DateHeader/DateHeader";
+import Btn from "../Btn/Btn";
 
 export default function EventItem({ name, location, date }) {
   const flagClass = `fi fi-${location.countryCode.toLowerCase()}`;
@@ -26,7 +27,11 @@ export default function EventItem({ name, location, date }) {
         </div>
       </div>
 
-      <button>More Info</button>
+      <div className={styles.btnContainer}>
+        <Btn color="rgb(30, 0, 100)" bgColor="rgb(250, 250, 250)">
+          More Info
+        </Btn>
+      </div>
     </li>
   );
 }
