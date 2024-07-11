@@ -5,8 +5,8 @@ export const eventsData = {
     {
       id: 1,
       name: {
-        type: "FIA Karting European Championship",
-        category: ["OK", "OK-Junior"],
+        type: "FIA European Championship",
+        category: ["OK", "OK-J"],
       },
       location: {
         country: "Spain",
@@ -18,8 +18,8 @@ export const eventsData = {
     {
       id: 2,
       name: {
-        type: "FIA Karting European Championship",
-        category: ["OK", "OK-Junior", "Academy"],
+        type: "FIA European Championship",
+        category: ["OK", "OK-J", "Academy"],
       },
       location: {
         country: "France",
@@ -31,20 +31,20 @@ export const eventsData = {
     {
       id: 3,
       name: {
-        type: "FIA Karting European Championship",
-        category: ["OK", "OK-Junior", "Academy"],
+        type: "FIA European Championship",
+        category: ["OK", "OK-J", "Academy"],
       },
       location: {
         country: "Slovakia",
         countryCode: "SK",
-        circuit: "Slovak Karting Center",
+        circuit: "Slovakia Ring",
       },
       date: { start: "2024-06-20T00:00:00", end: "2024-06-23T00:00:00" },
     },
     {
       id: 4,
       name: {
-        type: "FIA Karting European Championship",
+        type: "FIA European Championship",
         category: ["KZ", "KZ2", "KZ2-Masters"],
       },
       location: {
@@ -57,8 +57,8 @@ export const eventsData = {
     {
       id: 5,
       name: {
-        type: "FIA Karting European Championship",
-        category: ["OK", "OK-Junior", "Academy"],
+        type: "FIA European Championship",
+        category: ["OK", "OK-J", "Academy"],
       },
       location: {
         country: "Sweden",
@@ -70,7 +70,7 @@ export const eventsData = {
     {
       id: 6,
       name: {
-        type: "FIA Karting European Championship",
+        type: "FIA European Championship",
         category: ["KZ", "KZ2", "KZ2-Masters"],
       },
       location: {
@@ -83,8 +83,8 @@ export const eventsData = {
     {
       id: 7,
       name: {
-        type: "FIA Karting World Championship",
-        category: ["OK", "OK-Junior", "OK-N"],
+        type: "FIA World Championship",
+        category: ["OK", "OK-J", "OK-N"],
       },
       location: {
         country: "Great Britain",
@@ -96,7 +96,7 @@ export const eventsData = {
     {
       id: 8,
       name: {
-        type: "FIA Karting World Championship",
+        type: "FIA World Championship",
         category: ["KZ", "KZ2", "KZ2-Masters"],
       },
       location: {
@@ -108,12 +108,12 @@ export const eventsData = {
     },
   ],
 
-  // Rotax Euro Trophy
-  rotaxEuroTrophy: [
+  // RMC Euro Trophy
+  rmcEuroTrophy: [
     {
       id: 1,
       name: {
-        type: "Rotax Euro Trophy Winter Cup",
+        type: "RMC Euro Trophy Winter Cup",
         category: ["Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
       },
       location: {
@@ -126,7 +126,7 @@ export const eventsData = {
     {
       id: 2,
       name: {
-        type: "Rotax Euro Trophy",
+        type: "RMC Euro Trophy",
         category: ["Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
       },
       location: {
@@ -139,7 +139,7 @@ export const eventsData = {
     {
       id: 3,
       name: {
-        type: "Rotax Euro Trophy",
+        type: "RMC Euro Trophy",
         category: [
           "Mini",
           "Junior",
@@ -160,7 +160,7 @@ export const eventsData = {
     {
       id: 4,
       name: {
-        type: "Rotax Euro Trophy",
+        type: "RMC Euro Trophy",
         category: [
           "Mini",
           "Junior",
@@ -180,7 +180,7 @@ export const eventsData = {
     {
       id: 5,
       name: {
-        type: "Rotax Euro Trophy",
+        type: "RMC Euro Trophy",
         category: ["Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
       },
       location: {
@@ -271,6 +271,352 @@ export const eventsData = {
         circuit: "Valencia",
       },
       date: { start: "2024-11-04T00:00:00", end: "2024-11-09T00:00:00" },
+    },
+  ],
+
+  // RMC CEE
+  rmcCee: [
+    {
+      id: 1,
+      name: {
+        type: "RMC CEE Bonus Cup",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Jesolo",
+      },
+      date: { start: "2024-02-23T00:00:00", end: "2024-02-25T00:00:00" },
+    },
+    {
+      id: 2,
+      name: {
+        type: "RMC CEE",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Jesolo",
+      },
+      date: { start: "2024-03-01T00:00:00", end: "2024-03-03T00:00:00" },
+    },
+    {
+      id: 3,
+      name: {
+        type: "RMC CEE",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Slovakia",
+        countryCode: "SK",
+        circuit: "Slovakia Ring",
+      },
+      date: { start: "2024-05-03T00:00:00", end: "2024-05-05T00:00:00" },
+    },
+    {
+      id: 4,
+      name: {
+        type: "RMC CEE",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Czech Republic",
+        countryCode: "CZ",
+        circuit: "Steel Ring",
+      },
+      date: { start: "2024-06-21T00:00:00", end: "2024-06-23T00:00:00" },
+    },
+    {
+      id: 5,
+      name: {
+        type: "RMC CEE",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Czech Republic",
+        countryCode: "CZ",
+        circuit: "Steel Ring",
+      },
+      date: { start: "2024-06-28T00:00:00", end: "2024-06-30T00:00:00" },
+    },
+    {
+      id: 6,
+      name: {
+        type: "RMC CEE",
+        category: ["Micro", "Mini", "Junior", "Senior", "DD2", "DD2-Masters"],
+      },
+      location: {
+        country: "Austria",
+        countryCode: "AT",
+        circuit: "Speedworld",
+      },
+      date: { start: "2024-09-20T00:00:00", end: "2024-09-22T00:00:00" },
+    },
+  ],
+
+  // RMC BNL
+  rmcBnl: [
+    {
+      id: 1,
+      name: {
+        type: "RMC BNL Kick-Off",
+        category: [
+          "Mini-Rookie",
+          "Mini",
+          "Junior",
+          "Senior",
+          "DD2",
+          "DD2-Masters",
+        ],
+      },
+      location: {
+        country: "Belgium",
+        countryCode: "BE",
+        circuit: "Genk",
+      },
+      date: { start: "2024-03-23T00:00:00", end: "2024-03-24T00:00:00" },
+    },
+    {
+      id: 2,
+      name: {
+        type: "RMC BNL",
+        category: [
+          "Mini-Rookie",
+          "Mini",
+          "Junior",
+          "Senior",
+          "DD2",
+          "DD2-Masters",
+        ],
+      },
+      location: {
+        country: "Belgium",
+        countryCode: "BE",
+        circuit: "Genk",
+      },
+      date: { start: "2024-04-06T00:00:00", end: "2024-04-07T00:00:00" },
+    },
+    {
+      id: 3,
+      name: {
+        type: "RMC BNL",
+        category: [
+          "Mini-Rookie",
+          "Mini",
+          "Junior",
+          "Senior",
+          "DD2",
+          "DD2-Masters",
+        ],
+      },
+      location: {
+        country: "Belgium",
+        countryCode: "BE",
+        circuit: "Mariembourg",
+      },
+      date: { start: "2024-05-25T00:00:00", end: "2024-05-26T00:00:00" },
+    },
+    {
+      id: 4,
+      name: {
+        type: "RMC BNL",
+        category: [
+          "Mini-Rookie",
+          "Mini",
+          "Junior",
+          "Senior",
+          "DD2",
+          "DD2-Masters",
+        ],
+      },
+      location: {
+        country: "Germany",
+        countryCode: "DE",
+        circuit: "Kerpen",
+      },
+      date: { start: "2024-08-24T00:00:00", end: "2024-08-25T00:00:00" },
+    },
+    {
+      id: 5,
+      name: {
+        type: "RMC BNL",
+        category: [
+          "Mini-Rookie",
+          "Mini",
+          "Junior",
+          "Senior",
+          "DD2",
+          "DD2-Masters",
+        ],
+      },
+      location: {
+        country: "Belgium",
+        countryCode: "BE",
+        circuit: "Genk",
+      },
+      date: { start: "2024-09-28T00:00:00", end: "2024-09-29T00:00:00" },
+    },
+  ],
+
+  // WSK
+  wsk: [
+    {
+      id: 1,
+      name: {
+        type: "WSK Champions Cup",
+        category: ["Mini", "OK-NJ", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Lonato",
+      },
+      date: { start: "2024-01-17T00:00:00", end: "2024-01-21T00:00:00" },
+    },
+    {
+      id: 2,
+      name: {
+        type: "WSK Super Master Series",
+        category: ["Mini", "OK-NJ", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Lonato",
+      },
+      date: { start: "2024-01-24T00:00:00", end: "2024-01-28T00:00:00" },
+    },
+    {
+      id: 3,
+      name: {
+        type: "WSK Super Master Series",
+        category: ["Mini", "OK-NJ", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Cremona",
+      },
+      date: { start: "2024-02-07T00:00:00", end: "2024-02-11T00:00:00" },
+    },
+    {
+      id: 4,
+      name: {
+        type: "WSK Super Master Series",
+        category: ["Mini", "OK-NJ", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Franciacorta",
+      },
+      date: { start: "2024-02-14T00:00:00", end: "2024-02-18T00:00:00" },
+    },
+    {
+      id: 5,
+      name: {
+        type: "WSK Super Master Series",
+        category: ["Mini", "OK-NJ", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Sarno",
+      },
+      date: { start: "2024-02-27T00:00:00", end: "2024-03-02T00:00:00" },
+    },
+    {
+      id: 6,
+      name: {
+        type: "WSK Open Series",
+        category: ["Mini", "OK-NJ", "OK-N", "KZ2", "KZ2-Masters"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Franciacorta",
+      },
+      date: { start: "2024-04-03T00:00:00", end: "2024-04-07T00:00:00" },
+    },
+    {
+      id: 7,
+      name: {
+        type: "WSK Open Series",
+        category: ["Mini", "OK-NJ", "OK-N", "KZ2", "KZ2-Masters"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "La Conca",
+      },
+      date: { start: "2024-05-07T00:00:00", end: "2024-05-11T00:00:00" },
+    },
+    {
+      id: 8,
+      name: {
+        type: "WSK Euro Series",
+        category: ["Mini", "OK-NJ", "OK-N", "OK-J", "OK"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Franciacorta",
+      },
+      date: { start: "2024-06-26T00:00:00", end: "2024-06-30T00:00:00" },
+    },
+    {
+      id: 9,
+      name: {
+        type: "WSK Euro Series",
+        category: ["Mini", "OK-NJ", "OK-N", "OK-J", "OK"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Sarno",
+      },
+      date: { start: "2024-09-25T00:00:00", end: "2024-09-29T00:00:00" },
+    },
+    {
+      id: 10,
+      name: {
+        type: "WSK Super Cup",
+        category: ["Mini", "OK-NJ", "OK-N", "KZ-N"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Franciacorta",
+      },
+      date: { end: "2024-09-08T00:00:00" },
+    },
+    {
+      id: 11,
+      name: {
+        type: "WSK Final Cup",
+        category: ["Mini", "OK-NJ", "OK-N", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Lonato",
+      },
+      date: { start: "2024-11-06T00:00:00", end: "2024-11-10T00:00:00" },
+    },
+    {
+      id: 12,
+      name: {
+        type: "WSK Final Cup",
+        category: ["Mini", "OK-NJ", "OK-N", "OK-J", "OK", "KZ2"],
+      },
+      location: {
+        country: "Italy",
+        countryCode: "IT",
+        circuit: "Cremona",
+      },
+      date: { start: "2024-11-20T00:00:00", end: "2024-11-24T00:00:00" },
     },
   ],
 };
