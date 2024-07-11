@@ -1,13 +1,14 @@
 import EventList from "./components/EventList/EventList";
 
 export default function App() {
+  const style = {
+    padding: "0 1rem",
+    maxWidth: "100rem",
+    margin: "0 auto",
+  };
   return (
-    <>
-      <h1>Karting Events</h1>
-      <section>
-        {/* <EventsHeader /> */}
-        <EventList />
-      </section>
-    </>
+    <div style={style}>
+      <EventList />
+    </div>
   );
 }
