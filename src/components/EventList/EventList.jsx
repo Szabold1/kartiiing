@@ -8,11 +8,12 @@ function prepareData(data) {
 
   flatData
     .sort((a, b) => {
-      return new Date(a.date.start) - new Date(b.date.start);
+      return new Date(a.date?.start) - new Date(b.date?.start);
     })
     .forEach((item, index) => {
       item.id = index + 1;
     });
+
   return flatData;
 }
 
@@ -20,7 +21,7 @@ export default function EventList() {
   const allData = prepareData(eventsData);
 
   return (
-    <ol className={styles.listContainer}>
+    <ol className={styles.items}>
       {allData.map((data) => (
         <EventItem key={data.id} {...data} />
       ))}

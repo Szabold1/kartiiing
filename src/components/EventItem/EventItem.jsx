@@ -28,9 +28,8 @@ export default function EventItem({ name, location, date }) {
       </div>
 
       <div className={styles.btnContainer}>
-        <Btn color="rgb(30, 0, 100)" bgColor="rgb(250, 250, 250)">
-          More Info
-        </Btn>
+        <Btn color="rgb(0, 130, 260)">More Info</Btn>
+        {/* <Btn color="rgb(0, 230, 180)">More Info</Btn> */}
       </div>
     </li>
   );
