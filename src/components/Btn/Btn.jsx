@@ -3,7 +3,7 @@ import styles from "./Btn.module.css";
 export default function Btn({
   children,
   color = "rgb(30, 30, 30)",
-  bgColor = "rgb(250, 250, 250)",
+  bgColor = "inherit",
 }) {
   const btnStyles = {
     backgroundColor: bgColor,
