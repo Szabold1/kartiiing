@@ -1,9 +1,9 @@
 import styled, { ThemeProvider } from "styled-components";
 import useThemeMode from "./hooks/useThemeMode";
 import GlobalStyle from "./styles/globalStyles";
-import FilterEventContainer from "./components/FilterEventContainer";
+import MainContainer from "./components/MainContainer";
 
-const StyledContainer = styled.div`
+const StyledDiv = styled.div`
   margin: 2rem auto;
   padding: 0 1rem;
   max-width: 1600px;
@@ -27,9 +27,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme.theme}>
       <GlobalStyle />
-      <StyledContainer>
-        <FilterEventContainer />
-      </StyledContainer>
+      <StyledDiv>
+        <MainContainer />
+      </StyledDiv>
     </ThemeProvider>
   );
 }

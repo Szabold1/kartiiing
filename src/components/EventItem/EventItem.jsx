@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DateHeader from "./DateHeader";
 import EventItemContent from "./EventItemContent";
-import Btn from "./Btn";
+import Btn from "../Btn";
 
 const StyledItem = styled.li`
   display: flex;

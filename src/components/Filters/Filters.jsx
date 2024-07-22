@@ -1,19 +1,12 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { IoOptions } from "react-icons/io5";
 import { HiOutlineArrowPath } from "react-icons/hi2";
-import FiltersHeader from "./FiltersHeader";
+import { useState } from "react";
 import FilterItem from "./FilterItem";
 
 const StyledFilters = styled.div`
-  color: ${({ theme }) => theme.colors.text[1]};
+  cursor: pointer;
   position: relative;
-
-  > div {
-    background-color: ${({ theme }) => theme.colors.accent[0]};
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
-  }
 `;
 
 const StyledDropdown = styled.div`
@@ -23,14 +16,17 @@ const StyledDropdown = styled.div`
   gap: 0.5rem;
   position: absolute;
   right: 0;
-  padding: 1rem 0.75rem;
+  top: 0;
+  padding: 0.75rem;
   width: 15rem;
   transition: all 0.2s ease-in-out;
   visibility: hidden;
   opacity: 0;
   transform: translateY(-1rem);
   z-index: 100;
-  margin-top: -0.5rem;
+  margin-top: 3.75rem;
+  background-color: ${({ theme }) => theme.colors.accent[0]};
+  border-radius: 0.5rem;
 
   &.show {
     visibility: visible;
@@ -90,8 +86,11 @@ export default function Filters({ filterOptions, onFilterChange }) {
   }
 
   return (
-    <StyledFilters>
-      <FiltersHeader title="calendar" onFilterClick={handleFilterClick} />
+    <StyledFilters onClick={handleFilterClick}>
+      <span>FILTERS</span>
+      <hr />
+      <IoOptions size={20} />
+
       <StyledDropdown className={showDropdown ? "show" : ""}>
         {options.map((option) => (
           <FilterItem
@@ -101,6 +100,7 @@ export default function Filters({ filterOptions, onFilterChange }) {
             onFilterChange={onFilterChange}
           />
         ))}
+
         <StyledResetFilters>
           <HiOutlineArrowPath size={17} />
           <span>Reset</span>

@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-import EventItem from "./EventItem";
+import EventItem from "./EventItem/EventItem";
 
 const StyledList = styled.ol`
   display: grid;

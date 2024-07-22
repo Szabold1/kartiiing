@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import _ from "lodash";
 import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
-import Filters from "./Filters";
+import HeaderBar from "./HeaderBar";
 import EventList from "./EventList";
 
-export default function FilterEventContainer() {
+export default function MainContainer() {
   const currentYear = new Date().getFullYear().toString();
   const [races, setRaces] = useState([]);
   const [filteredRaces, setFilteredRaces] = useState([]);
@@ -125,7 +125,7 @@ export default function FilterEventContainer() {
 
   return (
     <>
-      <Filters
+      <HeaderBar
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
       />
