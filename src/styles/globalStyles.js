@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
         background-color: ${({ theme }) => theme.colors.bg[0]};
         color: ${({ theme }) => theme.colors.text[0]};
 
-        font-size: 16px;
+        font-size: 15px;
         font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
     }`;
 
