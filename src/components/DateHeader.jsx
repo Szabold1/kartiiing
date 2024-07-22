@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const StyledDate = styled.div`
-  color: ${({ theme }) => theme.colors.text[0]};
-  background-color: ${({ theme }) => theme.colors.bg[1]};
+  background-color: inherit;
   border: 1.5px solid ${({ theme }) => theme.colors.accent[0]};
 
   display: flex;

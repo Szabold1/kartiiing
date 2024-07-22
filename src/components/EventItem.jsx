@@ -27,10 +27,6 @@ const StyledItem = styled.li`
     transform: scale(1.02);
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
     background-color: ${({ theme }) => theme.colors.bg[2]};
-
-    > div:nth-child(1) {
-      color: ${({ theme }) => theme.colors.accent[0]};
-    }
   }
 
   &:active {
@@ -40,12 +36,22 @@ const StyledItem = styled.li`
   }
 `;
 
-export default function EventItem({ name, location, date }) {
+export default function EventItem({
+  start_date,
+  end_date,
+  series,
+  circuits,
+  engine_type,
+}) {
   return (
     <StyledItem>
-      <DateHeader date={date} />
+      <DateHeader date={{ start: start_date, end: end_date }} />
 
-      <EventItemContent name={name} location={location} />
+      <EventItemContent
+        name={series}
+        location={circuits}
+        engine_type={engine_type}
+      />
 
       <div>
         <Btn>More Info</Btn>
