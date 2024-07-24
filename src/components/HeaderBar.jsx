@@ -17,7 +17,7 @@ const StyledHeaderBar = styled.div`
   margin-bottom: 1rem;
 
   @media screen and (min-width: 80rem) {
-    margin-bottom: ${({ $showDropdown }) => ($showDropdown ? "5rem" : "1rem")};
+    margin-bottom: ${({ $showDropdown }) => ($showDropdown ? "6rem" : "1rem")};
   }
 
   > div {
