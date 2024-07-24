@@ -13,7 +13,7 @@ const StyledSelectWrapper = styled.div`
     min-width: 14rem;
 
     &:hover {
-      cursor: pointer;
+      cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
       background-color: ${({ theme }) => theme.colors.bg[4]};
     }
 
@@ -48,7 +48,7 @@ const StyledSelectWrapper = styled.div`
     padding: 0.7rem;
 
     &:hover {
-      cursor: pointer;
+      cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
       background-color: ${({ theme }) => theme.colors.accent[2]};
     }
   }
@@ -59,7 +59,12 @@ const StyledSelectWrapper = styled.div`
   }
 `;
 
-export default function FilterItem({ name, options, onFilterChange }) {
+export default function FilterItem({
+  name,
+  options,
+  showDropdown,
+  onFilterChange,
+}) {
   const [selectValue, setSelectValue] = useState(defaultFilterValues[name]);
   const formattedOptions = options.map((option) => ({
     value: option,
@@ -75,7 +80,7 @@ export default function FilterItem({ name, options, onFilterChange }) {
     formattedOptions.find((option) => option.value === selectValue) || null;
 
   return (
-    <StyledSelectWrapper>
+    <StyledSelectWrapper $showDropdown={showDropdown}>
       <Select
         name={name}
         options={formattedOptions}

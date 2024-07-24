@@ -16,7 +16,6 @@ const StyledDropdown = styled.div`
   right: 0;
   top: 0;
   padding: 0.5rem;
-  ${"" /* width: 15rem; */}
   transition: all 0.2s ease-in-out;
   visibility: hidden;
   opacity: 0;
@@ -65,6 +64,7 @@ export default function Filters({
             key={filterName}
             name={filterName}
             options={filterOptions[filterName]}
+            showDropdown={showDropdown}
             onFilterChange={onFilterChange}
           />
         ))}
