@@ -6,7 +6,6 @@ import HeaderBar from "./HeaderBar";
 import EventList from "./EventList";
 
 export default function MainContainer() {
-  const currentYear = new Date().getFullYear().toString();
   const [races, setRaces] = useState([]);
   const [filteredRaces, setFilteredRaces] = useState([]);
   const [filterOptions, setFilterOptions] = useState({
@@ -36,7 +35,7 @@ export default function MainContainer() {
       } else {
         console.log("Races fetched successfully", data);
         setRaces(data);
-        setFilteredRaces(data);
+        handleFilterChange("years", new Date().getFullYear().toString());
         extractFilterOptions(data);
       }
     }
@@ -45,29 +44,27 @@ export default function MainContainer() {
 
   //   Extract filter options which will be displayed in the dropdown
   function extractFilterOptions(data) {
-    const years = [
-      "All years",
-      ..._.uniq(data.map((race) => race.end_date.slice(0, 4)))
-        .reverse()
-        .filter((year) => year <= currentYear),
-    ];
-    const months = [
-      "All months",
-      ..._.uniq(
-        data.map((race) =>
-          new Date(race.end_date).toLocaleString("default", { month: "long" })
-        )
-      ),
-    ];
-    const categories = [
-      "All categories",
-      ..._.uniq(_.flatMap(data, (race) => race.engine_type)),
-    ];
+    const years = _.uniq(
+      data.map((race) => race.end_date.slice(0, 4))
+    ).reverse();
+
+    const months = _.uniq(
+      data.map((race) => new Date(race.end_date).getMonth())
+    )
+      .sort((a, b) => a - b)
+      .map((month) =>
+        new Date(0, month).toLocaleString("default", { month: "long" })
+      );
+
+    const categories = _.uniq(
+      _.flatMap(data, (race) => race.engine_type)
+    ).sort();
+
     const series = seriesData.sort();
-    const countries = [
-      "All countries",
-      ..._.uniq(_.flatMap(data, (race) => race.circuits.countries.name)).sort(),
-    ];
+
+    const countries = _.uniq(
+      _.flatMap(data, (race) => race.circuits.countries.name)
+    ).sort();
     setFilterOptions({
       years,
       months,
@@ -77,6 +74,7 @@ export default function MainContainer() {
     });
   }
 
+  // Filter races based on selected filters
   useEffect(() => {
     function applyFilters() {
       let filtered = races;
@@ -85,7 +83,8 @@ export default function MainContainer() {
           (race) => filters.years === race.end_date.slice(0, 4)
         );
       }
-      if (filters.months && filters.months !== "All months") {
+
+      if (filters.months) {
         filtered = filtered.filter((race) => {
           const startDate = new Date(race.start_date).toLocaleString(
             "default",
@@ -97,25 +96,30 @@ export default function MainContainer() {
           return filters.months === startDate || filters.months === endDate;
         });
       }
-      if (filters.categories && filters.categories !== "All categories") {
+
+      if (filters.categories) {
         filtered = filtered.filter((race) =>
           race.engine_type.includes(filters.categories)
         );
       }
-      if (filters.series && filters.series !== "All series") {
+
+      if (filters.series) {
         filtered = filtered.filter(
           (race) =>
             race.series.filter((series) => series.includes(filters.series))
               .length
         );
       }
-      if (filters.countries && filters.countries !== "All countries") {
+
+      if (filters.countries) {
         filtered = filtered.filter(
           (race) => race.circuits.countries.name === filters.countries
         );
       }
+
       setFilteredRaces(filtered);
     }
+
     applyFilters();
   }, [filters, races]);
 

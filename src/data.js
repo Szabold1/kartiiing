@@ -1,5 +1,8 @@
+export const defaultFilterValues = {
+  years: new Date().getFullYear().toString(),
+};
+
 export const seriesData = [
-  "All series",
   "FIA European Championship",
   "FIA World Championship",
   "IAME Euro",

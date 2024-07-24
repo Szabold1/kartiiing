@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { IoOptions } from "react-icons/io5";
-import { HiOutlineArrowPath } from "react-icons/hi2";
-import { useState } from "react";
 import FilterItem from "./FilterItem";
 
 const StyledFilters = styled.div`
@@ -13,12 +11,12 @@ const StyledDropdown = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   position: absolute;
   right: 0;
   top: 0;
-  padding: 0.75rem;
-  width: 15rem;
+  padding: 0.5rem;
+  ${"" /* width: 15rem; */}
   transition: all 0.2s ease-in-out;
   visibility: hidden;
   opacity: 0;
@@ -26,7 +24,9 @@ const StyledDropdown = styled.div`
   z-index: 100;
   margin-top: 3.75rem;
   background-color: ${({ theme }) => theme.colors.accent[0]};
-  border-radius: 0.5rem;
+  border-radius: 0.7rem;
+  backdrop-filter: blur(1.5rem);
+  -webkit-backdrop-filter: blur(1.5rem);
 
   &.show {
     visibility: visible;
@@ -37,75 +37,38 @@ const StyledDropdown = styled.div`
   @media screen and (min-width: 80rem) {
     flex-direction: row;
     align-items: center;
-    width: fit-content;
-    padding: 0.6rem 0.75rem;
+    width: auto;
   }
 `;
 
-const StyledResetFilters = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.66rem 1.4rem;
-  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
-  border-radius: 0.4rem;
-  background-color: ${({ theme }) => theme.colors.bg[3]};
-  color: ${({ theme }) => theme.colors.text[0]};
-  font-weight: 600;
-  margin-top: 0.5rem;
-
-  &:hover {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.colors.bg[4]};
-    color: ${({ theme }) => theme.colors.text[1]};
-  }
-
-  > svg {
-    stroke-width: 2.2;
-  }
-
-  @media screen and (min-width: 80rem) {
-    margin-top: 0;
-  }
-`;
-
-export default function Filters({ filterOptions, onFilterChange }) {
-  const [showDropdown, setShowDropdown] = useState(false);
-
-  const options = [
-    { name: "years", options: filterOptions.years },
-    { name: "months", options: filterOptions.months },
-    { name: "categories", options: filterOptions.categories },
-    { name: "series", options: filterOptions.series },
-    { name: "countries", options: filterOptions.countries },
-  ];
-
+export default function Filters({
+  filterOptions,
+  onFilterChange,
+  showDropdown,
+  setShowDropdown,
+}) {
   function handleFilterClick() {
     setShowDropdown((prev) => !prev);
   }
 
   return (
-    <StyledFilters onClick={handleFilterClick}>
-      <span>FILTERS</span>
-      <hr />
-      <IoOptions size={20} />
+    <>
+      <StyledFilters onClick={handleFilterClick}>
+        <span>FILTERS</span>
+        <hr />
+        <IoOptions size={20} />
+      </StyledFilters>
 
       <StyledDropdown className={showDropdown ? "show" : ""}>
-        {options.map((option) => (
+        {Object.keys(filterOptions).map((filterName) => (
           <FilterItem
-            key={option.name}
-            name={option.name}
-            options={option.options}
+            key={filterName}
+            name={filterName}
+            options={filterOptions[filterName]}
             onFilterChange={onFilterChange}
           />
         ))}
-
-        <StyledResetFilters>
-          <HiOutlineArrowPath size={17} />
-          <span>Reset</span>
-        </StyledResetFilters>
       </StyledDropdown>
-    </StyledFilters>
+    </>
   );
 }
