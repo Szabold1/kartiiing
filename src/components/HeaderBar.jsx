@@ -14,6 +14,11 @@ const StyledHeaderBar = styled.div`
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   padding: 1rem;
   transition: all 0.2s ease-in-out;
+  margin-bottom: 1rem;
+
+  @media screen and (min-width: 80rem) {
+    margin-bottom: ${({ $showDropdown }) => ($showDropdown ? "5rem" : "1rem")};
+  }
 
   > div {
     display: flex;
@@ -36,7 +41,7 @@ export default function HeaderBar({ filterOptions, onFilterChange }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <StyledHeaderBar style={{ marginBottom: showDropdown ? "5rem" : "1rem" }}>
+    <StyledHeaderBar $showDropdown={showDropdown}>
       <div>
         <IoCalendar size={20} />
         <hr />
