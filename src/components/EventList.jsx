@@ -1,21 +1,46 @@
 import styled from "styled-components";
+import _ from "lodash";
 import EventItem from "./EventItem/EventItem";
 
-const StyledList = styled.ol`
+const StyledEventList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 2.5rem;
+`;
+
+const StyledYear = styled.h2`
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  margin-bottom: 3.5rem;
+`;
+
+const StyledEventItems = styled.div`
   display: grid;
-  justify-content: center;
-  justify-items: center;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: 2.5rem 1.25rem;
-  padding: 3rem 0;
+  gap: 2.6rem 1.6rem;
+  justify-items: center;
+  align-items: center;
 `;
 
 export default function EventList({ races }) {
+  const groupedRaces = _.groupBy(races, (race) => race.end_date.slice(0, 4));
+
   return (
-    <StyledList>
-      {races
-        ? races.map((data) => <EventItem key={data.id} {...data} />)
-        : "Loading..."}
-    </StyledList>
+    <StyledEventList>
+      {races &&
+        Object.keys(groupedRaces).map((year) => (
+          <div key={year}>
+            <StyledYear>{year}</StyledYear>
+            <StyledEventItems>
+              {groupedRaces[year].map((race) => (
+                <EventItem key={race.id} {...race} />
+              ))}
+            </StyledEventItems>
+          </div>
+        ))}
+    </StyledEventList>
   );
 }
