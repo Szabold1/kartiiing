@@ -10,7 +10,7 @@ const StyledSelectWrapper = styled.div`
     border: none;
     border-radius: 0.5rem;
     padding: 0.06rem;
-    min-width: 14rem;
+    width: 14rem;
 
     &:hover {
       cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
@@ -18,6 +18,7 @@ const StyledSelectWrapper = styled.div`
     }
 
     @media screen and (min-width: 80rem) {
+      width: auto;
       min-width: 15rem;
     }
   }

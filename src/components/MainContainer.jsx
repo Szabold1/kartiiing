@@ -106,8 +106,9 @@ export default function MainContainer() {
       if (filters.series) {
         filtered = filtered.filter(
           (race) =>
-            race.series.filter((series) => series.includes(filters.series))
-              .length
+            race.series.filter((series) =>
+              series.toLowerCase().includes(filters.series.toLowerCase())
+            ).length
         );
       }
 

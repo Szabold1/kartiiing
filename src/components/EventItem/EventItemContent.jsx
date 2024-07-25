@@ -24,6 +24,7 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   > div:nth-child(1) {
     text-transform: uppercase;
