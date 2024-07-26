@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import _ from "lodash";
 import EventItem from "./EventItem/EventItem";
+import StyledNoRaces from "./styled/StyledNoRaces";
 
 const StyledEventList = styled.div`
   display: flex;
@@ -26,21 +27,27 @@ const StyledEventItems = styled.div`
 `;
 
 export default function EventList({ races }) {
-  const groupedRaces = _.groupBy(races, (race) => race.end_date.slice(0, 4));
+  const groupedRaces =
+    races?.length > 0
+      ? _.groupBy(races, (race) => race.end_date.slice(0, 4))
+      : {};
+
+  if (races?.length === 0) {
+    return <StyledNoRaces>No races found</StyledNoRaces>;
+  }
 
   return (
     <StyledEventList>
-      {races &&
-        Object.keys(groupedRaces).map((year) => (
-          <div key={year}>
-            <StyledYear>{year}</StyledYear>
-            <StyledEventItems>
-              {groupedRaces[year].map((race) => (
-                <EventItem key={race.id} {...race} />
-              ))}
-            </StyledEventItems>
-          </div>
-        ))}
+      {Object.keys(groupedRaces).map((year) => (
+        <div key={year}>
+          <StyledYear>{year}</StyledYear>
+          <StyledEventItems>
+            {groupedRaces[year].map((race) => (
+              <EventItem key={race.id} {...race} />
+            ))}
+          </StyledEventItems>
+        </div>
+      ))}
     </StyledEventList>
   );
 }

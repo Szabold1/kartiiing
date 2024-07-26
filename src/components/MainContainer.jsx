@@ -4,6 +4,7 @@ import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
 import HeaderBar from "./HeaderBar";
 import EventList from "./EventList";
+import StyledNoRaces from "./styled/StyledNoRaces";
 
 export default function MainContainer() {
   const [races, setRaces] = useState([]);
@@ -22,10 +23,12 @@ export default function MainContainer() {
     series: null,
     countries: null,
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch races from Supabase and extract filter options
   useEffect(() => {
     async function fetchRaces() {
+      setIsLoading(true);
       const { data, error } = await supabase
         .from("races")
         .select(`*, circuits (*, countries (*))`)
@@ -38,6 +41,7 @@ export default function MainContainer() {
         handleFilterChange("years", new Date().getFullYear().toString());
         extractFilterOptions(data);
       }
+      setIsLoading(false);
     }
     fetchRaces();
   }, []);
@@ -134,7 +138,11 @@ export default function MainContainer() {
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
       />
-      <EventList races={filteredRaces} />
+      {isLoading ? (
+        <StyledNoRaces>Loading races...</StyledNoRaces>
+      ) : (
+        <EventList races={filteredRaces} />
+      )}
     </>
   );
 }
