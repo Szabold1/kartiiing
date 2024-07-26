@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import DateHeader from "./DateHeader";
 import EventItemContent from "./EventItemContent";
-import Btn from "../styled/Btn";
+import StyledBtn from "../styled/StyledBtn";
 
 const StyledItem = styled.li`
   display: flex;
@@ -54,7 +54,7 @@ export default function EventItem({
       />
 
       <div>
-        <Btn>More Info</Btn>
+        <StyledBtn>More Info</StyledBtn>
       </div>
     </StyledItem>
   );

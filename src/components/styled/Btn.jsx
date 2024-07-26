@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Btn = styled.button`
+const StyledBtn = styled.button`
   border: 2px solid ${({ theme }) => theme.colors.accent[0]};
   color: ${({ theme }) => theme.colors.accent[0]};
   background-color: ${({ theme }) => theme.colors.bg[1]};
@@ -27,4 +27,4 @@ const Btn = styled.button`
   }
 `;
 
-export default Btn;
+export default StyledBtn;
