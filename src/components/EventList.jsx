@@ -7,7 +7,7 @@ const StyledEventList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
 `;
 
 const StyledYear = styled.h2`

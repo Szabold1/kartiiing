@@ -3,6 +3,7 @@ import _ from "lodash";
 import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
 import HeaderBar from "./HeaderBar";
+import AppliedFilters from "./Filters/AppliedFilters";
 import EventList from "./EventList";
 import StyledNoRaces from "./styled/StyledNoRaces";
 
@@ -138,6 +139,7 @@ export default function MainContainer() {
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
       />
+      <AppliedFilters filters={filters} />
       {isLoading ? (
         <StyledNoRaces>Loading races...</StyledNoRaces>
       ) : (
