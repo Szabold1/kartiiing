@@ -12,12 +12,12 @@ const StyledHeaderBar = styled.div`
   background-color: ${({ theme }) => theme.colors.accent[0]};
   border-radius: 0.7rem;
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
-  padding: 1rem;
   transition: all 0.2s ease-in-out;
   margin-bottom: 1rem;
 
-  @media screen and (min-width: 80rem) {
-    margin-bottom: ${({ $showDropdown }) => ($showDropdown ? "6rem" : "1rem")};
+  > div:nth-child(1),
+  > div:nth-child(2) {
+    padding: 1rem;
   }
 
   > div {

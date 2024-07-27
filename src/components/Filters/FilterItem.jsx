@@ -16,11 +16,6 @@ const StyledSelectWrapper = styled.div`
       cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
       background-color: ${({ theme }) => theme.colors.bg[4]};
     }
-
-    @media screen and (min-width: 80rem) {
-      width: auto;
-      min-width: 15rem;
-    }
   }
 
   .custom-select__placeholder {

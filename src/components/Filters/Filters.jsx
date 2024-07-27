@@ -32,12 +32,6 @@ const StyledDropdown = styled.div`
     opacity: 1;
     transform: translateY(0);
   }
-
-  @media screen and (min-width: 80rem) {
-    flex-direction: row;
-    align-items: center;
-    width: auto;
-  }
 `;
 
 export default function Filters({
