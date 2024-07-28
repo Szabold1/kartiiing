@@ -1,8 +1,13 @@
 import styled from "styled-components";
+import { useEffect, useRef } from "react";
 import { IoOptions } from "react-icons/io5";
 import FilterItem from "./FilterItem";
 
 const StyledFilters = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
   cursor: pointer;
   position: relative;
 `;
@@ -40,12 +45,27 @@ export default function Filters({
   showDropdown,
   setShowDropdown,
 }) {
+  const filtersRef = useRef(null);
+
   function handleFilterClick() {
     setShowDropdown((prev) => !prev);
   }
 
+  // Close dropdown when clicking outside of it
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (filtersRef.current && !filtersRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setShowDropdown]);
+
   return (
-    <>
+    <div ref={filtersRef}>
       <StyledFilters onClick={handleFilterClick}>
         <span>FILTERS</span>
         <hr />
@@ -63,6 +83,6 @@ export default function Filters({
           />
         ))}
       </StyledDropdown>
-    </>
+    </div>
   );
 }

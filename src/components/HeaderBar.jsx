@@ -26,7 +26,7 @@ const StyledHeaderBar = styled.div`
     justify-content: center;
     gap: 0.4rem;
 
-    > hr {
+    & hr {
       height: 1rem;
       width: 1.25px;
       margin: 0;
