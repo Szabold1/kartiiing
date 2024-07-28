@@ -15,25 +15,21 @@ const StyledHeaderBar = styled.div`
   transition: all 0.2s ease-in-out;
   margin-bottom: 1rem;
 
-  > div:nth-child(1),
-  > div:nth-child(2) {
+  > div:nth-child(1) {
     padding: 1rem;
-  }
-
-  > div {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+  }
 
-    & hr {
-      height: 1rem;
-      width: 1.25px;
-      margin: 0;
-      border-radius: 0.5px;
-      border: none;
-      background-color: ${({ theme }) => theme.colors.text[1]};
-    }
+  & hr {
+    height: 1rem;
+    width: 1.25px;
+    margin: 0;
+    border-radius: 0.5px;
+    border: none;
+    background-color: ${({ theme }) => theme.colors.text[1]};
   }
 `;
 
