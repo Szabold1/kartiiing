@@ -34,6 +34,30 @@ const StyledItem = styled.li`
     box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
     background-color: ${({ theme }) => theme.colors.bg[1]};
   }
+
+  @media screen and (min-width: 70rem) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    max-width: 100%;
+    padding: 0.8rem;
+    box-shadow: none;
+
+    > div:nth-child(3) {
+      margin-top: 0;
+    }
+
+    &:hover {
+      transform: none;
+      flex-shrink: 0;
+      box-shadow: none;
+    }
+  }
+
+  @media screen and (min-width: 90rem) {
+    padding: 1rem;
+  }
 `;
 
 export default function EventItem({

@@ -8,6 +8,13 @@ const StyledContent = styled.div`
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
+
+  @media screen and (min-width: 70rem) {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: flex-start;
+    gap: 0.6rem;
+  }
 `;
 
 const FlagContainer = styled.div`
@@ -16,6 +23,14 @@ const FlagContainer = styled.div`
   & img {
     border-radius: 0.3rem;
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
+  }
+
+  @media screen and (min-width: 70rem) {
+    width: 2rem;
+
+    & img {
+      border-radius: 0.2rem;
+    }
   }
 `;
 
@@ -44,12 +59,29 @@ const TextContainer = styled.div`
 
   > div:nth-child(2) {
     margin-top: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 1.2rem;
   }
 
   > div:nth-child(3) {
     margin-top: 0.5rem;
+  }
+
+  @media screen and (min-width: 70rem) {
+    flex-direction: row;
+    flex-grow: 1;
+    gap: 0.6rem;
+    text-align: left;
+    font-size: 1rem;
+
+    > div:nth-child(2),
+    div:nth-child(3) {
+      margin-top: 0;
+    }
+
+    > div:nth-child(3) {
+      margin-left: auto;
+    }
   }
 `;
 

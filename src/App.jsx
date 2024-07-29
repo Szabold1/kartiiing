@@ -8,16 +8,12 @@ const StyledDiv = styled.div`
   padding: 0 1rem;
   max-width: 1600px;
 
-  @media screen and (min-width: 36rem) {
+  @media screen and (min-width: 40rem) {
     padding: 0 2rem;
   }
 
-  @media screen and (min-width: 48rem) {
+  @media screen and (min-width: 50rem) {
     padding: 0 3rem;
-  }
-
-  @media screen and (min-width: 64rem) {
-    padding: 0 4rem;
   }
 `;
 

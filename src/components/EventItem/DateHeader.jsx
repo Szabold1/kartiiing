@@ -22,6 +22,18 @@ const StyledDate = styled.div`
     justify-content: center;
     gap: 0.4rem;
   }
+
+  @media screen and (min-width: 70rem) {
+    border: none;
+    border-radius: 0;
+    border-right: 1.5px solid ${({ theme }) => theme.colors.accent[0]};
+    width: auto;
+    margin-top: 0;
+    justify-content: flex-end;
+    padding-right: 1.4rem;
+    min-width: 9.9rem;
+    box-shadow: none;
+  }
 `;
 
 function formatDate(date) {

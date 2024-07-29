@@ -7,6 +7,7 @@ const StyledBtn = styled.button`
   background-color: inherit;
 
   padding: 0.5rem 1rem;
+  min-width: max-content;
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   font-size: 1rem;

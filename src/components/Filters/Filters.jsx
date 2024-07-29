@@ -19,6 +19,7 @@ const StyledDropdownContainer = styled.div`
   right: 0;
   top: 0;
   transition: all 0.2s ease-in-out;
+  pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
   transform: translateY(${({ $show }) => ($show ? 0 : -1)});
