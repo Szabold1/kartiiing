@@ -4,8 +4,10 @@ export const defaultFilterValues = {
 
 export const seriesData = [
   "Champions of the Future",
+  "FIA Academy Trophy",
   "FIA Endurance Championship",
   "FIA European Championship",
+  "FIA World Cup",
   "FIA World Championship",
   "IAME Euro Series",
   "IAME Warrior Final",
