@@ -3,9 +3,9 @@ import _ from "lodash";
 import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
 import HeaderBar from "./HeaderBar";
-import AppliedFilters from "./Filters/AppliedFilters";
 import EventList from "./EventList";
 import StyledNoRaces from "./styled/StyledNoRaces";
+import SubHeader from "./SubHeader";
 
 export default function MainContainer() {
   const [races, setRaces] = useState([]);
@@ -139,7 +139,7 @@ export default function MainContainer() {
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
       />
-      <AppliedFilters filters={filters} />
+      <SubHeader filters={filters} races={filteredRaces} />
       {isLoading ? (
         <StyledNoRaces>Loading races...</StyledNoRaces>
       ) : (
