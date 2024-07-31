@@ -66,16 +66,8 @@ const StyledNavHeader = styled.nav`
 `;
 
 const StyledIconContainer = styled.div`
-  padding: 0.7rem 1rem;
+  padding: 0.9rem 1rem;
   cursor: pointer;
-
-  @media screen and (min-width: 40rem) {
-    padding: 0.85rem 1rem;
-  }
-
-  @media screen and (min-width: 50rem) {
-    padding: 1rem 1rem;
-  }
 
   @media screen and (min-width: 70rem) {
     display: none;
@@ -184,7 +176,7 @@ export default function MainNavHeader() {
           kart<span>iiing</span>
         </h1>
         <StyledIconContainer onClick={handleNavClick}>
-          {showNav ? <IoClose size={33} /> : <IoMenu size={33} />}
+          {showNav ? <IoClose size={35} /> : <IoMenu size={35} />}
         </StyledIconContainer>
 
         {isMobile && (
