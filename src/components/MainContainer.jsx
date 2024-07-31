@@ -150,11 +150,7 @@ export default function MainContainer() {
   return (
     <StyledMainContainer>
       <SubHeader filters={filters} races={filteredRaces} />
-      {isLoading ? (
-        <StyledNoRaces>Loading races...</StyledNoRaces>
-      ) : (
-        <EventList races={filteredRaces} />
-      )}
+      <EventList races={filteredRaces} isLoading={isLoading} />
     </StyledMainContainer>
   );
 }

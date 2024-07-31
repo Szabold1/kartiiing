@@ -45,11 +45,15 @@ const StyledEventItems = styled.div`
   }
 `;
 
-export default function EventList({ races }) {
+export default function EventList({ races, isLoading }) {
   const groupedRaces =
     races?.length > 0
       ? _.groupBy(races, (race) => race.end_date.slice(0, 4))
       : {};
+
+  if (isLoading) {
+    return <StyledNoRaces>Loading...</StyledNoRaces>;
+  }
 
   if (races?.length === 0) {
     return <StyledNoRaces>No races found</StyledNoRaces>;
