@@ -36,7 +36,6 @@ const StyledNavHeader = styled.nav`
   background-color: ${({ theme }) => theme.colors.bg[5]};
   max-width: 1600px;
   margin: 0 auto;
-  padding: 0.2rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,17 +57,25 @@ const StyledNavHeader = styled.nav`
   }
 
   @media screen and (min-width: 40rem) {
-    padding: 0.15rem 1rem;
+    padding: 0 1rem;
   }
 
   @media screen and (min-width: 50rem) {
-    padding: 0.25rem 2rem;
+    padding: 0 2rem;
   }
 `;
 
 const StyledIconContainer = styled.div`
   padding: 0.7rem 1rem;
   cursor: pointer;
+
+  @media screen and (min-width: 40rem) {
+    padding: 0.85rem 1rem;
+  }
+
+  @media screen and (min-width: 50rem) {
+    padding: 1rem 1rem;
+  }
 
   @media screen and (min-width: 70rem) {
     display: none;
@@ -125,12 +132,18 @@ const StyledDesktopNav = styled.ul`
 
   > li {
     letter-spacing: 0.1rem;
-    padding: 1.2rem;
+    padding: 1.4rem 1.2rem;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    border-bottom: 1.5px solid transparent;
 
     &:hover {
       color: rgb(0, 220, 220);
+      border-bottom: 1.5px solid rgb(0, 220, 220);
+    }
+
+    @media screen and (min-width: 40rem) {
+      padding: 1.8rem 1.2rem;
     }
   }
 `;
@@ -140,12 +153,12 @@ export default function MainNavHeader() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1120); // 70rem
 
   const navOptions = [
-    "Engines & Categories",
     "Calendar",
     "Results",
+    "Circuits",
+    "Engines & Categories",
     "Championships",
     "Teams",
-    "Circuits",
   ];
 
   function handleNavClick() {
