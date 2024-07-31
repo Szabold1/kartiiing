@@ -15,12 +15,16 @@ const StyledYear = styled.h2`
   font-size: 2.2rem;
   font-weight: 600;
   letter-spacing: 0.1rem;
-  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
 
   @media screen and (min-width: 70rem) {
-    margin-bottom: 1rem;
+    position: sticky;
+    top: 4.3rem;
+    padding: 1.2rem 4.8rem 0.8rem 4.8rem;
+    background-color: ${({ theme }) => theme.colors.bg[1]};
+    border-radius: 1rem 1rem 0 0;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
     text-align: left;
-    margin-left: 4.8rem;
   }
 `;
 
@@ -29,15 +33,15 @@ const StyledEventItems = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2.6rem 1.6rem;
   justify-items: center;
-  align-items: center;
 
   @media screen and (min-width: 70rem) {
     display: flex;
     flex-direction: column;
     gap: 0;
     background-color: ${({ theme }) => theme.colors.bg[1]};
-    padding: 0.75rem;
-    border-radius: 1rem;
+    padding: 0.7rem;
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   }
 `;
 

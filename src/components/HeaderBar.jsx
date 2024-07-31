@@ -37,7 +37,7 @@ export default function HeaderBar({ filterOptions, onFilterChange }) {
   const [showDropdown, setShowDropdown] = useState(false);
 
   return (
-    <StyledHeaderBar $showDropdown={showDropdown}>
+    <StyledHeaderBar>
       <div>
         <IoCalendar size={20} />
         <hr />

@@ -1,11 +1,25 @@
+import styled from "styled-components";
 import { useState, useEffect } from "react";
 import _ from "lodash";
 import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
-import HeaderBar from "./HeaderBar";
 import EventList from "./EventList";
 import StyledNoRaces from "./styled/StyledNoRaces";
 import SubHeader from "./SubHeader";
+
+const StyledMainContainer = styled.div`
+  margin: 0 auto;
+  padding: 6rem 1rem;
+  max-width: 1600px;
+
+  @media screen and (min-width: 40rem) {
+    padding: 6rem 2rem;
+  }
+
+  @media screen and (min-width: 50rem) {
+    padding: 6rem 3rem;
+  }
+`;
 
 export default function MainContainer() {
   const [races, setRaces] = useState([]);
@@ -134,17 +148,13 @@ export default function MainContainer() {
   }
 
   return (
-    <>
-      <HeaderBar
-        filterOptions={filterOptions}
-        onFilterChange={handleFilterChange}
-      />
+    <StyledMainContainer>
       <SubHeader filters={filters} races={filteredRaces} />
       {isLoading ? (
         <StyledNoRaces>Loading races...</StyledNoRaces>
       ) : (
         <EventList races={filteredRaces} />
       )}
-    </>
+    </StyledMainContainer>
   );
 }
