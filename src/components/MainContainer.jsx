@@ -3,21 +3,20 @@ import { useState, useEffect } from "react";
 import _ from "lodash";
 import supabase from "../config/supabaseClient";
 import { seriesData } from "../data";
+import PageHeader from "./PageHeader";
 import EventList from "./EventList";
-import StyledNoRaces from "./styled/StyledNoRaces";
-import SubHeader from "./SubHeader";
 
 const StyledMainContainer = styled.div`
   margin: 0 auto;
-  padding: 6rem 1rem;
-  max-width: 1600px;
+  padding: 0 1rem;
+  max-width: 1400px;
 
   @media screen and (min-width: 40rem) {
-    padding: 6rem 2rem;
+    padding: 0 2rem;
   }
 
   @media screen and (min-width: 50rem) {
-    padding: 6rem 3rem;
+    padding: 0 3rem;
   }
 `;
 
@@ -149,7 +148,7 @@ export default function MainContainer() {
 
   return (
     <StyledMainContainer>
-      <SubHeader filters={filters} races={filteredRaces} />
+      <PageHeader />
       <EventList races={filteredRaces} isLoading={isLoading} />
     </StyledMainContainer>
   );
