@@ -34,7 +34,7 @@ const StyledContainer = styled.div`
 
 const StyledNavHeader = styled.nav`
   background-color: ${({ theme }) => theme.colors.bg[5]};
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

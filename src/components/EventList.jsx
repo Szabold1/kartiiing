@@ -7,7 +7,7 @@ const StyledEventList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 `;
 
 const StyledYear = styled.h2`
@@ -20,7 +20,7 @@ const StyledYear = styled.h2`
   @media screen and (min-width: 70rem) {
     position: sticky;
     top: 4.3rem;
-    padding: 1.2rem 4.8rem 0.8rem 4.8rem;
+    padding: 1.3rem 4.8rem 0.7rem 4.8rem;
     background-color: ${({ theme }) => theme.colors.bg[1]};
     border-radius: 1rem 1rem 0 0;
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
