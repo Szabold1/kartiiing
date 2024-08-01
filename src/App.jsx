@@ -8,7 +8,7 @@ export default function App() {
   const theme = useThemeMode();
 
   return (
-    <ThemeProvider theme={theme.theme}>
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <MainNavHeader />
       <MainContainer />

@@ -22,5 +22,5 @@ export default function useThemeMode() {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
-  return { theme };
+  return theme;
 }
