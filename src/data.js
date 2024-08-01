@@ -1,9 +1,9 @@
 export const defaultFilterValues = {
-  years: new Date().getFullYear().toString(),
+  years: [new Date().getFullYear().toString()],
 };
 
-export const seriesData = [
-  "Champions of the Future",
+export const championshipsData = [
+  "Champions of the future",
   "FIA Academy Trophy",
   "FIA Endurance Championship",
   "FIA European Championship",

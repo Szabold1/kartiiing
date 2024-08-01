@@ -86,13 +86,13 @@ const StyledMobileNav = styled.div`
   overflow-x: hidden;
   padding: 1.5rem 0;
   background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(1rem);
-  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1.5rem);
+  -webkit-backdrop-filter: blur(1.5rem);
   transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
-  animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.15s forwards;
+  animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.4s forwards;
 
   > ul {
     margin-top: 15vh;
