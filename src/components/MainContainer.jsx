@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import _ from "lodash";
 import supabase from "../config/supabaseClient";
-import { seriesData } from "../data";
+import { championshipsData } from "../data";
 import PageHeader from "./PageHeader";
 import EventList from "./EventList";
 
@@ -27,15 +27,15 @@ export default function MainContainer() {
     years: [],
     months: [],
     categories: [],
-    series: [],
+    championships: [],
     countries: [],
   });
   const [filters, setFilters] = useState({
-    years: null,
-    months: null,
-    categories: null,
-    series: null,
-    countries: null,
+    years: [],
+    months: [],
+    categories: [],
+    championships: [],
+    countries: [],
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -52,7 +52,7 @@ export default function MainContainer() {
       } else {
         console.log("Races fetched successfully", data);
         setRaces(data);
-        handleFilterChange("years", new Date().getFullYear().toString());
+        handleFilterChange("years", [new Date().getFullYear().toString()]);
         extractFilterOptions(data);
       }
       setIsLoading(false);
@@ -78,7 +78,7 @@ export default function MainContainer() {
       _.flatMap(data, (race) => race.engine_type)
     ).sort();
 
-    const series = seriesData.sort();
+    const championships = championshipsData.sort();
 
     const countries = _.uniq(
       _.flatMap(data, (race) => race.circuits.countries.name)
@@ -87,7 +87,7 @@ export default function MainContainer() {
       years,
       months,
       categories,
-      series,
+      championships,
       countries,
     });
   }
@@ -96,13 +96,14 @@ export default function MainContainer() {
   useEffect(() => {
     function applyFilters() {
       let filtered = races;
-      if (filters.years) {
-        filtered = filtered.filter(
-          (race) => filters.years === race.end_date.slice(0, 4)
+
+      if (filters.years?.length > 0) {
+        filtered = filtered.filter((race) =>
+          filters.years.includes(race.end_date.slice(0, 4))
         );
       }
 
-      if (filters.months) {
+      if (filters.months?.length > 0) {
         filtered = filtered.filter((race) => {
           const startDate = new Date(race.start_date).toLocaleString(
             "default",
@@ -111,28 +112,32 @@ export default function MainContainer() {
           const endDate = new Date(race.end_date).toLocaleString("default", {
             month: "long",
           });
-          return filters.months === startDate || filters.months === endDate;
+          return (
+            filters.months.includes(startDate) ||
+            filters.months.includes(endDate)
+          );
         });
       }
 
-      if (filters.categories) {
+      if (filters.categories?.length > 0) {
         filtered = filtered.filter((race) =>
-          race.engine_type.includes(filters.categories)
+          race.engine_type.some((type) => filters.categories.includes(type))
         );
       }
 
-      if (filters.series) {
-        filtered = filtered.filter(
-          (race) =>
-            race.series.filter((series) =>
-              series.toLowerCase().includes(filters.series.toLowerCase())
-            ).length
+      if (filters.championships?.length > 0) {
+        filtered = filtered.filter((race) =>
+          race.series.some((series) =>
+            filters.championships.some((championship) =>
+              series.toLowerCase().includes(championship.toLowerCase())
+            )
+          )
         );
       }
 
-      if (filters.countries) {
-        filtered = filtered.filter(
-          (race) => race.circuits.countries.name === filters.countries
+      if (filters.countries?.length > 0) {
+        filtered = filtered.filter((race) =>
+          filters.countries.includes(race.circuits.countries.name)
         );
       }
 
@@ -148,7 +153,10 @@ export default function MainContainer() {
 
   return (
     <StyledMainContainer>
-      <PageHeader />
+      <PageHeader
+        filterOptions={filterOptions}
+        onFilterChange={handleFilterChange}
+      />
       <EventList races={filteredRaces} isLoading={isLoading} />
     </StyledMainContainer>
   );

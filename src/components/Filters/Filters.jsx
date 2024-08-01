@@ -1,93 +1,233 @@
-import styled from "styled-components";
-import { useEffect, useRef } from "react";
-import { IoOptions } from "react-icons/io5";
+import styled, { keyframes } from "styled-components";
+import { useState, useEffect } from "react";
+import { IoOptions, IoClose } from "react-icons/io5";
 import FilterItem from "./FilterItem";
 
-const StyledFilters = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 1rem;
-  cursor: pointer;
-  z-index: 110;
+const slideIn = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 `;
 
-const StyledDropdownContainer = styled.div`
-  position: absolute;
+const slideOut = keyframes`
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+`;
+
+const StyledFiltersBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.accent[0]};
+  color: ${({ theme }) => theme.colors.text[1]};
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent[1]};
+  }
+
+  @media screen and (min-width: 70rem) {
+    width: 15rem;
+  }
+`;
+
+const StyledFiltersWrapper = styled.div`
+  z-index: 130;
+  position: fixed;
   right: 0;
   top: 0;
-  transition: all 0.2s ease-in-out;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(0.1rem);
+  transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
-  transform: translateY(${({ $show }) => ($show ? 0 : -1)});
-  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
 `;
 
-const StyledDropdown = styled.span`
+const StyledFilters = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 0.4rem;
-  padding: 0.5rem;
-  margin-top: 3.75rem;
-  background-color: ${({ theme }) => theme.colors.accent[0]};
-  border-radius: 0.7rem;
-  backdrop-filter: blur(1.5rem);
-  -webkit-backdrop-filter: blur(1.5rem);
+  width: 100%;
+  max-width: 34.5rem;
+  min-height: 100vh;
+  height: 100%;
+  background-color: ${({ theme }) =>
+    theme.name === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(241, 241, 241, 0.9)"};
+  backdrop-filter: blur(10rem);
+  -webkit-backdrop-filter: blur(10rem);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.4s forwards;
 `;
 
-export default function Filters({
-  filterOptions,
-  onFilterChange,
-  showDropdown,
-  setShowDropdown,
-}) {
-  const filtersRef = useRef(null);
+const StyledFiltersHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.8rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
 
-  function handleFilterClick() {
-    setShowDropdown((prev) => !prev);
+  > h4 {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
   }
 
-  // Close dropdown when clicking outside of it
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (filtersRef.current && !filtersRef.current.contains(event.target)) {
-        setShowDropdown(false);
+  > svg {
+    cursor: pointer;
+    padding: 0.6rem;
+    background-color: ${({ theme }) =>
+      theme.name === "dark"
+        ? "rgba(241, 241, 241, 0.25)"
+        : "rgba(0, 0, 0, 0.1)"};
+    border-radius: 0.6rem;
+
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background-color: rgba(241, 241, 241, 0.4);
+      background-color: ${({ theme }) =>
+        theme.name === "dark"
+          ? "rgba(241, 241, 241, 0.4)"
+          : "rgba(0, 0, 0, 0.2)"};
+    }
+  }
+
+  @media screen and (min-width: 28rem) {
+    padding: 1.6rem 2.2rem;
+  }
+`;
+
+const StyledFiltersContent = styled.div`
+  max-height: 100vh;
+  padding: 1rem 1.8rem 8.4rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  overflow-y: auto;
+  flex-grow: 1;
+
+  @media screen and (min-width: 28rem) {
+    padding: 1rem 2.2rem 8.4rem 2.2rem;
+  }
+`;
+
+const StyledFiltersFooter = styled.div`
+  z-index: 130;
+  display: flex;
+  justify-content: space-between;
+  align-items: space-between;
+  gap: 1.2rem;
+  padding: 1.6rem;
+  flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.bg[3]};
+  backdrop-filter: blur(10rem);
+  -webkit-backdrop-filter: blur(10rem);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+
+  > button {
+    letter-spacing: 0.05rem;
+    cursor: pointer;
+    width: 100%;
+    padding: 0.7rem;
+    font-size: 1.2rem;
+    border: 2px solid transparent;
+    background-color: ${({ theme }) =>
+      theme.name === "dark" && "rgba(241, 241, 241, 0.8)"};
+    border-radius: 0.6rem;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
+
+    &:nth-child(1):hover {
+      background-color: inherit;
+      border-color: ${({ theme }) => theme.colors.accent[0]};
+    }
+
+    &:nth-child(2) {
+      background-color: ${({ theme }) => theme.colors.accent[0]};
+      color: rgb(241, 241, 241);
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.accent[1]};
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [setShowDropdown]);
+  }
+
+  @media screen and (min-width: 28rem) {
+    padding: 1.8rem 2.2rem;
+    gap: 1.6rem;
+  }
+`;
+
+export default function Filters({ filterOptions, onFilterChange }) {
+  const [showFilters, setShowFilters] = useState(false);
+
+  // Disable scrolling when filters are shown
+  useEffect(() => {
+    if (showFilters) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+
+    return () => (document.body.style.overflow = "");
+  }, [showFilters]);
+
+  function handleFilterClick() {
+    setShowFilters((prev) => !prev);
+  }
 
   return (
-    <div ref={filtersRef} onMouseLeave={() => setShowDropdown(false)}>
-      <StyledFilters
-        onClick={handleFilterClick}
-        onMouseEnter={() => setShowDropdown(true)}
-      >
-        <span>FILTERS</span>
-        <hr />
-        <IoOptions size={20} />
-      </StyledFilters>
+    <>
+      <StyledFiltersBar onClick={handleFilterClick}>
+        <span>Filter & Sort</span>
+        <IoOptions size="20" />
+      </StyledFiltersBar>
 
-      <StyledDropdownContainer $show={showDropdown}>
-        <StyledDropdown>
-          {Object.keys(filterOptions).map((filterName) => (
-            <FilterItem
-              key={filterName}
-              name={filterName}
-              options={filterOptions[filterName]}
-              showDropdown={showDropdown}
-              onFilterChange={onFilterChange}
-            />
-          ))}
-        </StyledDropdown>
-      </StyledDropdownContainer>
-    </div>
+      <StyledFiltersWrapper $show={showFilters}>
+        <StyledFilters $show={showFilters}>
+          <StyledFiltersHeader>
+            <h4>Filter & Sort</h4>
+            <IoClose size="50" onClick={handleFilterClick} />
+          </StyledFiltersHeader>
+
+          <StyledFiltersContent>
+            {Object.keys(filterOptions).map((filterName) => (
+              <FilterItem
+                key={filterName}
+                name={filterName}
+                options={filterOptions[filterName]}
+                onFilterChange={onFilterChange}
+              />
+            ))}
+          </StyledFiltersContent>
+
+          <StyledFiltersFooter>
+            <button>Reset</button>
+            <button>Apply</button>
+          </StyledFiltersFooter>
+        </StyledFilters>
+      </StyledFiltersWrapper>
+    </>
   );
 }

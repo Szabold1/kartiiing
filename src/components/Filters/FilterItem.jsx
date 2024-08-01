@@ -1,91 +1,78 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Select from "react-select";
 import { defaultFilterValues } from "../../data";
 
-const StyledSelectWrapper = styled.div`
-  .custom-select__control {
-    background-color: ${({ theme }) => theme.colors.bg[3]};
-    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
-    border: none;
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const StyledFilterName = styled.h5`
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
+  margin-top: 1rem;
+`;
+
+const StyledOptions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  > span {
+    padding: 0.6rem 0.85rem;
     border-radius: 0.5rem;
-    padding: 0.06rem;
-    width: 14rem;
+    border: 1.5px solid ${({ theme }) => theme.colors.accent[1]};
+    font-size: 1.1rem;
+    letter-spacing: 0.05rem;
+    cursor: pointer;
 
     &:hover {
-      cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
-      background-color: ${({ theme }) => theme.colors.bg[4]};
-    }
-  }
-
-  .custom-select__placeholder {
-    color: ${({ theme }) => theme.colors.text[0]};
-    filter: opacity(0.6);
-  }
-
-  .custom-select__single-value {
-    color: ${({ theme }) => theme.colors.text[0]};
-  }
-
-  .custom-select__menu {
-    background-color: ${({ theme }) => theme.colors.bg[3]};
-    color: ${({ theme }) => theme.colors.text[0]};
-    backdrop-filter: blur(1.5rem);
-    -webkit-backdrop-filter: blur(1.5rem);
-    border: 1px solid ${({ theme }) => theme.colors.bg[3]};
-    border-radius: 0.5rem;
-    padding: 0.3rem;
-    margin-top: 0.3rem;
-  }
-
-  .custom-select__option {
-    background-color: inherit;
-    border-radius: 0.5rem;
-    padding: 0.7rem;
-
-    &:hover {
-      cursor: ${({ $showDropdown }) => ($showDropdown ? "pointer" : "default")};
       background-color: ${({ theme }) => theme.colors.accent[2]};
     }
-  }
 
-  .custom-select__option--is-selected {
-    background-color: ${({ theme }) => theme.colors.accent[1]};
-    color: ${({ theme }) => theme.colors.text[0]};
+    &.chosen {
+      background-color: ${({ theme }) => theme.colors.accent[1]};
+    }
   }
 `;
 
-export default function FilterItem({
-  name,
-  options,
-  showDropdown,
-  onFilterChange,
-}) {
-  const [selectValue, setSelectValue] = useState(defaultFilterValues[name]);
-  const formattedOptions = options.map((option) => ({
-    value: option,
-    label: option,
-  }));
+export default function FilterItem({ name, options, onFilterChange }) {
+  const [selectedValues, setSelectedValues] = useState(
+    defaultFilterValues[name] || []
+  );
 
-  const handleChange = (selectedOption) => {
-    setSelectValue(selectedOption?.value);
-    onFilterChange(name, selectedOption?.value ?? null);
-  };
-
-  const selectedOption =
-    formattedOptions.find((option) => option.value === selectValue) || null;
+  // if option is already selected, remove it, otherwise add it to selectedValues
+  function handleOptionClick(option) {
+    if (selectedValues.includes(option)) {
+      setSelectedValues(selectedValues.filter((o) => o !== option));
+      onFilterChange(
+        name,
+        selectedValues.filter((o) => o !== option)
+      );
+    } else {
+      setSelectedValues([...selectedValues, option]);
+      onFilterChange(name, [...selectedValues, option]);
+    }
+  }
 
   return (
-    <StyledSelectWrapper $showDropdown={showDropdown}>
-      <Select
-        name={name}
-        options={formattedOptions}
-        value={selectedOption}
-        placeholder={name[0].toUpperCase() + name.slice(1)}
-        onChange={handleChange}
-        isClearable
-        classNamePrefix="custom-select"
-      />
-    </StyledSelectWrapper>
+    <StyledContainer>
+      <StyledFilterName>
+        {name[0].toUpperCase() + name.slice(1)}
+      </StyledFilterName>
+      <StyledOptions>
+        {options.map((option) => (
+          <span
+            key={option}
+            onClick={() => handleOptionClick(option)}
+            className={selectedValues.includes(option) ? "chosen" : ""}
+          >
+            {option}
+          </span>
+        ))}
+      </StyledOptions>
+    </StyledContainer>
   );
 }

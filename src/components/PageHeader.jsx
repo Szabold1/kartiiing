@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoCalendarOutline } from "react-icons/io5";
-import { IoOptions } from "react-icons/io5";
+import Filters from "./Filters/Filters";
 
 const StyledPageHeader = styled.div`
   display: flex;
@@ -38,41 +38,15 @@ const StyledTitleContainer = styled.div`
   }
 `;
 
-const StyledFiltersContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: 100%;
-  padding: 0.6rem 1.5rem;
-  border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.accent[0]};
-  color: ${({ theme }) => theme.colors.text[1]};
-  font-size: 1.1rem;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.accent[1]};
-  }
-
-  @media screen and (min-width: 70rem) {
-    width: 15rem;
-  }
-`;
-
-export default function PageHeader() {
+export default function PageHeader({ filterOptions, onFilterChange }) {
   return (
     <StyledPageHeader>
       <StyledTitleContainer>
         <IoCalendarOutline size="28" />
         <h3>Calendar</h3>
       </StyledTitleContainer>
-      <StyledFiltersContainer>
-        <span>All filters</span>
-        <IoOptions size="20" />
-      </StyledFiltersContainer>
+
+      <Filters filterOptions={filterOptions} onFilterChange={onFilterChange} />
     </StyledPageHeader>
   );
 }
