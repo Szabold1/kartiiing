@@ -1,4 +1,5 @@
 export const lightTheme = {
+  name: "light",
   colors: {
     text: ["rgb(0, 50, 50)", "rgb(248, 248, 248)"],
     bg: [
@@ -18,6 +19,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  name: "dark",
   colors: {
     text: ["rgba(241, 241, 241, 0.8)", "rgb(0, 10, 10)"],
     bg: [

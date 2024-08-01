@@ -7,13 +7,13 @@ const slideIn = keyframes`
     transform: translateY(-100%);
   }
   to {
-    transform: translateX(0) translateY(0);
+    transform:  translateY(0);
   }
 `;
 
 const slideOut = keyframes`
   from {
-    transform: translateX(0) translateY(0);
+    transform: translateY(0);
   }
   to {
     transform: translateY(-100%);
@@ -28,7 +28,8 @@ const StyledContainer = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.bg[5]};
   backdrop-filter: blur(1rem);
-  color: rgb(241, 241, 241);
+  color: ${({ theme }) =>
+    theme.name === "dark" ? "rgba(241, 241, 241, 0.9)" : theme.colors.text[1]};
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
 `;
 
@@ -47,7 +48,7 @@ const StyledNavHeader = styled.nav`
     letter-spacing: 0.1rem;
     cursor: pointer;
     > span {
-      color: rgb(0, 220, 220);
+      color: rgb(0, 222, 222);
     }
 
     @media screen and (min-width: 70rem) {
@@ -113,7 +114,7 @@ const StyledMobileNav = styled.div`
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        color: rgb(0, 220, 220);
+        background-color: ${({ theme }) => theme.colors.accent[1]};
       }
     }
   }
@@ -130,8 +131,8 @@ const StyledDesktopNav = styled.ul`
     border-bottom: 1.5px solid transparent;
 
     &:hover {
-      color: rgb(0, 220, 220);
-      border-bottom: 1.5px solid rgb(0, 220, 220);
+      color: rgb(0, 222, 222);
+      border-bottom: 1.5px solid rgb(0, 222, 222);
     }
 
     @media screen and (min-width: 40rem) {
@@ -160,9 +161,7 @@ export default function MainNavHeader() {
   useEffect(() => {
     function handleResize() {
       setIsMobile(window.innerWidth < 1120);
-      if (window.innerWidth < 1120) {
-        setShowNav(false);
-      }
+      setShowNav(false);
     }
 
     window.addEventListener("resize", handleResize);
@@ -179,20 +178,18 @@ export default function MainNavHeader() {
           {showNav ? <IoClose size={35} /> : <IoMenu size={35} />}
         </StyledIconContainer>
 
-        {isMobile && (
-          <StyledMobileNav $show={showNav}>
-            <ul>
-              {navOptions.map((option) => (
-                <li key={option} onClick={handleNavClick}>
-                  {option}
-                </li>
-              ))}
-            </ul>
-          </StyledMobileNav>
-        )}
+        <StyledMobileNav $show={showNav}>
+          <ul>
+            {navOptions.map((option) => (
+              <li key={option} onClick={handleNavClick}>
+                {option}
+              </li>
+            ))}
+          </ul>
+        </StyledMobileNav>
 
         {!isMobile && (
-          <StyledDesktopNav $show={showNav}>
+          <StyledDesktopNav>
             {navOptions.map((option) => (
               <li key={option}>{option}</li>
             ))}
