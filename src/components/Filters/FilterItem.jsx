@@ -60,8 +60,13 @@ export default function FilterItem({ name, options, onFilterChange, reset }) {
         selectedValues.filter((o) => o !== option)
       );
     } else {
-      setSelectedValues([...selectedValues, option]);
-      onFilterChange(name, [...selectedValues, option]);
+      if (name === "status") {
+        setSelectedValues([option]);
+        onFilterChange(name, [option]);
+      } else {
+        setSelectedValues([...selectedValues, option]);
+        onFilterChange(name, [...selectedValues, option]);
+      }
     }
   }
 

@@ -1,8 +1,17 @@
-export const defaultFilterValues = {
-  years: [new Date().getFullYear().toString()],
+const filterKeys = [
+  "status",
+  "years",
+  "months",
+  "categories",
+  "championships",
+  "countries",
+];
+
+const defaultFilterValues = {
+  status: ["Upcoming"],
 };
 
-export const championshipsData = [
+const championshipsData = [
   "Champions of the future",
   "FIA Academy Trophy",
   "FIA Endurance Championship",
@@ -23,3 +32,5 @@ export const championshipsData = [
   "RMC SSC",
   "WSK",
 ];
+
+export { filterKeys, defaultFilterValues, championshipsData };
