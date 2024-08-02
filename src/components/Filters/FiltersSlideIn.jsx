@@ -45,8 +45,7 @@ const StyledSlideIn = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 34.5rem;
-  min-height: 100vh;
-  height: 100%;
+  height: 100vh;
   background-color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(241, 241, 241, 0.9)"};
   backdrop-filter: blur(10rem);
@@ -97,7 +96,7 @@ const StyledFiltersHeader = styled.div`
 
 const StyledFiltersContent = styled.div`
   max-height: 100vh;
-  padding: 1rem 1.8rem 8.4rem 1.8rem;
+  padding: 1rem 1.8rem 1.4rem 1.8rem;
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
@@ -105,22 +104,14 @@ const StyledFiltersContent = styled.div`
   flex-grow: 1;
 
   @media screen and (min-width: 28rem) {
-    padding: 1rem 2.2rem 8.4rem 2.2rem;
+    padding: 1rem 2.2rem 1.4rem 2.2rem;
   }
 `;
 
 const StyledFiltersFooter = styled.div`
-  z-index: 130;
   display: flex;
-  justify-content: space-between;
-  align-items: space-between;
   gap: 1.2rem;
   padding: 1.6rem;
-  flex-shrink: 0;
-  position: relative;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   background-color: ${({ theme }) => theme.colors.bg[3]};
   backdrop-filter: blur(10rem);
   -webkit-backdrop-filter: blur(10rem);
