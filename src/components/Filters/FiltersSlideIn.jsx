@@ -194,7 +194,7 @@ export default function FiltersSlideIn({
 
         <StyledFiltersFooter>
           <button onClick={handleResetClick}>Reset</button>
-          <button>Apply</button>
+          <button onClick={onShowFiltersClick}>Apply</button>
         </StyledFiltersFooter>
       </StyledSlideIn>
     </StyledSlideInWrapper>
