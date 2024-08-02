@@ -47,7 +47,7 @@ export default function FilterItem({ name, options, onFilterChange, reset }) {
   useEffect(() => {
     if (reset) {
       setSelectedValues(defaultFilterValues[name] || []);
-      onFilterChange(name, []);
+      onFilterChange(name, defaultFilterValues[name] || []);
     }
   }, [reset, onFilterChange, name]);
 
