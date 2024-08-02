@@ -22,7 +22,7 @@ const slideOut = keyframes`
 
 const StyledContainer = styled.div`
   z-index: 120;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;

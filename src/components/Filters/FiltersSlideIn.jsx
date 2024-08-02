@@ -115,6 +115,7 @@ const StyledFiltersFooter = styled.div`
   align-items: space-between;
   gap: 1.2rem;
   padding: 1.6rem;
+  padding-bottom: calc(1.6rem + env(safe-area-inset-bottom));
   flex-shrink: 0;
   position: fixed;
   bottom: 0;
@@ -131,16 +132,20 @@ const StyledFiltersFooter = styled.div`
     padding: 0.7rem;
     font-size: 1.1rem;
     border: 2px solid transparent;
-    background-color: ${({ theme }) =>
-      theme.name === "dark" && "rgba(241, 241, 241, 0.8)"};
     border-radius: 0.6rem;
     transition: all 0.15s ease-in-out;
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
 
-    &:nth-child(1):hover {
-      background-color: ${({ theme }) =>
-        theme.name === "dark" ? "rgba(241, 241, 241, 0.55)" : "inherit"};
-      border-color: ${({ theme }) => theme.colors.accent[0]};
+    &:nth-child(1) {
+      background-color: rgba(241, 241, 241, 0.7);
+      color: ${({ theme }) =>
+        theme.name === "dark" ? theme.colors.text[1] : theme.colors.text[0]};
+
+      &:hover {
+        background-color: ${({ theme }) =>
+          theme.name === "dark" ? "rgba(241, 241, 241, 0.5)" : "inherit"};
+        border-color: ${({ theme }) => theme.colors.accent[0]};
+      }
     }
 
     &:nth-child(2) {
@@ -155,6 +160,7 @@ const StyledFiltersFooter = styled.div`
 
   @media screen and (min-width: 28rem) {
     padding: 1.8rem 2.2rem;
+    padding-bottom: calc(1.8rem + env(safe-area-inset-bottom));
     gap: 1.6rem;
   }
 `;
