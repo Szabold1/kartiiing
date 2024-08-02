@@ -138,7 +138,8 @@ const StyledFiltersFooter = styled.div`
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
 
     &:nth-child(1):hover {
-      background-color: inherit;
+      background-color: ${({ theme }) =>
+        theme.name === "dark" ? "rgba(241, 241, 241, 0.55)" : "inherit"};
       border-color: ${({ theme }) => theme.colors.accent[0]};
     }
 
