@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { defaultFilterValues } from "../../data";
 
 const StyledContainer = styled.div`
@@ -38,10 +38,18 @@ const StyledOptions = styled.div`
   }
 `;
 
-export default function FilterItem({ name, options, onFilterChange }) {
+export default function FilterItem({ name, options, onFilterChange, reset }) {
   const [selectedValues, setSelectedValues] = useState(
     defaultFilterValues[name] || []
   );
+
+  // if reset is true, reset selectedValues and call onFilterChange with empty array
+  useEffect(() => {
+    if (reset) {
+      setSelectedValues(defaultFilterValues[name] || []);
+      onFilterChange(name, []);
+    }
+  }, [reset, onFilterChange, name]);
 
   // if option is already selected, remove it, otherwise add it to selectedValues
   function handleOptionClick(option) {
