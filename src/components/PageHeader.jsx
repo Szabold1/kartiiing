@@ -38,7 +38,7 @@ const StyledTitleContainer = styled.div`
   }
 `;
 
-export default function PageHeader({ filterOptions, onFilterChange }) {
+export default function PageHeader({ filterOptions, onFilterChange, races }) {
   return (
     <StyledPageHeader>
       <StyledTitleContainer>
@@ -46,7 +46,11 @@ export default function PageHeader({ filterOptions, onFilterChange }) {
         <h3>Calendar</h3>
       </StyledTitleContainer>
 
-      <Filters filterOptions={filterOptions} onFilterChange={onFilterChange} />
+      <Filters
+        filterOptions={filterOptions}
+        onFilterChange={onFilterChange}
+        races={races}
+      />
     </StyledPageHeader>
   );
 }

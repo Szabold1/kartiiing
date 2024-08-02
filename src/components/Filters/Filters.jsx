@@ -27,7 +27,7 @@ const StyledFiltersBar = styled.div`
   }
 `;
 
-export default function Filters({ filterOptions, onFilterChange }) {
+export default function Filters({ filterOptions, onFilterChange, races }) {
   const [showFilters, setShowFilters] = useState(false);
 
   // Disable scrolling when filters are shown
@@ -54,6 +54,7 @@ export default function Filters({ filterOptions, onFilterChange }) {
         onShowFiltersClick={handleShowFiltersClick}
         filterOptions={filterOptions}
         onFilterChange={onFilterChange}
+        races={races}
       />
     </>
   );

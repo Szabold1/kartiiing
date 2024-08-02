@@ -126,11 +126,10 @@ const StyledFiltersFooter = styled.div`
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
 
   > button {
-    letter-spacing: 0.05rem;
     cursor: pointer;
     width: 100%;
     padding: 0.7rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border: 2px solid transparent;
     background-color: ${({ theme }) =>
       theme.name === "dark" && "rgba(241, 241, 241, 0.8)"};
@@ -165,6 +164,7 @@ export default function FiltersSlideIn({
   onShowFiltersClick,
   filterOptions,
   onFilterChange,
+  races,
 }) {
   const [resetFilters, setResetFilters] = useState(false);
 
@@ -195,7 +195,9 @@ export default function FiltersSlideIn({
 
         <StyledFiltersFooter>
           <button onClick={handleResetClick}>Reset</button>
-          <button onClick={onShowFiltersClick}>Apply</button>
+          <button onClick={onShowFiltersClick}>
+            Show {races.length} races
+          </button>
         </StyledFiltersFooter>
       </StyledSlideIn>
     </StyledSlideInWrapper>

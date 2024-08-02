@@ -68,6 +68,7 @@ export default function MainContainer() {
       <PageHeader
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
+        races={filteredRaces}
       />
       <EventList races={filteredRaces} isLoading={isLoading} />
     </StyledMainContainer>
