@@ -12,12 +12,13 @@ const StyledEventList = styled.div`
 
 const StyledYear = styled.h2`
   text-align: center;
-  font-size: 2.2rem;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.05rem;
   padding-bottom: 3.5rem;
 
   @media screen and (min-width: 70rem) {
+    font-size: 2.2rem;
     position: sticky;
     top: 4.3rem;
     padding: 1.3rem 4.8rem 0.7rem 4.8rem;
