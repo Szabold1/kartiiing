@@ -35,11 +35,12 @@ const StyledSlideInWrapper = styled.div`
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
   opacity: ${({ $show }) => ($show ? 1 : 0)};
-  display: flex;
-  justify-content: flex-end;
 `;
 
 const StyledSlideIn = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -115,9 +116,8 @@ const StyledFiltersFooter = styled.div`
   align-items: space-between;
   gap: 1.2rem;
   padding: 1.6rem;
-  padding-bottom: calc(1.6rem + env(safe-area-inset-bottom));
   flex-shrink: 0;
-  position: fixed;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -160,7 +160,6 @@ const StyledFiltersFooter = styled.div`
 
   @media screen and (min-width: 28rem) {
     padding: 1.8rem 2.2rem;
-    padding-bottom: calc(1.8rem + env(safe-area-inset-bottom));
     gap: 1.6rem;
   }
 `;
