@@ -5,29 +5,32 @@ import FilterItem from "./FilterItem";
 
 const slideIn = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateY(-10%);
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 `;
 
 const slideOut = keyframes`
   from {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   to {
-    transform: translateX(100%);
+    transform: translateY(-10%);
   }
 `;
 
-const StyledSlideInWrapper = styled.div`
+const StyledWindowWrapper = styled.div`
   z-index: 130;
   position: fixed;
   right: 0;
   top: 0;
   width: 100%;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(0.1rem);
   -webkit-backdrop-filter: blur(0.1rem);
@@ -37,22 +40,28 @@ const StyledSlideInWrapper = styled.div`
   opacity: ${({ $show }) => ($show ? 1 : 0)};
 `;
 
-const StyledSlideIn = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
+const StyledWindow = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 34.5rem;
   height: 100vh;
   background-color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(241, 241, 241, 0.9)"};
   backdrop-filter: blur(10rem);
   -webkit-backdrop-filter: blur(10rem);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
   overflow-y: auto;
-  animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.4s forwards;
+  animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.25s forwards;
+
+  @media screen and (min-width: 40rem) {
+    width: 80%;
+    height: 90vh;
+  }
+
+  @media screen and (min-width: 70rem) {
+    width: 60%;
+  }
 `;
 
 const StyledFiltersHeader = styled.div`
@@ -155,7 +164,7 @@ const StyledFiltersFooter = styled.div`
   }
 `;
 
-export default function FiltersSlideIn({
+export default function FiltersWindow({
   showFilters,
   onShowFiltersClick,
   filterOptions,
@@ -170,8 +179,8 @@ export default function FiltersSlideIn({
   }
 
   return (
-    <StyledSlideInWrapper $show={showFilters}>
-      <StyledSlideIn $show={showFilters}>
+    <StyledWindowWrapper $show={showFilters}>
+      <StyledWindow $show={showFilters}>
         <StyledFiltersHeader>
           <h4>Filter & Sort</h4>
           <IoClose size="50" onClick={onShowFiltersClick} />
@@ -195,7 +204,7 @@ export default function FiltersSlideIn({
             Show {races.length} races
           </button>
         </StyledFiltersFooter>
-      </StyledSlideIn>
-    </StyledSlideInWrapper>
+      </StyledWindow>
+    </StyledWindowWrapper>
   );
 }

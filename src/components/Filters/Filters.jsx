@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { IoOptions } from "react-icons/io5";
-import FiltersSlideIn from "./FiltersSlideIn";
+import FiltersWindow from "./FiltersWindow";
 
 const StyledFiltersBar = styled.div`
   display: flex;
@@ -49,7 +49,7 @@ export default function Filters({ filterOptions, onFilterChange, races }) {
         <IoOptions size="20" />
       </StyledFiltersBar>
 
-      <FiltersSlideIn
+      <FiltersWindow
         showFilters={showFilters}
         onShowFiltersClick={handleShowFiltersClick}
         filterOptions={filterOptions}
