@@ -7,7 +7,7 @@ import {
   applyFilters,
 } from "../filterHelpers";
 import { filterKeys } from "../data";
-import PageHeader from "./PageHeader";
+import PageHeader from "./PageHeader/PageHeader";
 import EventList from "./EventList";
 
 const StyledMainContainer = styled.div`
@@ -69,6 +69,7 @@ export default function MainContainer() {
         filterOptions={filterOptions}
         onFilterChange={handleFilterChange}
         races={filteredRaces}
+        originalRaces={races}
       />
       <EventList races={filteredRaces} isLoading={isLoading} />
     </StyledMainContainer>
