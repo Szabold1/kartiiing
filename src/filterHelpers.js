@@ -62,16 +62,28 @@ function sortRaces(races, sorting) {
 function filterByStatus(races, status) {
   const currentDate = new Date();
 
+  function formatDate(date) {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  }
+
+  const currentDateFormatted = formatDate(currentDate);
+
   if (status.toLowerCase() === "upcoming") {
-    return races.filter((race) => new Date(race.end_date) > currentDate);
+    return races.filter(
+      (race) => formatDate(new Date(race.end_date)) >= currentDateFormatted
+    );
   } else if (status.toLowerCase() === "ongoing") {
     return races.filter(
       (race) =>
-        new Date(race.start_date === null ? race.end_date : race.start_date) <=
-          currentDate && new Date(race.end_date) >= currentDate
+        formatDate(
+          new Date(race.start_date === null ? race.end_date : race.start_date)
+        ) <= currentDateFormatted &&
+        formatDate(new Date(race.end_date)) >= currentDateFormatted
     );
   } else if (status.toLowerCase() === "finished") {
-    return races.filter((race) => new Date(race.end_date) < currentDate);
+    return races.filter(
+      (race) => formatDate(new Date(race.end_date)) < currentDateFormatted
+    );
   }
 
   return races;
