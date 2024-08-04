@@ -10,6 +10,8 @@ function createInitialFilters(filterKeys) {
 
 //   Extract filter options and return them as an object
 function extractFilterOptions(fetchedData) {
+  const sorting = ["Date ascending", "Date descending"];
+
   const status = ["Upcoming", "Ongoing", "Finished"];
 
   const years = _.uniq(
@@ -35,6 +37,7 @@ function extractFilterOptions(fetchedData) {
   ).sort();
 
   return {
+    sorting,
     status,
     years,
     months,
@@ -44,11 +47,24 @@ function extractFilterOptions(fetchedData) {
   };
 }
 
-// Filter the races based on the filters selected and return the filtered races
+// Filter the races based on the filters selected
+// Returns 'filtered' (array of filtered races) and 'groupedByYear' (map of sorted races grouped by year)
 function applyFilters(races, filters) {
   let filtered = races;
 
-  if (filters.status) {
+  if (filters.sorting?.length > 0) {
+    if (filters.sorting[0].includes("ascending")) {
+      filtered = filtered.sort(
+        (a, b) => new Date(a.end_date) - new Date(b.end_date)
+      );
+    } else if (filters.sorting[0].includes("descending")) {
+      filtered = filtered.sort(
+        (a, b) => new Date(b.end_date) - new Date(a.end_date)
+      );
+    }
+  }
+
+  if (filters.status?.length > 0) {
     const currentDate = new Date();
     if (filters.status.includes("Upcoming")) {
       filtered = filtered.filter(
@@ -110,7 +126,27 @@ function applyFilters(races, filters) {
     );
   }
 
-  return filtered;
+  // Sort races by year in ascending or descending order based on the sorting option
+  // If no sorting option is selected, sort races by year in ascending order
+  // Returns sorted races by year as a map
+  function sortIntoGroups(races, sorting) {
+    const groupedByYear = _.groupBy(races, (race) => race.end_date.slice(0, 4));
+    let sortedYears = Object.keys(groupedByYear).sort();
+
+    if (sorting?.length > 0 && sorting[0]?.includes("descending")) {
+      sortedYears = Object.keys(groupedByYear).sort().reverse();
+    }
+
+    const sortedGroupedByYear = new Map();
+    sortedYears.forEach((year) => {
+      sortedGroupedByYear.set(year, groupedByYear[year]);
+    });
+
+    return sortedGroupedByYear;
+  }
+
+  const groupedByYear = sortIntoGroups(filtered, filters.sorting);
+  return { filtered, groupedByYear };
 }
 
 export { createInitialFilters, extractFilterOptions, applyFilters };

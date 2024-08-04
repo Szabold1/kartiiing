@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { defaultFilterValues } from "../../data";
+import FilterItemOption from "./FilterItemOption";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -53,14 +54,14 @@ export default function FilterItem({ name, options, onFilterChange, reset }) {
 
   // if option is already selected, remove it, otherwise add it to selectedValues
   function handleOptionClick(option) {
-    if (selectedValues.includes(option)) {
+    if (selectedValues.includes(option) && name !== "sorting") {
       setSelectedValues(selectedValues.filter((o) => o !== option));
       onFilterChange(
         name,
         selectedValues.filter((o) => o !== option)
       );
     } else {
-      if (name === "status") {
+      if (name === "status" || name === "sorting") {
         setSelectedValues([option]);
         onFilterChange(name, [option]);
       } else {
@@ -73,17 +74,19 @@ export default function FilterItem({ name, options, onFilterChange, reset }) {
   return (
     <StyledContainer>
       <StyledFilterName>
-        {name[0].toUpperCase() + name.slice(1)}
+        {name !== "sorting" && name[0].toUpperCase() + name.slice(1)}
+        {name === "sorting" && "Sort"}
       </StyledFilterName>
+
       <StyledOptions>
         {options.map((option) => (
-          <span
+          <FilterItemOption
             key={option}
-            onClick={() => handleOptionClick(option)}
-            className={selectedValues.includes(option) ? "chosen" : ""}
-          >
-            {option}
-          </span>
+            optionName={name}
+            optionValue={option}
+            selectedValues={selectedValues}
+            onOptionClick={handleOptionClick}
+          />
         ))}
       </StyledOptions>
     </StyledContainer>

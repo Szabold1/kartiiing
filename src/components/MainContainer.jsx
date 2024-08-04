@@ -32,6 +32,7 @@ export default function MainContainer() {
   );
   const [filters, setFilters] = useState(createInitialFilters(filterKeys));
   const [isLoading, setIsLoading] = useState(true);
+  const [groupedRaces, setGroupedRaces] = useState(new Map());
 
   // Fetch races from Supabase and extract filter options
   useEffect(() => {
@@ -56,7 +57,9 @@ export default function MainContainer() {
 
   // Filter races based on selected filters
   useEffect(() => {
-    setFilteredRaces(applyFilters(races, filters));
+    const { filtered, groupedByYear } = applyFilters(races, filters);
+    setFilteredRaces(filtered);
+    setGroupedRaces(groupedByYear);
   }, [filters, races]);
 
   function handleFilterChange(filterName, value) {
@@ -71,7 +74,7 @@ export default function MainContainer() {
         races={filteredRaces}
         originalRaces={races}
       />
-      <EventList races={filteredRaces} isLoading={isLoading} />
+      <EventList groupedRaces={groupedRaces} isLoading={isLoading} />
     </StyledMainContainer>
   );
 }

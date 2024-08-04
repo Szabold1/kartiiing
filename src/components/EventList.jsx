@@ -46,27 +46,23 @@ const StyledEventItems = styled.div`
   }
 `;
 
-export default function EventList({ races, isLoading }) {
-  const groupedRaces =
-    races?.length > 0
-      ? _.groupBy(races, (race) => race.end_date.slice(0, 4))
-      : {};
+export default function EventList({ groupedRaces, isLoading }) {
+  const nbOfRaces = _.sumBy(Array.from(groupedRaces.values()), "length");
 
   if (isLoading) {
     return <StyledNoRaces>Loading...</StyledNoRaces>;
   }
-
-  if (races?.length === 0) {
+  if (nbOfRaces === 0) {
     return <StyledNoRaces>No races found</StyledNoRaces>;
   }
 
   return (
     <StyledEventList>
-      {Object.keys(groupedRaces).map((year) => (
+      {Array.from(groupedRaces.keys()).map((year) => (
         <div key={year}>
           <StyledYear>{year}</StyledYear>
           <StyledEventItems>
-            {groupedRaces[year].map((race) => (
+            {groupedRaces.get(year).map((race) => (
               <EventItem key={race.id} {...race} />
             ))}
           </StyledEventItems>

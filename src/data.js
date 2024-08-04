@@ -1,4 +1,5 @@
 const filterKeys = [
+  "sorting",
   "status",
   "years",
   "months",
@@ -8,6 +9,7 @@ const filterKeys = [
 ];
 
 const defaultFilterValues = {
+  sorting: ["Date ascending"],
   status: ["Upcoming"],
 };
 
