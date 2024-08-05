@@ -45,6 +45,7 @@ const StyledWindow = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   background-color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(241, 241, 241, 0.9)"};
   backdrop-filter: blur(10rem);
