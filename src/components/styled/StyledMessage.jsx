@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledNoRaces = styled.p`
+const StyledMessage = styled.p`
   margin-top: 2rem;
   text-align: center;
   font-size: 1.8rem;
@@ -9,4 +9,4 @@ const StyledNoRaces = styled.p`
   margin-bottom: 3.5rem;
 `;
 
-export default StyledNoRaces;
+export default StyledMessage;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import _ from "lodash";
 import EventItem from "./EventItem";
-import StyledNoRaces from "../styled/StyledNoRaces";
+import StyledMessage from "../styled/StyledMessage";
 
 const StyledEventList = styled.div`
   display: flex;
@@ -50,10 +50,10 @@ export default function EventList({ groupedRaces, isLoading }) {
   const nbOfRaces = _.sumBy(Array.from(groupedRaces.values()), "length");
 
   if (isLoading) {
-    return <StyledNoRaces>Loading...</StyledNoRaces>;
+    return <StyledMessage>Loading...</StyledMessage>;
   }
   if (nbOfRaces === 0) {
-    return <StyledNoRaces>No races found</StyledNoRaces>;
+    return <StyledMessage>No races found</StyledMessage>;
   }
 
   return (
