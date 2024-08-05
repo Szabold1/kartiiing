@@ -72,6 +72,7 @@ export default function MainContainer() {
     <StyledMainContainer>
       <PageHeader
         filterOptions={filterOptions}
+        filters={filters}
         onFilterChange={handleFilterChange}
         races={filteredRaces}
         originalRaces={races}

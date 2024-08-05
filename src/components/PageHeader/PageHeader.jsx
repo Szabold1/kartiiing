@@ -49,6 +49,7 @@ const StyledTitleContainer = styled.div`
 
 export default function PageHeader({
   filterOptions,
+  filters,
   onFilterChange,
   races,
   originalRaces,
@@ -68,6 +69,7 @@ export default function PageHeader({
       </StyledIntro>
 
       <Filters
+        filters={filters}
         filterOptions={filterOptions}
         onFilterChange={onFilterChange}
         races={races}
