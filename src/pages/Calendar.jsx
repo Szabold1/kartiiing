@@ -7,10 +7,10 @@ import {
   applyFilters,
 } from "../filterHelpers";
 import { defaultFilterValues, filterKeys } from "../data";
-import PageHeader from "./PageHeader/PageHeader";
-import EventList from "./EventList";
+import PageHeader from "../components/PageHeader/PageHeader";
+import EventList from "../components/EventList";
 
-const StyledMainContainer = styled.div`
+const StyledCalendarContainer = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
   max-width: 1400px;
@@ -24,7 +24,7 @@ const StyledMainContainer = styled.div`
   }
 `;
 
-export default function MainContainer() {
+export default function Calendar() {
   const [races, setRaces] = useState([]);
   const [filteredRaces, setFilteredRaces] = useState([]);
   const [filterOptions, setFilterOptions] = useState(
@@ -69,7 +69,7 @@ export default function MainContainer() {
   }
 
   return (
-    <StyledMainContainer>
+    <StyledCalendarContainer>
       <PageHeader
         filterOptions={filterOptions}
         filters={filters}
@@ -78,6 +78,6 @@ export default function MainContainer() {
         originalRaces={races}
       />
       <EventList groupedRaces={groupedRaces} isLoading={isLoading} />
-    </StyledMainContainer>
+    </StyledCalendarContainer>
   );
 }

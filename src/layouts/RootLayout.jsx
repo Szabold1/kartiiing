@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 const slideIn = keyframes`
   from {
@@ -18,6 +19,11 @@ const slideOut = keyframes`
   to {
     transform: translateY(-100%);
   }
+`;
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
 `;
 
 const StyledContainer = styled.div`
@@ -47,7 +53,7 @@ const StyledNavHeader = styled.nav`
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     cursor: pointer;
-    > span {
+    & span {
       color: rgb(0, 222, 222);
     }
 
@@ -141,17 +147,17 @@ const StyledDesktopNav = styled.ul`
   }
 `;
 
-export default function MainNavHeader() {
+export default function RootLayout() {
   const [showNav, setShowNav] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1120); // 70rem
 
-  const navOptions = [
-    "Calendar",
-    "Results",
-    "Circuits",
-    "Engines & Categories",
-    "Championships",
-    "Teams",
+  const navLinks = [
+    { path: "/calendar", label: "Calendar" },
+    { path: "/results", label: "Results" },
+    { path: "/circuits", label: "Circuits" },
+    { path: "/engines-categories", label: "Engines & Categories" },
+    { path: "/championships", label: "Championships" },
+    { path: "/teams", label: "Teams" },
   ];
 
   function handleNavClick() {
@@ -169,33 +175,45 @@ export default function MainNavHeader() {
   }, []);
 
   return (
-    <StyledContainer>
-      <StyledNavHeader>
-        <h1>
-          kart<span>iiing</span>
-        </h1>
-        <StyledIconContainer onClick={handleNavClick}>
-          {showNav ? <IoClose size={35} /> : <IoMenu size={35} />}
-        </StyledIconContainer>
+    <>
+      <StyledContainer>
+        <StyledNavHeader>
+          <h1>
+            <StyledNavLink to={"/"}>
+              Kart<span>iiing</span>
+            </StyledNavLink>
+          </h1>
+          <StyledIconContainer onClick={handleNavClick}>
+            {showNav ? <IoClose size={35} /> : <IoMenu size={35} />}
+          </StyledIconContainer>
 
-        <StyledMobileNav $show={showNav}>
-          <ul>
-            {navOptions.map((option) => (
-              <li key={option} onClick={handleNavClick}>
-                {option}
-              </li>
-            ))}
-          </ul>
-        </StyledMobileNav>
+          <StyledMobileNav $show={showNav}>
+            <ul>
+              {navLinks.map((link) => (
+                <li key={link.path} onClick={handleNavClick}>
+                  <StyledNavLink to={link.path} onClick={handleNavClick}>
+                    {link.label}
+                  </StyledNavLink>
+                </li>
+              ))}
+            </ul>
+          </StyledMobileNav>
 
-        {!isMobile && (
-          <StyledDesktopNav>
-            {navOptions.map((option) => (
-              <li key={option}>{option}</li>
-            ))}
-          </StyledDesktopNav>
-        )}
-      </StyledNavHeader>
-    </StyledContainer>
+          {!isMobile && (
+            <StyledDesktopNav>
+              {navLinks.map((link) => (
+                <li key={link.path}>
+                  <StyledNavLink to={link.path}>{link.label}</StyledNavLink>
+                </li>
+              ))}
+            </StyledDesktopNav>
+          )}
+        </StyledNavHeader>
+      </StyledContainer>
+
+      <main>
+        <Outlet />
+      </main>
+    </>
   );
 }
