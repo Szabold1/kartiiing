@@ -8,7 +8,7 @@ import {
 } from "../filterHelpers";
 import { defaultFilterValues, filterKeys } from "../data";
 import PageHeader from "../components/PageHeader/PageHeader";
-import EventList from "../components/EventList";
+import EventList from "../components/Events/EventList";
 
 const StyledCalendarContainer = styled.div`
   margin: 0 auto;

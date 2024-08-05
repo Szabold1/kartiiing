@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import _ from "lodash";
-import EventItem from "./EventItem/EventItem";
+import EventItem from "./EventItem";
 import StyledNoRaces from "../styled/StyledNoRaces";
 
 const StyledEventList = styled.div`
