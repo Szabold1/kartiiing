@@ -6,7 +6,7 @@ import {
   extractFilterOptions,
   applyFilters,
 } from "../filterHelpers";
-import { filterKeys } from "../data";
+import { defaultFilterValues, filterKeys } from "../data";
 import PageHeader from "./PageHeader/PageHeader";
 import EventList from "./EventList";
 
@@ -30,7 +30,10 @@ export default function MainContainer() {
   const [filterOptions, setFilterOptions] = useState(
     createInitialFilters(filterKeys)
   );
-  const [filters, setFilters] = useState(createInitialFilters(filterKeys));
+  const [filters, setFilters] = useState({
+    ...createInitialFilters(filterKeys),
+    ...defaultFilterValues,
+  });
   const [isLoading, setIsLoading] = useState(true);
   const [groupedRaces, setGroupedRaces] = useState(new Map());
 
@@ -47,7 +50,6 @@ export default function MainContainer() {
       } else {
         console.log("Races fetched successfully", data);
         setRaces(data);
-        handleFilterChange("status", ["Upcoming"]);
         setFilterOptions(extractFilterOptions(data));
       }
       setIsLoading(false);
