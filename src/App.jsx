@@ -16,6 +16,7 @@ import Circuits from "./pages/Circuits";
 import EnginesCategories from "./pages/EnginesCategories";
 import Championships from "./pages/Championships";
 import Teams from "./pages/Teams";
+import NotFound from "./pages/NotFound";
 
 // Layouts
 import RootLayout from "./layouts/RootLayout";
@@ -30,6 +31,8 @@ const router = createBrowserRouter(
       <Route path={"engines-categories"} element={<EnginesCategories />} />
       <Route path={"championships"} element={<Championships />} />
       <Route path={"teams"} element={<Teams />} />
+
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
