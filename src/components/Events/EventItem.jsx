@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import DateHeader from "./DateHeader";
+import EventItemDate from "./EventItemDate";
 import EventItemContent from "./EventItemContent";
 import StyledBtn from "../styled/StyledBtn";
 
@@ -69,7 +69,7 @@ export default function EventItem({
 }) {
   return (
     <StyledItem>
-      <DateHeader date={{ start: start_date, end: end_date }} />
+      <EventItemDate date={{ start: start_date, end: end_date }} />
 
       <EventItemContent
         name={series}

@@ -46,7 +46,7 @@ function formatDate(date) {
   return { day, month };
 }
 
-export default function DateHeader({ date }) {
+export default function EventItemDate({ date }) {
   const { day: dayStart, month: monthStart } = formatDate(date?.start);
   const { day: dayEnd, month: monthEnd } = formatDate(date?.end);
 

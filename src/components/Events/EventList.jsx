@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import _ from "lodash";
 import EventItem from "./EventItem/EventItem";
-import StyledNoRaces from "./styled/StyledNoRaces";
+import StyledNoRaces from "../styled/StyledNoRaces";
 
 const StyledEventList = styled.div`
   display: flex;
