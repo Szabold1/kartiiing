@@ -29,9 +29,9 @@ const StyledNavMobile = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 1.5rem 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(1.5rem);
-  -webkit-backdrop-filter: blur(1.5rem);
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
   transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};
@@ -63,16 +63,17 @@ const StyledNavLink = styled(NavLink)`
   letter-spacing: 0.1rem;
   padding: 1.2rem;
   cursor: pointer;
-  background-color: rgba(241, 241, 241, 0.2);
+  background-color: ${({ theme }) =>
+    theme.name === "dark" ? "rgba(241, 241, 241, 0.2)" : "rgba(0, 0, 0, 0.2)"};
   border-radius: 0.6rem;
   transition: all 0.25s ease-in-out;
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.accent[2]};
-  }
-
   &.active {
     background-color: ${({ theme }) => theme.colors.accent[1]};
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent[2]};
   }
 `;
 
