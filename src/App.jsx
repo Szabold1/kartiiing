@@ -34,7 +34,8 @@ const router = createBrowserRouter(
 
       <Route path="*" element={<NotFound />} />
     </Route>
-  )
+  ),
+  { basename: "/kartiiing" }
 );
 
 export default function App() {

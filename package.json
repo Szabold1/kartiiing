@@ -2,6 +2,7 @@
   "name": "kartiiing",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://szabold1.github.io/kartiiing",
   "type": "module",
   "scripts": {
     "dev": "vite",
