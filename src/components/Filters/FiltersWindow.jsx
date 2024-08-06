@@ -89,7 +89,6 @@ const StyledFiltersHeader = styled.div`
         ? "rgba(241, 241, 241, 0.25)"
         : "rgba(0, 0, 0, 0.1)"};
     border-radius: 0.6rem;
-
     transition: all 0.15s ease-in-out;
 
     &:hover {

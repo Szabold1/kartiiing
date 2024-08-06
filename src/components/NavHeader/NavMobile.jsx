@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import StyledNavLink from "../styled/StyledNavLink";
+import { useNavigate, NavLink } from "react-router-dom";
 
 const slideIn = keyframes`
   from {
@@ -49,30 +49,47 @@ const StyledNavMobile = styled.div`
     > li {
       max-width: 22rem;
       width: 75%;
-      text-transform: uppercase;
-      letter-spacing: 0.1rem;
-      padding: 1.2rem;
-      cursor: pointer;
-      background-color: rgba(241, 241, 241, 0.2);
-      border-radius: 0.6rem;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.accent[1]};
-      }
     }
   }
 `;
 
-export default function NavMobile({ showNav, navLinks, onNavClick }) {
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  max-width: 22rem;
+  width: 100%;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding: 1.2rem;
+  cursor: pointer;
+  background-color: rgba(241, 241, 241, 0.2);
+  border-radius: 0.6rem;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accent[2]};
+  }
+
+  &.active {
+    background-color: ${({ theme }) => theme.colors.accent[1]};
+  }
+`;
+
+export default function NavMobile({ showNav, setShowNav, navLinks }) {
+  const navigate = useNavigate();
+
+  function handleClick(path) {
+    setShowNav(false);
+    navigate(path);
+  }
+
   return (
     <StyledNavMobile $show={showNav}>
       <ul>
         {navLinks.map((link) => (
-          <li key={link.path} onClick={onNavClick}>
-            <StyledNavLink to={link.path} onClick={onNavClick}>
-              {link.label}
-            </StyledNavLink>
+          <li key={link.path} onClick={() => handleClick(link.path)}>
+            <StyledNavLink to={link.path}>{link.label}</StyledNavLink>
           </li>
         ))}
       </ul>

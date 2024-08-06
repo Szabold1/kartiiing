@@ -89,8 +89,8 @@ export default function NavHeader() {
       {isMobile && (
         <NavMobile
           showNav={showNav}
+          setShowNav={setShowNav}
           navLinks={navLinks}
-          onNavClick={handleNavClick}
         />
       )}
 
