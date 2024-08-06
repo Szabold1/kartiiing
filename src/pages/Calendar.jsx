@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useState, useEffect } from "react";
 import supabase from "../config/supabaseClient";
 import {
@@ -9,20 +8,6 @@ import {
 import { defaultFilterValues, filterKeys } from "../data";
 import PageHeader from "../components/PageHeader/PageHeader";
 import EventList from "../components/Events/EventList";
-
-const StyledCalendarContainer = styled.div`
-  margin: 0 auto;
-  padding: 0 1rem;
-  max-width: 1400px;
-
-  @media screen and (min-width: 40rem) {
-    padding: 0 2rem;
-  }
-
-  @media screen and (min-width: 50rem) {
-    padding: 0 3rem;
-  }
-`;
 
 export default function Calendar() {
   const [races, setRaces] = useState([]);
@@ -69,7 +54,7 @@ export default function Calendar() {
   }
 
   return (
-    <StyledCalendarContainer>
+    <>
       <PageHeader
         filterOptions={filterOptions}
         filters={filters}
@@ -78,6 +63,6 @@ export default function Calendar() {
         originalRaces={races}
       />
       <EventList groupedRaces={groupedRaces} isLoading={isLoading} />
-    </StyledCalendarContainer>
+    </>
   );
 }
