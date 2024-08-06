@@ -63,6 +63,7 @@ const StyledWindow = styled.div`
 
   @media screen and (min-width: 70rem) {
     width: 60%;
+    max-width: 60rem;
   }
 `;
 
