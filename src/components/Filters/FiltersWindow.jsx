@@ -5,7 +5,7 @@ import FilterItem from "./FilterItem";
 
 const slideIn = keyframes`
   from {
-    transform: translateY(-10%);
+    transform: translateY(100%);
   }
   to {
     transform: translateY(0);
@@ -17,7 +17,7 @@ const slideOut = keyframes`
     transform: translateY(0);
   }
   to {
-    transform: translateY(-10%);
+    transform: translateY(100%);
   }
 `;
 
@@ -28,6 +28,7 @@ const StyledWindowWrapper = styled.div`
   top: 0;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,11 +52,11 @@ const StyledWindow = styled.div`
   backdrop-filter: blur(10rem);
   -webkit-backdrop-filter: blur(10rem);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
-  border-radius: 1rem;
   overflow-y: auto;
   animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.25s forwards;
 
   @media screen and (min-width: 40rem) {
+    border-radius: 1rem;
     width: 80%;
     height: 90vh;
   }
