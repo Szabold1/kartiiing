@@ -9,8 +9,8 @@ import PageIntro from "../components/PageHeader/PageIntro";
 import PageTitle from "../components/PageHeader/PageTitle";
 import IntroText from "../components/PageHeader/IntroText";
 import Filters from "../components/Filters/Filters";
-// EventList
-import EventList from "../components/Events/EventList";
+// RaceList
+import RaceList from "../components/Races/RaceList";
 
 export default function Calendar() {
   const { races, isLoading } = useFetchRaces();
@@ -48,7 +48,7 @@ export default function Calendar() {
         />
       </PageHeader>
 
-      <EventList groupedRaces={groupedRaces} isLoading={isLoading} />
+      <RaceList groupedRaces={groupedRaces} isLoading={isLoading} />
     </>
   );
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import EventItemDate from "./EventItemDate";
-import EventItemContent from "./EventItemContent";
+import RaceItemDate from "./RaceItemDate";
+import RaceItemContent from "./RaceItemContent";
 import StyledBtn from "../styled/StyledBtn";
 
 const StyledItem = styled.li`
@@ -60,7 +60,7 @@ const StyledItem = styled.li`
   }
 `;
 
-export default function EventItem({
+export default function RaceItem({
   start_date,
   end_date,
   series,
@@ -69,9 +69,9 @@ export default function EventItem({
 }) {
   return (
     <StyledItem>
-      <EventItemDate date={{ start: start_date, end: end_date }} />
+      <RaceItemDate date={{ start: start_date, end: end_date }} />
 
-      <EventItemContent
+      <RaceItemContent
         name={series}
         location={circuits}
         engine_type={engine_type}

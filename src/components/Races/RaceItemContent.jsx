@@ -99,7 +99,7 @@ function renderSortedArray(arr) {
   );
 }
 
-export default function EventItemContent({ location, name, engine_type }) {
+export default function RaceItemContent({ location, name, engine_type }) {
   return (
     <StyledContent>
       <FlagContainer>

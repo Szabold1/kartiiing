@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import _ from "lodash";
-import EventItem from "./EventItem";
+import RaceItem from "./RaceItem";
 import StyledMessage from "../styled/StyledMessage";
 
-const StyledEventList = styled.div`
+const StyledRaceList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -29,7 +29,7 @@ const StyledYear = styled.h2`
   }
 `;
 
-const StyledEventItems = styled.div`
+const StyledRaceItems = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2.6rem 1.6rem;
@@ -46,7 +46,7 @@ const StyledEventItems = styled.div`
   }
 `;
 
-export default function EventList({ groupedRaces, isLoading }) {
+export default function RaceList({ groupedRaces, isLoading }) {
   const nbOfRaces = _.sumBy(Array.from(groupedRaces.values()), "length");
 
   if (isLoading) {
@@ -57,17 +57,17 @@ export default function EventList({ groupedRaces, isLoading }) {
   }
 
   return (
-    <StyledEventList>
+    <StyledRaceList>
       {Array.from(groupedRaces.keys()).map((year) => (
         <div key={year}>
           <StyledYear>{year}</StyledYear>
-          <StyledEventItems>
+          <StyledRaceItems>
             {groupedRaces.get(year).map((race) => (
-              <EventItem key={race.id} {...race} />
+              <RaceItem key={race.id} {...race} />
             ))}
-          </StyledEventItems>
+          </StyledRaceItems>
         </div>
       ))}
-    </StyledEventList>
+    </StyledRaceList>
   );
 }
