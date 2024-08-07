@@ -1,7 +1,15 @@
+import { defaultFilterValues, filterKeys } from "../data";
+import { IoCalendarOutline } from "react-icons/io5";
+// Hooks
 import useFetchRaces from "../hooks/useFetchRaces";
 import useRaceFilters from "../hooks/useRaceFilters";
-import { defaultFilterValues, filterKeys } from "../data";
+// PageHeader
 import PageHeader from "../components/PageHeader/PageHeader";
+import PageIntro from "../components/PageHeader/PageIntro";
+import PageTitle from "../components/PageHeader/PageTitle";
+import IntroText from "../components/PageHeader/IntroText";
+import Filters from "../components/Filters/Filters";
+// EventList
 import EventList from "../components/Events/EventList";
 
 export default function Calendar() {
@@ -16,13 +24,30 @@ export default function Calendar() {
 
   return (
     <>
-      <PageHeader
-        filterOptions={filterOptions}
-        filters={appliedFilters}
-        onFilterChange={handleFilterChange}
-        races={filteredRaces}
-        originalRaces={races}
-      />
+      <PageHeader>
+        <PageIntro>
+          <PageTitle>
+            <IoCalendarOutline size="28" />
+            <h3>Calendar</h3>
+          </PageTitle>
+
+          <IntroText>
+            Explore our calendar with {races.length || 0} races from{" "}
+            {filterOptions.years[0]} to{" "}
+            {filterOptions.years[filterOptions.years.length - 1]}, across{" "}
+            {filterOptions.championships.length || 0} championships in{" "}
+            {filterOptions.countries.length || 0} countries.
+          </IntroText>
+        </PageIntro>
+
+        <Filters
+          appliedFilters={appliedFilters}
+          filterOptions={filterOptions}
+          onFilterChange={handleFilterChange}
+          filteredRaces={filteredRaces}
+        />
+      </PageHeader>
+
       <EventList groupedRaces={groupedRaces} isLoading={isLoading} />
     </>
   );

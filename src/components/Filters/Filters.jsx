@@ -41,10 +41,10 @@ const StyledFiltersBar = styled.div`
 `;
 
 export default function Filters({
-  filters,
+  appliedFilters,
   filterOptions,
   onFilterChange,
-  races,
+  filteredRaces,
 }) {
   const [showFilters, setShowFilters] = useState(false);
 
@@ -67,14 +67,14 @@ export default function Filters({
         <IoOptions size="20" />
       </StyledFiltersBar>
 
-      <ActiveFilters filters={filters} onFilterChange={onFilterChange} />
+      <ActiveFilters appliedFilters={appliedFilters} />
 
       <FiltersWindow
         showFilters={showFilters}
         onShowFiltersClick={handleShowFiltersClick}
         filterOptions={filterOptions}
         onFilterChange={onFilterChange}
-        races={races}
+        filteredRaces={filteredRaces}
       />
     </StyledFilters>
   );

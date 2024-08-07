@@ -31,10 +31,10 @@ const StyledIcon = styled.span`
   margin-right: -0.15rem;
 `;
 
-export default function ActiveFilters({ filters }) {
+export default function ActiveFilters({ appliedFilters }) {
   return (
     <StyledActiveFilters>
-      {Object.entries(filters).map(([key, values]) => {
+      {Object.entries(appliedFilters).map(([key, values]) => {
         if (values.length > 0) {
           return values.map((value) => (
             <StyledActiveOption key={key + value}>

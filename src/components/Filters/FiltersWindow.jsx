@@ -171,7 +171,7 @@ export default function FiltersWindow({
   onShowFiltersClick,
   filterOptions,
   onFilterChange,
-  races,
+  filteredRaces,
 }) {
   const [resetFilters, setResetFilters] = useState(false);
 
@@ -203,7 +203,7 @@ export default function FiltersWindow({
         <StyledFiltersFooter>
           <button onClick={handleResetClick}>Reset</button>
           <button onClick={onShowFiltersClick}>
-            Show {races.length} races
+            Show {filteredRaces.length} races
           </button>
         </StyledFiltersFooter>
       </StyledWindow>
