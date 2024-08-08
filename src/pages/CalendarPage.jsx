@@ -9,7 +9,7 @@ import Filters from "../components/Filters/Filters";
 // RaceList
 import RaceList from "../components/Races/RaceList";
 
-export default function Calendar() {
+export default function CalendarPage() {
   const { filterOptions, fetchedRaces } = useRaces();
 
   return (

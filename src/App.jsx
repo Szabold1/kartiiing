@@ -9,14 +9,14 @@ import {
 } from "react-router-dom";
 
 // Pages
-import Home from "./pages/Home";
-import Calendar from "./pages/Calendar";
-import Results from "./pages/Results";
-import Circuits from "./pages/Circuits";
-import EnginesCategories from "./pages/EnginesCategories";
-import Championships from "./pages/Championships";
-import Teams from "./pages/Teams";
-import NotFound from "./pages/NotFound";
+import HomePage from "./pages/HomePage";
+import CalendarPage from "./pages/CalendarPage";
+import ResultsPage from "./pages/ResultsPage";
+import CircuitsPage from "./pages/CircuitsPage";
+import EnginesCategoriesPage from "./pages/EnginesCategoriesPage";
+import ChampionshipsPage from "./pages/ChampionshipsPage";
+import TeamsPage from "./pages/TeamsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ErrorPage from "./pages/ErrorPage";
 
 // Layouts
@@ -25,15 +25,15 @@ import RootLayout from "./layouts/RootLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
-      <Route index element={<Home />} />
-      <Route path={"calendar"} element={<Calendar />} />
-      <Route path={"results"} element={<Results />} />
-      <Route path={"circuits"} element={<Circuits />} />
-      <Route path={"engines-categories"} element={<EnginesCategories />} />
-      <Route path={"championships"} element={<Championships />} />
-      <Route path={"teams"} element={<Teams />} />
+      <Route index element={<HomePage />} />
+      <Route path={"calendar"} element={<CalendarPage />} />
+      <Route path={"results"} element={<ResultsPage />} />
+      <Route path={"circuits"} element={<CircuitsPage />} />
+      <Route path={"engines-categories"} element={<EnginesCategoriesPage />} />
+      <Route path={"championships"} element={<ChampionshipsPage />} />
+      <Route path={"teams"} element={<TeamsPage />} />
 
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>
   ),
   { basename: "/kartiiing" }
