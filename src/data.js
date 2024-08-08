@@ -16,11 +16,13 @@ const defaultFilterValues = {
 const championshipsData = [
   "Champions of the future",
   "FIA Academy Trophy",
+  "FIA CEZ",
   "FIA Endurance Championship",
   "FIA European Championship",
   "FIA World Cup",
   "FIA World Championship",
   "IAME Euro Series",
+  "IAME Series Benelux",
   "IAME Warrior Final",
   "Moravský Pohár",
   "RMC Austria",
@@ -32,7 +34,9 @@ const championshipsData = [
   "RMC Hungary",
   "RMC International Trophy",
   "RMC SSC",
+  "RMC Switzerland",
   "WSK",
+  "SKUSA",
 ];
 
 export { filterKeys, defaultFilterValues, championshipsData };
