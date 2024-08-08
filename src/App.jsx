@@ -17,13 +17,14 @@ import EnginesCategories from "./pages/EnginesCategories";
 import Championships from "./pages/Championships";
 import Teams from "./pages/Teams";
 import NotFound from "./pages/NotFound";
+import ErrorPage from "./pages/ErrorPage";
 
 // Layouts
 import RootLayout from "./layouts/RootLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<Home />} />
       <Route path={"calendar"} element={<Calendar />} />
       <Route path={"results"} element={<Results />} />
