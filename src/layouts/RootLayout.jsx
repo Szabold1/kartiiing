@@ -19,15 +19,15 @@ const StyledHeader = styled.header`
 
 const StyledMain = styled.main`
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2.6rem 1rem;
   max-width: 1400px;
 
   @media screen and (min-width: 40rem) {
-    padding: 0 2rem;
+    padding: 2.6rem 2rem;
   }
 
   @media screen and (min-width: 50rem) {
-    padding: 0 3rem;
+    padding: 3.2rem 3rem;
   }
 `;
 
