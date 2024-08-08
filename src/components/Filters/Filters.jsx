@@ -40,12 +40,7 @@ const StyledFiltersBar = styled.div`
   }
 `;
 
-export default function Filters({
-  appliedFilters,
-  filterOptions,
-  onFilterChange,
-  filteredRaces,
-}) {
+export default function Filters() {
   const [showFilters, setShowFilters] = useState(false);
 
   // Disable scrolling when filters are shown
@@ -56,6 +51,7 @@ export default function Filters({
     return () => (document.body.style.overflow = "");
   }, [showFilters]);
 
+  // Show/hide filters
   function handleShowFiltersClick() {
     setShowFilters((prev) => !prev);
   }
@@ -67,14 +63,11 @@ export default function Filters({
         <IoOptions size="20" />
       </StyledFiltersBar>
 
-      <ActiveFilters appliedFilters={appliedFilters} />
+      <ActiveFilters />
 
       <FiltersWindow
         showFilters={showFilters}
         onShowFiltersClick={handleShowFiltersClick}
-        filterOptions={filterOptions}
-        onFilterChange={onFilterChange}
-        filteredRaces={filteredRaces}
       />
     </StyledFilters>
   );

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import useRaces from "../../hooks/useRaces";
 import { defaultFilterValues } from "../../data";
 import FilterItemOption from "./FilterItemOption";
 
@@ -22,7 +23,8 @@ const StyledOptions = styled.div`
   gap: 0.5rem;
 `;
 
-export default function FilterItem({ name, options, onFilterChange, reset }) {
+export default function FilterItem({ name, options, reset }) {
+  const { onFilterChange } = useRaces();
   const [selectedValues, setSelectedValues] = useState(
     defaultFilterValues[name] || []
   );

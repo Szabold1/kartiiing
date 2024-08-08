@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
+import useRaces from "../../hooks/useRaces";
 import { IoClose } from "react-icons/io5";
 import FilterItem from "./FilterItem";
 
@@ -166,15 +167,11 @@ const StyledFiltersFooter = styled.div`
   }
 `;
 
-export default function FiltersWindow({
-  showFilters,
-  onShowFiltersClick,
-  filterOptions,
-  onFilterChange,
-  filteredRaces,
-}) {
+export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
+  const { filterOptions, filteredRaces } = useRaces();
   const [resetFilters, setResetFilters] = useState(false);
 
+  // Reset filters to default values
   function handleResetClick() {
     setResetFilters(true);
     setTimeout(() => setResetFilters(false), 0);
@@ -194,7 +191,6 @@ export default function FiltersWindow({
               key={filterName}
               name={filterName}
               options={filterOptions[filterName]}
-              onFilterChange={onFilterChange}
               reset={resetFilters}
             />
           ))}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useRaces from "../../hooks/useRaces";
 import _ from "lodash";
 import RaceItem from "./RaceItem";
 import StyledMessage from "../styled/StyledMessage";
@@ -46,10 +47,11 @@ const StyledRaceItems = styled.div`
   }
 `;
 
-export default function RaceList({ groupedRaces, isLoading }) {
+export default function RaceList() {
+  const { groupedRaces, isFetching } = useRaces();
   const nbOfRaces = _.sumBy(Array.from(groupedRaces.values()), "length");
 
-  if (isLoading) {
+  if (isFetching) {
     return <StyledMessage>Loading...</StyledMessage>;
   }
   if (nbOfRaces === 0) {
