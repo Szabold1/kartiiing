@@ -24,34 +24,34 @@ const StyledOptions = styled.div`
 `;
 
 export default function FilterItem({ name, options, reset }) {
-  const { onFilterChange } = useRaces();
+  const { handleFilterChange } = useRaces();
   const [selectedValues, setSelectedValues] = useState(
     defaultFilterValues[name] || []
   );
 
-  // if reset is true, reset selectedValues and call onFilterChange with empty array
+  // if reset is true, reset selectedValues and call handleFilterChange with empty array
   useEffect(() => {
     if (reset) {
       setSelectedValues(defaultFilterValues[name] || []);
-      onFilterChange(name, defaultFilterValues[name] || []);
+      handleFilterChange(name, defaultFilterValues[name] || []);
     }
-  }, [reset, onFilterChange, name]);
+  }, [reset, handleFilterChange, name]);
 
   // if option is already selected, remove it, otherwise add it to selectedValues
   function handleOptionClick(option) {
     if (selectedValues.includes(option) && name !== "sorting") {
       setSelectedValues(selectedValues.filter((o) => o !== option));
-      onFilterChange(
+      handleFilterChange(
         name,
         selectedValues.filter((o) => o !== option)
       );
     } else {
       if (name === "status" || name === "sorting") {
         setSelectedValues([option]);
-        onFilterChange(name, [option]);
+        handleFilterChange(name, [option]);
       } else {
         setSelectedValues([...selectedValues, option]);
-        onFilterChange(name, [...selectedValues, option]);
+        handleFilterChange(name, [...selectedValues, option]);
       }
     }
   }
