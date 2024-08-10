@@ -12,7 +12,7 @@ function createInitialFilters(filterKeys) {
 function extractFilterOptions(fetchedData) {
   const sorting = ["Date ascending", "Date descending"];
 
-  const status = ["Upcoming", "Ongoing", "Finished"];
+  const status = ["Upcoming", "Finished"];
 
   const years = _.uniq(
     fetchedData.map((race) => race.end_date.slice(0, 4))
@@ -49,44 +49,29 @@ function extractFilterOptions(fetchedData) {
 
 // Takes 'races' (array of races (objects)) and 'sorting' (string containing 'ascending' or 'descending')
 function sortRaces(races, sorting) {
+  const racesCopy = [...races];
+
   if (sorting.includes("ascending")) {
-    return races.sort((a, b) => new Date(a.end_date) - new Date(b.end_date));
+    return racesCopy.sort(
+      (a, b) => new Date(a.end_date) - new Date(b.end_date)
+    );
   } else if (sorting.includes("descending")) {
-    return races.sort((a, b) => new Date(b.end_date) - new Date(a.end_date));
+    return racesCopy.sort(
+      (a, b) => new Date(b.end_date) - new Date(a.end_date)
+    );
   }
 
-  return races;
+  return racesCopy;
 }
 
-// Takes 'races' (array of races (objects)) and 'status' (string equal to 'Upcoming', 'Ongoing' or 'Finished')
+// Takes 'races' (array of races (objects)) and 'status' (string equal to 'Upcoming' or 'Finished')
 function filterByStatus(races, status) {
-  const currentDate = new Date();
-
-  function formatDate(date) {
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  }
-
-  const currentDateFormatted = formatDate(currentDate);
-
-  if (status.toLowerCase() === "upcoming") {
-    return races.filter(
-      (race) => formatDate(new Date(race.end_date)) >= currentDateFormatted
-    );
-  } else if (status.toLowerCase() === "ongoing") {
-    return races.filter(
-      (race) =>
-        formatDate(
-          new Date(race.start_date === null ? race.end_date : race.start_date)
-        ) <= currentDateFormatted &&
-        formatDate(new Date(race.end_date)) >= currentDateFormatted
-    );
-  } else if (status.toLowerCase() === "finished") {
-    return races.filter(
-      (race) => formatDate(new Date(race.end_date)) < currentDateFormatted
-    );
-  }
-
-  return races;
+  return races.filter((race) =>
+    status.toLowerCase() === "upcoming"
+      ? race.status.toLowerCase() === "upcoming" ||
+        race.status.toLowerCase() === "ongoing"
+      : race.status.toLowerCase() === "finished"
+  );
 }
 
 // Takes 'races' (array of races (objects)) and 'years' (array of years (strings))
@@ -151,10 +136,35 @@ function sortIntoGroups(races, sorting) {
   return sortedGroupedByYear;
 }
 
+// Takes a Date object and returns a Date object with the year, month and day specified
+// (basically removes the time from the Date object)
+function formatDate(date) {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+// Add 'status' property to race object and return the updated object
+function addStatusToRace(race) {
+  const currentDate = formatDate(new Date());
+  const startDate = formatDate(new Date(race.start_date || race.end_date));
+  const endDate = formatDate(new Date(race.end_date));
+
+  let status = "";
+
+  if (startDate > currentDate) status = "upcoming";
+  else if (endDate < currentDate) status = "finished";
+  else status = "ongoing";
+
+  return { ...race, status };
+}
+
 // Filter the races based on the filters selected
 // Returns 'filtered' (array of filtered races) and 'groupedByYear' (map of sorted races grouped by year)
 function applyFilters(races, filters) {
   let filtered = races;
+
+  const racesWithStatus = races.map((race) => addStatusToRace(race));
+
+  filtered = racesWithStatus;
 
   if (filters.sorting?.length > 0)
     filtered = sortRaces(filtered, filters.sorting[0]);
@@ -182,4 +192,10 @@ function applyFilters(races, filters) {
   return { filtered, groupedByYear };
 }
 
-export { createInitialFilters, extractFilterOptions, applyFilters };
+export {
+  createInitialFilters,
+  extractFilterOptions,
+  applyFilters,
+  addStatusToRace,
+  sortRaces,
+};
