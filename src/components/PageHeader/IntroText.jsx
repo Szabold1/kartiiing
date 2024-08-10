@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const StyledIntroText = styled.p`
-  font-size: 1.2rem;
-  line-height: 1.7rem;
-  letter-spacing: 0.04rem;
+  font-size: 1.15rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.03rem;
   text-align: center;
 `;
 
