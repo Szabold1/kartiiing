@@ -4,8 +4,6 @@ import useRaces from "../hooks/useRaces";
 import { addStatusToRace, sortRaces } from "../filterHelpers";
 
 import Section from "../components/Section/Section";
-import SectionHeader from "../components/Section/SectionHeader";
-import SectionContent from "../components/Section/SectionContent";
 import RaceItem from "../components/Races/RaceItem";
 
 const StyledContainer = styled.div`
@@ -52,23 +50,17 @@ export default function HomePage() {
 
   return (
     <StyledContainer>
-      <Section>
-        <SectionHeader title="Upcoming Races" fontSize="1.25rem" />
-        <SectionContent>
-          {[...ongoingRaces, ...nextRaces]?.map((race) => (
-            <RaceItem key={race.id} {...race} />
-          ))}
-        </SectionContent>
+      <Section title={"Ongoing Races"} titleSize={"1.25rem"}>
+        {[...ongoingRaces, ...nextRaces]?.map((race) => (
+          <RaceItem key={race.id} {...race} />
+        ))}
         <StyledLink to="/calendar">View all</StyledLink>
       </Section>
 
-      <Section>
-        <SectionHeader title="Recent Races" fontSize="1.25rem" />
-        <SectionContent>
-          {lastRaces?.map((race) => (
-            <RaceItem key={race.id} {...race} />
-          ))}
-        </SectionContent>
+      <Section title="Recent Races" titleSize="1.25rem">
+        {lastRaces?.map((race) => (
+          <RaceItem key={race.id} {...race} />
+        ))}
         <StyledLink to="/calendar">View all</StyledLink>
       </Section>
     </StyledContainer>

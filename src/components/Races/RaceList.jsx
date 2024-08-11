@@ -3,8 +3,6 @@ import useRaces from "../../hooks/useRaces";
 import RaceItem from "./RaceItem";
 import StyledMessage from "../styled/StyledMessage";
 import Section from "../Section/Section";
-import SectionHeader from "../Section/SectionHeader";
-import SectionContent from "../Section/SectionContent";
 
 export default function RaceList() {
   const { groupedRaces, isFetching, filteredRaces } = useRaces();
@@ -19,13 +17,10 @@ export default function RaceList() {
   return (
     <>
       {Array.from(groupedRaces.keys()).map((year) => (
-        <Section key={year}>
-          <SectionHeader title={year} />
-          <SectionContent>
-            {groupedRaces.get(year).map((race) => (
-              <RaceItem key={race.id} {...race} />
-            ))}
-          </SectionContent>
+        <Section key={year} title={year}>
+          {groupedRaces.get(year).map((race) => (
+            <RaceItem key={race.id} {...race} />
+          ))}
         </Section>
       ))}
     </>
