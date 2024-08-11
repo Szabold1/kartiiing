@@ -16,7 +16,7 @@ function extractFilterOptions(fetchedData) {
 
   const years = _.uniq(
     fetchedData.map((race) => race.end_date.slice(0, 4))
-  ).reverse();
+  ).sort();
 
   const months = _.uniq(
     fetchedData.map((race) => new Date(race.end_date).getMonth())
@@ -101,7 +101,6 @@ function filterByCategories(races, categories) {
 
 // Takes 'races' (array of races (objects)) and 'championships' (array of championships (strings))
 function filterByChampionships(races, championships) {
-  console.log(races);
   return races.filter((race) =>
     race.series.some((series) =>
       championships.some((championship) =>
