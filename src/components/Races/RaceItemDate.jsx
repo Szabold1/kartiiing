@@ -1,41 +1,30 @@
 import styled from "styled-components";
 
 const StyledDate = styled.div`
-  background-color: inherit;
-  border: 1.5px solid ${({ theme }) => theme.colors.accent[0]};
-
+  font-size: 1.3rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
   display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 0.7rem;
-  margin-top: -1.2rem;
-  border-radius: 0.6rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-  width: 65%;
+  background-color: ${({ theme }) => theme.colors.accent[2]};
+  box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  position: relative;
 
-  & div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-  }
-
-  @media screen and (min-width: 70rem) {
-    border: none;
-    border-radius: 0;
-    border-right: 1.5px solid ${({ theme }) => theme.colors.accent[0]};
-    width: auto;
-    margin-top: 0;
-    justify-content: flex-end;
-    padding-right: 1.4rem;
-    min-width: 9.9rem;
-    box-shadow: none;
+  > .month {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
   }
 `;
 
+// Accepts a date string and returns an object with 'day' and 'month' properties
 function formatDate(date) {
   if (!date) return { day: null, month: null };
 
@@ -46,35 +35,22 @@ function formatDate(date) {
   return { day, month };
 }
 
-export default function RaceItemDate({ date }) {
-  const { day: dayStart, month: monthStart } = formatDate(date?.start);
-  const { day: dayEnd, month: monthEnd } = formatDate(date?.end);
+export default function RaceItemDate({ ...race }) {
+  const { end_date } = race;
+  const { day: dayEnd, month: monthEnd } = formatDate(end_date);
 
-  if (!date) {
+  if (!end_date) {
     return (
       <StyledDate>
-        <span>TBD</span>
+        <span style={{ fontSize: "0.9rem" }}>TBD</span>
       </StyledDate>
     );
   }
 
   return (
     <StyledDate>
-      {dayStart && monthStart && (
-        <div>
-          <span>{monthStart}</span>
-          <span>{dayStart}</span>
-        </div>
-      )}
-
-      {dayStart && dayEnd && <span>-</span>}
-
-      {dayEnd && monthEnd && (
-        <div>
-          {monthStart !== monthEnd && <span>{monthEnd}</span>}
-          <span>{dayEnd}</span>
-        </div>
-      )}
+      <span className="month">{monthEnd}</span>
+      <span>{dayEnd}</span>
     </StyledDate>
   );
 }

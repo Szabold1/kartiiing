@@ -1,120 +1,109 @@
 import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
-import React from "react";
+import React, { useContext } from "react";
+import { WidthContext } from "../../contexts/WidthContext";
 
 const StyledContent = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
+  flex-direction: ${({ cWidth }) => (cWidth < 600 ? "column" : "row")};
+  gap: ${({ cWidth }) => (cWidth < 600 ? "0.3rem" : "0.5rem")};
+  width: 100%;
 
-  @media screen and (min-width: 70rem) {
-    flex-direction: row;
-    flex-grow: 1;
-    justify-content: flex-start;
-    gap: 0.6rem;
+  .separator {
+    color: ${({ theme }) => theme.colors.accent[0]};
+  }
+`;
+
+const StyledRaceName = styled.h4`
+  order: ${({ cWidth }) => (cWidth < 600 ? "1" : "2")};
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.04rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  > span {
+    display: ${({ cWidth }) => (cWidth < 850 ? "none" : "flex")};
+  }
+
+  > span:first-of-type {
+    display: flex;
+  }
+`;
+
+const StyledLocation = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ cWidth }) => (cWidth < 600 ? "0.4rem" : "0.5rem")};
+  order: ${({ cWidth }) => (cWidth < 600 ? "2" : "1")};
+  font-size: ${({ cWidth }) => (cWidth < 600 ? "0.9rem" : "1rem")};
+
+  > span {
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
   }
 `;
 
 const FlagContainer = styled.div`
-  width: 3.2rem;
+  display: flex;
+  flex-shrink: 0;
+  width: ${({ cWidth }) => (cWidth < 600 ? "1.2rem" : "1.6rem")};
+  height: max-content;
 
   & img {
-    border-radius: 0.3rem;
+    border-radius: 0.15rem;
     box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (min-width: 70rem) {
-    width: 2rem;
-
-    & img {
-      border-radius: 0.2rem;
-    }
   }
 `;
 
-const TextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+const StyledCategories = styled.div`
+  display: ${({ cWidth }) => (cWidth < 750 ? "none" : "flex")};
   align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  > div:nth-child(1) {
-    text-transform: uppercase;
-    letter-spacing: 0.02rem;
-  }
-
-  > div:nth-child(2),
-  div:nth-child(3) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-    letter-spacing: -0.01rem;
-    line-height: 0.9;
-  }
-
-  > div:nth-child(2) {
-    margin-top: 1rem;
-    font-weight: 500;
-    font-size: 1.2rem;
-  }
-
-  > div:nth-child(3) {
-    margin-top: 0.5rem;
-  }
-
-  @media screen and (min-width: 70rem) {
-    flex-direction: row;
-    flex-grow: 1;
-    gap: 0.6rem;
-    text-align: left;
-    font-size: 1rem;
-
-    > div:nth-child(2),
-    div:nth-child(3) {
-      margin-top: 0;
-    }
-
-    > div:nth-child(3) {
-      margin-left: auto;
-    }
-  }
+  gap: 0.3rem;
+  order: 100;
+  margin-left: auto;
+  margin-right: 0.5rem;
 `;
 
 function renderSortedArray(arr) {
   if (!arr) return null;
   return (
-    <div>
+    <>
       {arr.sort().map((item, index) => (
         <React.Fragment key={index}>
           <span>{item}</span>
-          {index < arr.length - 1 ? <span>|</span> : ""}
+          {index < arr.length - 1 ? <span className="separator">|</span> : ""}
         </React.Fragment>
       ))}
-    </div>
+    </>
   );
 }
 
-export default function RaceItemContent({ location, name, engine_type }) {
-  return (
-    <StyledContent>
-      <FlagContainer>
-        <ReactCountryFlag
-          countryCode={location.countries.code}
-          svg
-          style={{ height: "100%", width: "100%" }}
-        />
-      </FlagContainer>
+export default function RaceItemContent({ ...race }) {
+  const { circuits, series, engine_type } = race;
+  const containerWidth = useContext(WidthContext);
 
-      <TextContainer>
-        <div>{location.short_name}</div>
-        {renderSortedArray(name)}
+  return (
+    <StyledContent cWidth={containerWidth}>
+      <StyledRaceName cWidth={containerWidth}>
+        {renderSortedArray(series)}
+      </StyledRaceName>
+
+      <StyledLocation cWidth={containerWidth}>
+        <FlagContainer cWidth={containerWidth}>
+          <ReactCountryFlag
+            countryCode={circuits.countries.code}
+            svg
+            style={{ height: "100%", width: "100%" }}
+          />
+        </FlagContainer>
+        <span>{circuits.short_name}</span>
+      </StyledLocation>
+
+      <StyledCategories cWidth={containerWidth}>
         {renderSortedArray(engine_type)}
-      </TextContainer>
+      </StyledCategories>
     </StyledContent>
   );
 }
