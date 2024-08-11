@@ -9,7 +9,7 @@ const StyledItem = styled.li`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: ${({ cWidth }) => (cWidth < 600 ? "0.65rem" : "0.5rem")};
+  padding: ${({ $cWidth }) => ($cWidth < 600 ? "0.65rem" : "0.5rem")};
   cursor: pointer;
   border-radius: 0.6rem;
 
@@ -37,7 +37,7 @@ export default function RaceItem({ ...race }) {
   const containerWidth = useContext(WidthContext);
 
   return (
-    <StyledItem cWidth={containerWidth}>
+    <StyledItem $cWidth={containerWidth}>
       {status === "ongoing" ? <span className="live">live</span> : null}
 
       <RaceItemDate {...race} />

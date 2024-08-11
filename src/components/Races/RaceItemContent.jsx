@@ -5,8 +5,8 @@ import { WidthContext } from "../../contexts/WidthContext";
 
 const StyledContent = styled.div`
   display: flex;
-  flex-direction: ${({ cWidth }) => (cWidth < 600 ? "column" : "row")};
-  gap: ${({ cWidth }) => (cWidth < 600 ? "0.3rem" : "0.5rem")};
+  flex-direction: ${({ $cWidth }) => ($cWidth < 600 ? "column" : "row")};
+  gap: ${({ $cWidth }) => ($cWidth < 600 ? "0.3rem" : "0.5rem")};
   width: 100%;
 
   .separator {
@@ -15,7 +15,7 @@ const StyledContent = styled.div`
 `;
 
 const StyledRaceName = styled.h4`
-  order: ${({ cWidth }) => (cWidth < 600 ? "1" : "2")};
+  order: ${({ $cWidth }) => ($cWidth < 600 ? "1" : "2")};
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.04rem;
@@ -24,7 +24,7 @@ const StyledRaceName = styled.h4`
   gap: 0.3rem;
 
   > span {
-    display: ${({ cWidth }) => (cWidth < 850 ? "none" : "flex")};
+    display: ${({ $cWidth }) => ($cWidth < 850 ? "none" : "flex")};
   }
 
   > span:first-of-type {
@@ -35,9 +35,9 @@ const StyledRaceName = styled.h4`
 const StyledLocation = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ cWidth }) => (cWidth < 600 ? "0.4rem" : "0.5rem")};
-  order: ${({ cWidth }) => (cWidth < 600 ? "2" : "1")};
-  font-size: ${({ cWidth }) => (cWidth < 600 ? "0.9rem" : "1rem")};
+  gap: ${({ $cWidth }) => ($cWidth < 600 ? "0.4rem" : "0.5rem")};
+  order: ${({ $cWidth }) => ($cWidth < 600 ? "2" : "1")};
+  font-size: ${({ $cWidth }) => ($cWidth < 600 ? "0.9rem" : "1rem")};
 
   > span {
     text-transform: uppercase;
@@ -48,7 +48,7 @@ const StyledLocation = styled.div`
 const FlagContainer = styled.div`
   display: flex;
   flex-shrink: 0;
-  width: ${({ cWidth }) => (cWidth < 600 ? "1.2rem" : "1.6rem")};
+  width: ${({ $cWidth }) => ($cWidth < 600 ? "1.2rem" : "1.6rem")};
   height: max-content;
 
   & img {
@@ -58,7 +58,7 @@ const FlagContainer = styled.div`
 `;
 
 const StyledCategories = styled.div`
-  display: ${({ cWidth }) => (cWidth < 750 ? "none" : "flex")};
+  display: ${({ $cWidth }) => ($cWidth < 750 ? "none" : "flex")};
   align-items: center;
   gap: 0.3rem;
   order: 100;
@@ -85,13 +85,13 @@ export default function RaceItemContent({ ...race }) {
   const containerWidth = useContext(WidthContext);
 
   return (
-    <StyledContent cWidth={containerWidth}>
-      <StyledRaceName cWidth={containerWidth}>
+    <StyledContent $cWidth={containerWidth}>
+      <StyledRaceName $cWidth={containerWidth}>
         {renderSortedArray(series)}
       </StyledRaceName>
 
-      <StyledLocation cWidth={containerWidth}>
-        <FlagContainer cWidth={containerWidth}>
+      <StyledLocation $cWidth={containerWidth}>
+        <FlagContainer $cWidth={containerWidth}>
           <ReactCountryFlag
             countryCode={circuits.countries.code}
             svg
@@ -101,7 +101,7 @@ export default function RaceItemContent({ ...race }) {
         <span>{circuits.short_name}</span>
       </StyledLocation>
 
-      <StyledCategories cWidth={containerWidth}>
+      <StyledCategories $cWidth={containerWidth}>
         {renderSortedArray(engine_type)}
       </StyledCategories>
     </StyledContent>
