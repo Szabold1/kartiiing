@@ -65,6 +65,14 @@ function RacesProvider({ children, filterKeys, defaultFilterValues }) {
     }));
   }
 
+  // Reset filters based on resetType
+  function resetFilters(resetType = "") {
+    setAppliedFilters(createInitialFilters(filterKeys));
+    if (resetType === "toDefault") {
+      setAppliedFilters({ ...defaultFilterValues });
+    }
+  }
+
   return (
     <RacesContext.Provider
       value={{
@@ -75,6 +83,7 @@ function RacesProvider({ children, filterKeys, defaultFilterValues }) {
         appliedFilters,
         groupedRaces,
         handleFilterChange,
+        resetFilters,
       }}
     >
       {children}

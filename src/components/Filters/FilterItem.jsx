@@ -23,19 +23,16 @@ const StyledOptions = styled.div`
   gap: 0.5rem;
 `;
 
-export default function FilterItem({ name, options, reset }) {
-  const { handleFilterChange } = useRaces();
+export default function FilterItem({ name, options }) {
+  const { handleFilterChange, appliedFilters } = useRaces();
   const [selectedValues, setSelectedValues] = useState(
     defaultFilterValues[name] || []
   );
 
   // if reset is true, reset selectedValues and call handleFilterChange with empty array
   useEffect(() => {
-    if (reset) {
-      setSelectedValues(defaultFilterValues[name] || []);
-      handleFilterChange(name, defaultFilterValues[name] || []);
-    }
-  }, [reset, handleFilterChange, name]);
+    setSelectedValues(appliedFilters[name] || []);
+  }, [appliedFilters, name]);
 
   // if option is already selected, remove it, otherwise add it to selectedValues
   function handleOptionClick(option) {

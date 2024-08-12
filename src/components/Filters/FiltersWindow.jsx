@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { useState } from "react";
 import useRaces from "../../hooks/useRaces";
 import { IoClose } from "react-icons/io5";
 import FilterItem from "./FilterItem";
@@ -63,8 +62,8 @@ const StyledWindow = styled.div`
   }
 
   @media screen and (min-width: 70rem) {
-    width: 60%;
-    max-width: 60rem;
+    width: 70%;
+    max-width: 65rem;
   }
 `;
 
@@ -168,13 +167,11 @@ const StyledFiltersFooter = styled.div`
 `;
 
 export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
-  const { filterOptions, filteredRaces } = useRaces();
-  const [resetFilters, setResetFilters] = useState(false);
+  const { filterOptions, filteredRaces, resetFilters } = useRaces();
 
   // Reset filters to default values
   function handleResetClick() {
-    setResetFilters(true);
-    setTimeout(() => setResetFilters(false), 0);
+    resetFilters("toDefault");
   }
 
   return (
@@ -191,7 +188,6 @@ export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
               key={filterName}
               name={filterName}
               options={filterOptions[filterName]}
-              reset={resetFilters}
             />
           ))}
         </StyledFiltersContent>
