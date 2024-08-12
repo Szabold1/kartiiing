@@ -1,8 +1,14 @@
+import styled from "styled-components";
 import useRaces from "../../hooks/useRaces";
-
 import RaceItem from "./RaceItem";
 import StyledMessage from "../styled/StyledMessage";
 import Section from "../Section/Section";
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+`;
 
 export default function RaceList() {
   const { groupedRaces, isFetching, filteredRaces } = useRaces();
@@ -15,7 +21,7 @@ export default function RaceList() {
   }
 
   return (
-    <>
+    <StyledContainer>
       {Array.from(groupedRaces.keys()).map((year) => (
         <Section key={year} title={year}>
           {groupedRaces.get(year).map((race) => (
@@ -23,6 +29,6 @@ export default function RaceList() {
           ))}
         </Section>
       ))}
-    </>
+    </StyledContainer>
   );
 }

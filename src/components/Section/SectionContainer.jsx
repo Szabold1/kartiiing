@@ -9,7 +9,6 @@ const StyledSectionContainer = styled.section`
   background-color: ${({ theme }) => theme.colors.bg[1]};
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.8rem;
-  margin-bottom: 1.6rem;
   width: 100%;
 `;
 

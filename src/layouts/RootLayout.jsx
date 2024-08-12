@@ -29,6 +29,14 @@ const StyledMain = styled.main`
   @media screen and (min-width: 50rem) {
     padding: 3.2rem 3rem;
   }
+
+  @media screen and (min-width: 60rem) {
+    padding: 3.2rem 3.6rem;
+  }
+
+  @media screen and (min-width: 70rem) {
+    padding: 3.2rem 4.2rem;
+  }
 `;
 
 export default function RootLayout() {

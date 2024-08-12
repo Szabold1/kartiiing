@@ -23,6 +23,7 @@ const StyledItem = styled.li`
     top: 0;
     left: 0;
     font-size: 0.5rem;
+    font-weight: 700;
     letter-spacing: 0.02rem;
     text-transform: uppercase;
     background-color: rgb(230, 40, 0);

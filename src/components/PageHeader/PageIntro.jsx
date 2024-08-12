@@ -3,12 +3,7 @@ import styled from "styled-components";
 const StyledPageIntro = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-
-  @media screen and (min-width: 70rem) {
-    align-items: flex-start;
-  }
+  gap: 0.8rem;
 `;
 
 export default function PageIntro({ children }) {
