@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoOptions } from "react-icons/io5";
 import ActiveFilters from "./ActiveFilters";
 import FiltersModal from "./FiltersModal";
@@ -44,14 +44,6 @@ const StyledFiltersBar = styled.div`
 export default function Filters() {
   const [showFilters, setShowFilters] = useState(false);
 
-  // Disable scrolling when filters are shown
-  useEffect(() => {
-    if (showFilters) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-
-    return () => (document.body.style.overflow = "");
-  }, [showFilters]);
-
   // Show/hide filters
   function handleShowFiltersClick() {
     setShowFilters((prev) => !prev);
@@ -66,7 +58,7 @@ export default function Filters() {
 
       <ActiveFilters />
 
-      <ModalBackdrop show={showFilters}>
+      <ModalBackdrop show={showFilters} onClose={handleShowFiltersClick}>
         <FiltersModal
           showFilters={showFilters}
           onShowFiltersClick={handleShowFiltersClick}

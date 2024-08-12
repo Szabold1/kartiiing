@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import useRaces from "../../hooks/useRaces";
-import { useRef, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import FilterItem from "./FilterItem";
 
@@ -135,20 +134,6 @@ const StyledFiltersFooter = styled.div`
 
 export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
   const { filterOptions, filteredRaces, resetFilters } = useRaces();
-  const modalRef = useRef();
-
-  // Close modal if clicked outside
-  useEffect(() => {
-    function handleClickOutside(e) {
-      if (modalRef.current && !modalRef.current.contains(e.target))
-        onShowFiltersClick();
-    }
-
-    if (showFilters) document.addEventListener("mousedown", handleClickOutside);
-    else document.removeEventListener("mousedown", handleClickOutside);
-
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [showFilters, onShowFiltersClick]);
 
   // Reset filters to default values
   function handleResetClick() {
@@ -156,7 +141,7 @@ export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
   }
 
   return (
-    <StyledFiltersModal $show={showFilters} ref={modalRef}>
+    <StyledFiltersModal $show={showFilters}>
       <StyledFiltersHeader>
         <h4>Filter & Sort</h4>
         <IoClose size="40" onClick={onShowFiltersClick} />
