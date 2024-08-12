@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import useRaces from "../hooks/useRaces";
 import { addStatusToRace, sortRaces } from "../filterHelpers";
-
-import Section from "../components/Section/Section";
-import RaceItem from "../components/Races/RaceItem";
+import RaceOverviewSection from "../components/Races/RaceOverviewSection";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -13,19 +10,6 @@ const StyledContainer = styled.div`
   @media screen and (min-width: 70rem) {
     flex-direction: row;
     gap: 1.6rem;
-  }
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.accent[0]};
-  padding: 0.6rem 0 0.5rem 0;
-  text-align: center;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.accent[1]};
   }
 `;
 
@@ -50,19 +34,11 @@ export default function HomePage() {
 
   return (
     <StyledContainer>
-      <Section title={"Ongoing Races"} titleSize={"1.25rem"}>
-        {[...ongoingRaces, ...nextRaces]?.map((race) => (
-          <RaceItem key={race.id} {...race} />
-        ))}
-        <StyledLink to="/calendar">View all</StyledLink>
-      </Section>
-
-      <Section title="Recent Races" titleSize="1.25rem">
-        {lastRaces?.map((race) => (
-          <RaceItem key={race.id} {...race} />
-        ))}
-        <StyledLink to="/calendar">View all</StyledLink>
-      </Section>
+      <RaceOverviewSection
+        title="Upcoming Races"
+        races={[...ongoingRaces, ...nextRaces]}
+      />
+      <RaceOverviewSection title="Recent Races" races={lastRaces} />
     </StyledContainer>
   );
 }
