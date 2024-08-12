@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { useNavigate, NavLink } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 const slideIn = keyframes`
   from {
@@ -39,7 +40,9 @@ const StyledNavMobile = styled.div`
   animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.4s forwards;
 
   > ul {
-    margin-top: 15vh;
+    margin: 15vh auto;
+    width: 70%;
+    max-width: 22rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,8 +50,7 @@ const StyledNavMobile = styled.div`
     gap: 0.4rem;
 
     > li {
-      max-width: 22rem;
-      width: 75%;
+      width: 100%;
     }
   }
 `;
@@ -79,6 +81,28 @@ const StyledNavLink = styled(NavLink)`
 
 export default function NavMobile({ showNav, setShowNav, navLinks }) {
   const navigate = useNavigate();
+  const linksRef = useRef();
+
+  // Close navigation if clicked outside of a link and disable scrolling when open
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (linksRef.current && !linksRef.current.contains(e.target))
+        setShowNav(false);
+    }
+
+    if (showNav) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.body.style.overflow = "";
+    };
+  }, [showNav, setShowNav]);
 
   function handleClick(path) {
     setShowNav(false);
@@ -87,7 +111,7 @@ export default function NavMobile({ showNav, setShowNav, navLinks }) {
 
   return (
     <StyledNavMobile $show={showNav}>
-      <ul>
+      <ul ref={linksRef}>
         {navLinks.map((link) => (
           <li key={link.path} onClick={() => handleClick(link.path)}>
             <StyledNavLink to={link.path}>{link.label}</StyledNavLink>
