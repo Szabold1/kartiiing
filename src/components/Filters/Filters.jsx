@@ -2,12 +2,13 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { IoOptions } from "react-icons/io5";
 import ActiveFilters from "./ActiveFilters";
-import FiltersWindow from "./FiltersWindow";
+import FiltersModal from "./FiltersModal";
+import ModalBackdrop from "../Modal/ModalBackdrop";
 
 const StyledFilters = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.8rem;
   width: 100%;
 
   @media screen and (min-width: 70rem) {
@@ -65,10 +66,12 @@ export default function Filters() {
 
       <ActiveFilters />
 
-      <FiltersWindow
-        showFilters={showFilters}
-        onShowFiltersClick={handleShowFiltersClick}
-      />
+      <ModalBackdrop show={showFilters}>
+        <FiltersModal
+          showFilters={showFilters}
+          onShowFiltersClick={handleShowFiltersClick}
+        />
+      </ModalBackdrop>
     </StyledFilters>
   );
 }
