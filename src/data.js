@@ -1,3 +1,5 @@
+const currentYear = new Date().getFullYear();
+
 const filterKeys = [
   "sorting",
   "status",
@@ -10,7 +12,7 @@ const filterKeys = [
 
 const defaultFilterValues = {
   sorting: ["Date ascending"],
-  status: ["Upcoming"],
+  years: [currentYear.toString()],
 };
 
 const championshipsData = [
