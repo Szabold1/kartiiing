@@ -6,10 +6,10 @@ import RaceOverviewSection from "../components/Races/RaceOverviewSection";
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1.6rem;
 
   @media screen and (min-width: 70rem) {
     flex-direction: row;
-    gap: 1.6rem;
   }
 `;
 
