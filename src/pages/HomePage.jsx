@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import useRaces from "../hooks/useRaces";
-import { addStatusToRace, sortRaces } from "../filterHelpers";
+import { addStatusToRace, sortRaces } from "../helpers/filterHelpers";
 import RaceOverviewSection from "../components/Races/RaceOverviewSection";
 
 const StyledContainer = styled.div`

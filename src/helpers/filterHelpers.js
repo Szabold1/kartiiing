@@ -1,5 +1,6 @@
 import _ from "lodash";
-import { championshipsData } from "./data";
+import { championshipsData } from "../data";
+import { removeTimeFromDate } from "./dateHelpers";
 
 // Create an initial filters object with empty arrays for each filter key
 function createInitialFilters(filterKeys) {
@@ -135,17 +136,13 @@ function sortIntoGroups(races, sorting) {
   return sortedGroupedByYear;
 }
 
-// Takes a Date object and returns a Date object with the year, month and day specified
-// (basically removes the time from the Date object)
-function formatDate(date) {
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-}
-
 // Add 'status' property to race object and return the updated object
 function addStatusToRace(race) {
-  const currentDate = formatDate(new Date());
-  const startDate = formatDate(new Date(race.start_date || race.end_date));
-  const endDate = formatDate(new Date(race.end_date));
+  const currentDate = removeTimeFromDate(new Date());
+  const startDate = removeTimeFromDate(
+    new Date(race.start_date || race.end_date)
+  );
+  const endDate = removeTimeFromDate(new Date(race.end_date));
 
   let status = "";
 

@@ -4,7 +4,7 @@ import {
   createInitialFilters,
   extractFilterOptions,
   applyFilters,
-} from "../filterHelpers";
+} from "../helpers/filterHelpers";
 
 // 1. Create a context for races
 const RacesContext = createContext();

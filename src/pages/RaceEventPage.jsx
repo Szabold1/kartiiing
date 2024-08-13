@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useRaces from "../hooks/useRaces";
 import StyledMessage from "../components/styled/StyledMessage";
+import RaceEventHeader from "../components/RaceEventPage/RaceEventHeader";
 
 export default function RaceEventPage() {
   const { series_date: url } = useParams();
@@ -23,7 +24,7 @@ export default function RaceEventPage() {
 
   return (
     <>
-      <div>{race.series[0]}</div>
+      <RaceEventHeader {...race} />
     </>
   );
 }

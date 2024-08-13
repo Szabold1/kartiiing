@@ -17,7 +17,9 @@ export default function CalendarPage() {
       <PageHeader>
         <PageIntro>
           <PageTitle>
-            <IoCalendarOutline size="28" />
+            <span style={{ paddingBottom: "0.15rem" }}>
+              <IoCalendarOutline size="28" />
+            </span>
             <h3>Calendar</h3>
           </PageTitle>
 

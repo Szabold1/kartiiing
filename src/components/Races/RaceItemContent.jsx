@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { WidthContext } from "../../contexts/WidthContext";
+import { renderSortedArray } from "../../helpers/helpers";
 
 const StyledContent = styled.div`
   display: flex;
@@ -65,20 +66,6 @@ const StyledCategories = styled.div`
   margin-left: auto;
   margin-right: 0.5rem;
 `;
-
-function renderSortedArray(arr) {
-  if (!arr) return null;
-  return (
-    <>
-      {arr.sort().map((item, index) => (
-        <React.Fragment key={index}>
-          <span>{item}</span>
-          {index < arr.length - 1 ? <span className="separator">|</span> : ""}
-        </React.Fragment>
-      ))}
-    </>
-  );
-}
 
 export default function RaceItemContent({ ...race }) {
   const { circuits, series, engine_type } = race;
