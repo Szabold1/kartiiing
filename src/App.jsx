@@ -11,6 +11,7 @@ import {
 // Pages
 import HomePage from "./pages/HomePage";
 import CalendarPage from "./pages/CalendarPage";
+import RaceEventPage from "./pages/RaceEventPage";
 import ResultsPage from "./pages/ResultsPage";
 import CircuitsPage from "./pages/CircuitsPage";
 import EnginesCategoriesPage from "./pages/EnginesCategoriesPage";
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />} errorElement={<ErrorPage />}>
       <Route index element={<HomePage />} />
       <Route path={"calendar"} element={<CalendarPage />} />
+      <Route path={"calendar/:series_date"} element={<RaceEventPage />} />
       <Route path={"results"} element={<ResultsPage />} />
       <Route path={"circuits"} element={<CircuitsPage />} />
       <Route path={"engines-categories"} element={<EnginesCategoriesPage />} />
