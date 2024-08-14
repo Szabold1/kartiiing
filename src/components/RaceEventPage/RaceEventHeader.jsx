@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PageTitle from "../PageHeader/PageTitle";
-import { renderSortedArray } from "../../helpers/helpers";
+import { renderArray } from "../../helpers/helpers";
 import ReactCountryFlag from "react-country-flag";
 
 const StyledTitle = styled.h3`
@@ -31,14 +31,35 @@ const StyledLocation = styled.div`
   margin-top: 0.3rem;
 `;
 
+const StyledLive = styled.div`
+  z-index: 2;
+  position: absolute;
+  top: -1.7rem;
+  left: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  text-transform: uppercase;
+  background-color: rgb(230, 40, 0);
+  padding: 0.3rem 0.4rem;
+  border-radius: 0.3rem;
+  color: ${({ theme }) => theme.colors.text[1]};
+
+  @media screen and (min-width: 70rem) {
+    top: -1.9rem;
+  }
+`;
+
 export default function RaceEventHeader({ ...race }) {
-  const { series, circuits } = race;
+  const { series, circuits, status } = race;
 
   return (
-    <header style={{ marginBottom: "2.5rem" }}>
+    <header style={{ marginBottom: "2.5rem", position: "relative" }}>
+      {status === "ongoing" && <StyledLive>live</StyledLive>}
+
       <PageTitle size={["1.6rem", "1.8rem"]}>
         <StyledTitle style={{ lineHeight: "1.25" }}>
-          {renderSortedArray(series)}
+          {renderArray(series, true)}
         </StyledTitle>
       </PageTitle>
 
