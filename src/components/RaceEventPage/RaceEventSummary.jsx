@@ -62,6 +62,13 @@ export default function RaceEventSummary({ ...race }) {
   const formattedStartDate = formatDate(start_date);
   const formattedEndDate = formatDate(end_date);
 
+  // Open google maps in a new tab, searching 'location'
+  function openMaps(location) {
+    const baseUrl = "https://www.google.com/maps/search/";
+    const url = `${baseUrl}${encodeURIComponent(location)}`;
+    window.open(url, "_blank");
+  }
+
   return (
     <Section title="Summary" titleSize="1.25rem">
       <SummaryItem icon={IoCalendarOutline}>
@@ -72,21 +79,30 @@ export default function RaceEventSummary({ ...race }) {
         <span>({renderTimeToRace(start_date, end_date)})</span>
       </SummaryItem>
 
-      <SummaryItem icon={IoLocationOutline}>
-        <span>
-          {circuits.long_name}, {circuits.countries.name}
-        </span>
-      </SummaryItem>
+      {circuits && circuits.long_name && circuits.countries?.name && (
+        <SummaryItem
+          icon={IoLocationOutline}
+          onClick={() =>
+            openMaps(`${circuits.long_name}, ${circuits.countries.name}`)
+          }
+        >
+          <span>
+            {circuits.long_name}, {circuits.countries.name}
+          </span>
+        </SummaryItem>
+      )}
 
-      <SummaryItem icon={IoSpeedometerOutline}>
-        {renderArray(engine_type, true)}
-      </SummaryItem>
+      {engine_type && engine_type.length > 0 && (
+        <SummaryItem icon={IoSpeedometerOutline}>
+          {renderArray(engine_type, true)}
+        </SummaryItem>
+      )}
 
-      <SummaryItem icon={IoListOutline}>
-        {(categories?.length === 0 || !categories) &&
-          "No categories were found"}
-        {categories && renderArray(categories)}
-      </SummaryItem>
+      {categories && categories.length > 0 && (
+        <SummaryItem icon={IoListOutline}>
+          {renderArray(categories)}
+        </SummaryItem>
+      )}
     </Section>
   );
 }

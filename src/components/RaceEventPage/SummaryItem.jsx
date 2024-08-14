@@ -5,6 +5,12 @@ const StyledSummaryItem = styled.div`
   grid-template-columns: 2rem 1fr;
   align-items: center;
   padding: 0rem 0.7rem;
+  cursor: ${({ $onClick }) => ($onClick ? "pointer" : "text")};
+
+  &:hover {
+    color: ${({ $onClick, theme }) =>
+      $onClick ? theme.colors.accent[0] : theme.colors.text[0]};
+  }
 
   &:first-child {
     margin-top: 0.2rem;
@@ -27,9 +33,9 @@ const StyledSummaryText = styled.span`
   padding: 0.5rem 0;
 `;
 
-export default function SummaryItem({ icon: Icon, children }) {
+export default function SummaryItem({ icon: Icon, onClick, children }) {
   return (
-    <StyledSummaryItem>
+    <StyledSummaryItem $onClick={onClick} onClick={onClick}>
       {Icon && (
         <StyledIconContainer>
           <Icon size={22} />
