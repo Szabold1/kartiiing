@@ -1,11 +1,13 @@
 import React from "react";
 
 // Display a list of items sorted in alphabetical order with separators
-function renderSortedArray(arr) {
+function renderArray(arr, sort = false) {
   if (!arr) return null;
+  const sortedArr = sort ? arr.sort() : arr;
+
   return (
     <>
-      {arr.sort().map((item, index) => (
+      {sortedArr.map((item, index) => (
         <React.Fragment key={index}>
           <span>{item}</span>
           {index < arr.length - 1 ? <span className="separator">-</span> : ""}
@@ -15,4 +17,4 @@ function renderSortedArray(arr) {
   );
 }
 
-export { renderSortedArray };
+export { renderArray };

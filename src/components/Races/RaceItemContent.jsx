@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
 import { useContext } from "react";
 import { WidthContext } from "../../contexts/WidthContext";
-import { renderSortedArray } from "../../helpers/helpers";
+import { renderArray } from "../../helpers/helpers";
 
 const StyledContent = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ export default function RaceItemContent({ ...race }) {
   return (
     <StyledContent $cWidth={containerWidth}>
       <StyledRaceName $cWidth={containerWidth}>
-        {renderSortedArray(series)}
+        {renderArray(series, true)}
       </StyledRaceName>
 
       <StyledLocation $cWidth={containerWidth}>
@@ -89,7 +89,7 @@ export default function RaceItemContent({ ...race }) {
       </StyledLocation>
 
       <StyledCategories $cWidth={containerWidth}>
-        {renderSortedArray(engine_type)}
+        {renderArray(engine_type, true)}
       </StyledCategories>
     </StyledContent>
   );

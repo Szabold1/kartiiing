@@ -138,6 +138,7 @@ function sortIntoGroups(races, sorting) {
 
 // Add 'status' property to race object and return the updated object
 function addStatusToRace(race) {
+  if (!race || race.status) return race;
   const currentDate = removeTimeFromDate(new Date());
   const startDate = removeTimeFromDate(
     new Date(race.start_date || race.end_date)
