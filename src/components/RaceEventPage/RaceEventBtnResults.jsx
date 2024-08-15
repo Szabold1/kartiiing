@@ -40,7 +40,7 @@ const StyledResultsDropdown = styled.div`
 `;
 
 export default function RaceEventBtnResults({ results, openLink }) {
-  const dropdownRef = useRef();
+  const ref = useRef();
   const [showModal, setShowModal] = useState(false);
 
   // Handle button click
@@ -58,8 +58,7 @@ export default function RaceEventBtnResults({ results, openLink }) {
   // Close dropdown if clicked outside
   useEffect(() => {
     function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target))
-        setShowModal(false);
+      if (ref.current && !ref.current.contains(e.target)) setShowModal(false);
     }
 
     if (showModal) document.addEventListener("mousedown", handleClickOutside);
@@ -69,7 +68,7 @@ export default function RaceEventBtnResults({ results, openLink }) {
   }, [showModal]);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} ref={ref}>
       <Btn onClick={handleResultsClick}>
         Results
         <span style={{ marginRight: "-0.15rem", display: "flex" }}>
@@ -79,7 +78,7 @@ export default function RaceEventBtnResults({ results, openLink }) {
         </span>
       </Btn>
 
-      <StyledResultsDropdown $show={showModal} ref={dropdownRef}>
+      <StyledResultsDropdown $show={showModal}>
         {results?.map((result) => (
           <span
             key={result.url}

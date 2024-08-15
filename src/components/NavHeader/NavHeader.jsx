@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { IoMenu, IoClose } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import NavMobile from "./NavMobile";
 import NavDesktop from "./NavDesktop";
@@ -61,6 +61,7 @@ export default function NavHeader() {
   const [showNav, setShowNav] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1120); // 70rem
   const navigate = useNavigate();
+  const iconRef = useRef();
 
   function handleNavClick() {
     setShowNav((prev) => !prev);
@@ -84,7 +85,7 @@ export default function NavHeader() {
         </StyledNavLink>
       </h1>
 
-      <StyledIconContainer onClick={handleNavClick}>
+      <StyledIconContainer onClick={handleNavClick} ref={iconRef}>
         {showNav ? <IoClose size={35} /> : <IoMenu size={35} />}
       </StyledIconContainer>
 
@@ -93,6 +94,7 @@ export default function NavHeader() {
           showNav={showNav}
           setShowNav={setShowNav}
           navLinks={navLinks}
+          iconRef={iconRef}
         />
       )}
 

@@ -12,7 +12,7 @@ const StyledRaceEventBtns = styled.div`
 export default function RaceEventBtns({ ...race }) {
   const { status, results_links, live_links } = race;
 
-  const isLive = status === "upcoming";
+  const isLive = status === "ongoing";
   const liveTime = live_links?.find((link) => link.name === "timing");
   const liveStream = live_links?.find((link) => link.name === "streaming");
 

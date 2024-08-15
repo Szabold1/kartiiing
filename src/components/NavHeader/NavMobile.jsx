@@ -79,14 +79,19 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function NavMobile({ showNav, setShowNav, navLinks }) {
+export default function NavMobile({ showNav, setShowNav, navLinks, iconRef }) {
   const navigate = useNavigate();
   const linksRef = useRef();
 
   // Close navigation if clicked outside of a link and disable scrolling when open
   useEffect(() => {
     function handleClickOutside(e) {
-      if (linksRef.current && !linksRef.current.contains(e.target))
+      if (
+        linksRef.current &&
+        !linksRef.current.contains(e.target) &&
+        iconRef.current &&
+        !iconRef.current.contains(e.target)
+      )
         setShowNav(false);
     }
 
@@ -102,7 +107,7 @@ export default function NavMobile({ showNav, setShowNav, navLinks }) {
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "";
     };
-  }, [showNav, setShowNav]);
+  }, [showNav, setShowNav, iconRef]);
 
   function handleClick(path) {
     setShowNav(false);
