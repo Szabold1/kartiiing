@@ -5,12 +5,6 @@ const StyledSummaryItem = styled.div`
   grid-template-columns: 2rem 1fr;
   align-items: center;
   padding: 0rem 0.7rem;
-  cursor: ${({ $onClick }) => ($onClick ? "pointer" : "text")};
-
-  &:hover {
-    color: ${({ $onClick, theme }) =>
-      $onClick ? theme.colors.accent[0] : theme.colors.text[0]};
-  }
 
   &:first-child {
     margin-top: 0.2rem;
@@ -31,18 +25,27 @@ const StyledSummaryText = styled.span`
   flex-wrap: wrap;
   line-height: 1.05;
   padding: 0.5rem 0;
+  width: fit-content;
+  cursor: ${({ $onClick }) => ($onClick ? "pointer" : "text")};
+
+  &:hover {
+    color: ${({ $onClick, theme }) =>
+      $onClick ? theme.colors.accent[0] : theme.colors.text[0]};
+  }
 `;
 
 export default function SummaryItem({ icon: Icon, onClick, children }) {
   return (
-    <StyledSummaryItem $onClick={onClick} onClick={onClick}>
+    <StyledSummaryItem>
       {Icon && (
         <StyledIconContainer>
           <Icon size={22} />
         </StyledIconContainer>
       )}
 
-      <StyledSummaryText>{children}</StyledSummaryText>
+      <StyledSummaryText $onClick={onClick} onClick={onClick}>
+        {children}
+      </StyledSummaryText>
     </StyledSummaryItem>
   );
 }

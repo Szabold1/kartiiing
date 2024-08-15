@@ -86,9 +86,7 @@ export default function RaceEventSummary({ ...race }) {
             openMaps(`${circuits.long_name}, ${circuits.countries.name}`)
           }
         >
-          <span>
-            {circuits.long_name}, {circuits.countries.name}
-          </span>
+          {circuits.long_name}, {circuits.countries.name}
         </SummaryItem>
       )}
 
