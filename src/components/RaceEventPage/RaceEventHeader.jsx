@@ -3,6 +3,15 @@ import PageTitle from "../PageHeader/PageTitle";
 import { renderArray } from "../../helpers/helpers";
 import ReactCountryFlag from "react-country-flag";
 
+const StyledHeader = styled.header`
+  position: relative;
+  margin-bottom: 2.6rem;
+
+  @media screen and (min-width: 50rem) {
+    margin-bottom: 3.2rem;
+  }
+`;
+
 const StyledTitle = styled.h3`
   .separator {
     color: ${({ theme }) => theme.colors.accent[1]};
@@ -40,7 +49,7 @@ const StyledLive = styled.div`
   font-weight: 700;
   letter-spacing: 0.02rem;
   text-transform: uppercase;
-  background-color: rgb(230, 40, 0);
+  background-color: ${({ theme }) => theme.colors.live[0]};
   padding: 0.3rem 0.4rem;
   border-radius: 0.3rem;
   color: ${({ theme }) => theme.colors.text[1]};
@@ -54,7 +63,7 @@ export default function RaceEventHeader({ ...race }) {
   const { series, circuits, status } = race;
 
   return (
-    <header style={{ marginBottom: "2.5rem", position: "relative" }}>
+    <StyledHeader>
       {status === "ongoing" && <StyledLive>live</StyledLive>}
 
       <PageTitle size={["1.6rem", "1.8rem"]}>
@@ -73,6 +82,6 @@ export default function RaceEventHeader({ ...race }) {
         </FlagContainer>
         <span>{circuits.short_name}</span>
       </StyledLocation>
-    </header>
+    </StyledHeader>
   );
 }
