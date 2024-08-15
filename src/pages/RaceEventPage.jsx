@@ -3,6 +3,7 @@ import useRaces from "../hooks/useRaces";
 import StyledMessage from "../components/styled/StyledMessage";
 import RaceEventHeader from "../components/RaceEventPage/RaceEventHeader";
 import RaceEventSummary from "../components/RaceEventPage/RaceEventSummary";
+import RaceEventBtns from "../components/RaceEventPage/RaceEventBtns";
 import { addStatusToRace } from "../helpers/filterHelpers";
 
 export default function RaceEventPage() {
@@ -27,9 +28,10 @@ export default function RaceEventPage() {
   }
 
   return (
-    <>
+    <div style={{ maxWidth: "50rem", margin: "0 auto" }}>
       <RaceEventHeader {...race} />
+      <RaceEventBtns {...race} />
       <RaceEventSummary {...race} />
-    </>
+    </div>
   );
 }
