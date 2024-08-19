@@ -70,7 +70,7 @@ export default function RaceEventSummary({ ...race }) {
   }
 
   return (
-    <Section title="Summary" titleSize="1.25rem">
+    <Section title="Summary" titleSize="1.25rem" stickyHeader={false}>
       <SummaryItem icon={IoCalendarOutline}>
         <span>
           {formattedStartDate === null ? "" : formattedStartDate + " - "}
