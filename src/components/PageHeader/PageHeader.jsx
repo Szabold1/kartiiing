@@ -6,7 +6,6 @@ const StyledPageHeader = styled.header`
   align-items: flex-start;
   justify-content: center;
   gap: 1.6rem;
-  padding: 0 0 1.8rem 0;
   color: ${({ theme }) => theme.colors.text[0]};
 `;
 

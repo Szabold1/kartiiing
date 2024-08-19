@@ -17,28 +17,6 @@ const StyledHeader = styled.header`
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
 `;
 
-const StyledMain = styled.main`
-  margin: 0 auto;
-  padding: 2.6rem 1rem;
-  max-width: 1400px;
-
-  @media screen and (min-width: 40rem) {
-    padding: 2.6rem 2rem;
-  }
-
-  @media screen and (min-width: 50rem) {
-    padding: 3.2rem 3rem;
-  }
-
-  @media screen and (min-width: 60rem) {
-    padding: 3.2rem 3.6rem;
-  }
-
-  @media screen and (min-width: 70rem) {
-    padding: 3.2rem 4.2rem;
-  }
-`;
-
 export default function RootLayout() {
   return (
     <>
@@ -50,9 +28,9 @@ export default function RootLayout() {
         filterKeys={filterKeys}
         defaultFilterValues={defaultFilterValues}
       >
-        <StyledMain>
+        <main>
           <Outlet />
-        </StyledMain>
+        </main>
       </RacesProvider>
     </>
   );
