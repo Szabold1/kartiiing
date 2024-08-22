@@ -10,6 +10,7 @@ import {
   getYearsAndMonths,
 } from "../../helpers/dateHelpers";
 import { renderArray } from "../../helpers/helpers";
+import { openGoogleMaps } from "../../helpers/mapHelpers";
 import Section from "../Section/Section";
 import SummaryItem from "./SummaryItem";
 
@@ -62,13 +63,6 @@ export default function RaceEventSummary({ ...race }) {
   const formattedStartDate = formatDate(start_date);
   const formattedEndDate = formatDate(end_date);
 
-  // Open google maps in a new tab, searching 'location'
-  function openMaps(location) {
-    const baseUrl = "https://www.google.com/maps/search/";
-    const url = `${baseUrl}${encodeURIComponent(location)}`;
-    window.open(url, "_blank");
-  }
-
   return (
     <Section title="Summary" titleSize="1.25rem" stickyHeader={false}>
       <SummaryItem icon={IoCalendarOutline}>
@@ -83,7 +77,7 @@ export default function RaceEventSummary({ ...race }) {
         <SummaryItem
           icon={IoLocationOutline}
           onClick={() =>
-            openMaps(`${circuits.long_name}, ${circuits.countries.name}`)
+            openGoogleMaps(`${circuits.long_name}, ${circuits.countries.name}`)
           }
         >
           {circuits.long_name}, {circuits.countries.name}
