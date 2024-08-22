@@ -6,17 +6,13 @@ import ReactCountryFlag from "react-country-flag";
 
 const StyledContainer = styled.div`
   position: relative;
-  height: 17rem;
+  height: 20rem;
   width: 100vw;
   background: linear-gradient(
     to bottom right,
     ${({ theme }) => theme.colors.bg[0]},
     ${({ theme }) => theme.colors.accent[2]} 50%
   );
-
-  @media screen and (min-width: 30rem) {
-    height: 20rem;
-  }
 
   @media screen and (min-width: 40rem) {
     height: 22rem;
@@ -42,18 +38,13 @@ const StyledHeader = styled.header`
   left: 50%;
   width: 100%;
   max-width: 55rem;
-  height: 100%;
+  height: fit-content;
   background-color: rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
-  padding: 1.2rem 1rem 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   backdrop-filter: blur(0.2rem);
   color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(241,241,241,0.85)" : "rgb(248, 248, 248)"};
-
-  @media screen and (min-width: 30rem) {
-    height: fit-content;
-    padding: 0.7rem 1rem;
-  }
 
   @media screen and (min-width: 40rem) {
     padding: 1rem 2rem;
