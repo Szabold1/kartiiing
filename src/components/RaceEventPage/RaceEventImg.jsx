@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import StyledMessage from "../styled/StyledMessage";
+import { openGoogleMaps } from "../../helpers/mapHelpers";
+import { IoArrowForwardOutline } from "react-icons/io5";
 
 const StyledContainer = styled.div`
   position: relative;
@@ -25,6 +27,33 @@ const StyledImg = styled.img`
   opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};
 `;
 
+const StyledMapBtn = styled.button`
+  position: absolute;
+  bottom: 2.25rem;
+  right: 0.25rem;
+
+  background-color: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+  padding: 0.3rem 0.8rem;
+  backdrop-filter: blur(0.2rem);
+  color: ${({ theme }) =>
+    theme.name === "dark" ? "rgba(241,241,241,0.85)" : "rgb(248, 248, 248)"};
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  letter-spacing: -0.02rem;
+  font-size: 0.85rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  @media screen and (min-width: 70rem) {
+    right: 0.5rem;
+    bottom: 0.5rem;
+  }
+`;
+
 export default function RaceEventImg({ ...race }) {
   const { circuits, series, end_date } = race;
   const { latitude, longitude } = circuits;
@@ -39,7 +68,7 @@ export default function RaceEventImg({ ...race }) {
     const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
     if (latitude && longitude) {
-      const adjustedLatitude = latitude + 0.3;
+      const adjustedLatitude = latitude + 0.55;
       const zoom = 5.5;
       const url = `https://api.mapbox.com/styles/v1/mapbox/${mapStyle}/static/pin-s+FA3200(${longitude},${latitude})/${longitude},${adjustedLatitude},${zoom}/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
@@ -59,6 +88,17 @@ export default function RaceEventImg({ ...race }) {
         onLoad={() => setIsLoaded(true)}
         $isLoaded={isLoaded}
       />
+
+      <StyledMapBtn
+        onClick={() =>
+          openGoogleMaps(`${circuits.long_name}, ${circuits.countries.name}`)
+        }
+      >
+        Google Maps
+        <span style={{ marginRight: "-0.15rem", display: "flex" }}>
+          <IoArrowForwardOutline />
+        </span>
+      </StyledMapBtn>
     </StyledContainer>
   );
 }
