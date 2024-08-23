@@ -2,7 +2,13 @@ import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import NavHeader from "../components/NavHeader/NavHeader";
 import { RacesProvider } from "../contexts/RacesContext";
-import { filterKeys, defaultFilterValues } from "../data";
+import { CircuitsProvider } from "../contexts/CircuitsContext";
+import {
+  raceFilterKeys,
+  defaultRaceFilterValues,
+  circuitsFilterKeys,
+  defaultCircuitFilterValues,
+} from "../data";
 
 const StyledHeader = styled.header`
   z-index: 120;
@@ -25,12 +31,17 @@ export default function RootLayout() {
       </StyledHeader>
 
       <RacesProvider
-        filterKeys={filterKeys}
-        defaultFilterValues={defaultFilterValues}
+        filterKeys={raceFilterKeys}
+        defaultFilterValues={defaultRaceFilterValues}
       >
-        <main>
-          <Outlet />
-        </main>
+        <CircuitsProvider
+          filterKeys={circuitsFilterKeys}
+          defaultFilterValues={defaultCircuitFilterValues}
+        >
+          <main>
+            <Outlet />
+          </main>
+        </CircuitsProvider>
       </RacesProvider>
     </>
   );

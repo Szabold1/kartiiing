@@ -4,7 +4,7 @@ import useRaces from "../hooks/useRaces";
 import StyledMessage from "../components/styled/StyledMessage";
 import RaceEventSummary from "../components/RaceEventPage/RaceEventSummary";
 import RaceEventBtns from "../components/RaceEventPage/RaceEventBtns";
-import { addStatusToRace } from "../helpers/filterHelpers";
+import { addStatusToRace } from "../helpers/racesFilterHelpers";
 import RaceEventHeader from "../components/RaceEventPage/RaceEventHeader";
 
 const StyledContent = styled.div`

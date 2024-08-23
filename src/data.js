@@ -1,6 +1,7 @@
 const currentYear = new Date().getFullYear();
 
-const filterKeys = [
+// Races
+const raceFilterKeys = [
   "sorting",
   "status",
   "years",
@@ -10,11 +11,19 @@ const filterKeys = [
   "countries",
 ];
 
-const defaultFilterValues = {
+const defaultRaceFilterValues = {
   sorting: ["Date ascending"],
   years: [currentYear.toString()],
 };
 
+// Circuits
+const circuitsFilterKeys = ["sorting", "countries"];
+
+const defaultCircuitFilterValues = {
+  sorting: ["Name ascending"],
+};
+
+// Championships
 const championshipsData = [
   "Champions of the future",
   "FIA Academy Trophy",
@@ -41,4 +50,10 @@ const championshipsData = [
   "SKUSA",
 ];
 
-export { filterKeys, defaultFilterValues, championshipsData };
+export {
+  raceFilterKeys,
+  defaultRaceFilterValues,
+  circuitsFilterKeys,
+  defaultCircuitFilterValues,
+  championshipsData,
+};

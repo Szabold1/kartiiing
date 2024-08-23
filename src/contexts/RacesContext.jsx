@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect } from "react";
 import supabase from "../config/supabaseClient";
+import { createInitialFilters } from "../helpers/filterHelpers";
 import {
-  createInitialFilters,
-  extractFilterOptions,
-  applyFilters,
-} from "../helpers/filterHelpers";
+  extractRacesFilterOptions,
+  applyRacesFilters,
+} from "../helpers/racesFilterHelpers";
 
 // 1. Create a context for races
 const RacesContext = createContext();
@@ -44,12 +44,12 @@ function RacesProvider({ children, filterKeys, defaultFilterValues }) {
 
   // Update filter options when the races change
   useEffect(() => {
-    setFilterOptions(extractFilterOptions(fetchedRaces));
+    setFilterOptions(extractRacesFilterOptions(fetchedRaces));
   }, [fetchedRaces]);
 
   // Update the filtered and grouped races when the filters or races change
   useEffect(() => {
-    const { filtered, groupedByYear } = applyFilters(
+    const { filtered, groupedByYear } = applyRacesFilters(
       fetchedRaces,
       appliedFilters
     );
