@@ -17,7 +17,7 @@ const defaultRaceFilterValues = {
 };
 
 // Circuits
-const circuitsFilterKeys = ["sorting", "countries"];
+const circuitFilterKeys = ["sorting", "countries"];
 
 const defaultCircuitFilterValues = {
   sorting: ["Name ascending"],
@@ -53,7 +53,7 @@ const championshipsData = [
 export {
   raceFilterKeys,
   defaultRaceFilterValues,
-  circuitsFilterKeys,
+  circuitFilterKeys,
   defaultCircuitFilterValues,
   championshipsData,
 };

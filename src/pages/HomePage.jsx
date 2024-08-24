@@ -20,8 +20,8 @@ function getRacesByStatus(status, limit, sortedRaces) {
 }
 
 export default function HomePage() {
-  const { fetchedRaces } = useRaces();
-  const racesWithStatus = fetchedRaces.map((race) => addStatusToRace(race));
+  const { fetchedData: races } = useRaces();
+  const racesWithStatus = races?.map((race) => addStatusToRace(race));
   const racesAscending = sortRaces(racesWithStatus, "ascending");
   const racesDescending = sortRaces(racesWithStatus, "descending");
 

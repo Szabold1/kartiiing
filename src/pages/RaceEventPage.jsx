@@ -52,12 +52,12 @@ const StyledLive = styled.div`
 
 export default function RaceEventPage() {
   const { series_date: url } = useParams();
-  const { fetchedRaces, isFetching } = useRaces();
+  const { fetchedData: races, isFetching } = useRaces();
 
   // Find the race based on the url
   const [seriesName, endDate] = url.split("_");
   const race = addStatusToRace(
-    fetchedRaces.find(
+    races.find(
       (race) =>
         race.series.sort()[0].replaceAll(" ", "-").toLowerCase() ===
           seriesName && race.end_date === endDate

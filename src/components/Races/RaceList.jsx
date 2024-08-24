@@ -11,7 +11,11 @@ const StyledContainer = styled.div`
 `;
 
 export default function RaceList() {
-  const { groupedRaces, isFetching, filteredRaces } = useRaces();
+  const {
+    groupedData: groupedRaces,
+    isFetching,
+    filteredData: filteredRaces,
+  } = useRaces();
 
   if (isFetching) {
     return <StyledMessage>Loading...</StyledMessage>;

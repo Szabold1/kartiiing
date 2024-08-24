@@ -11,7 +11,7 @@ import Filters from "../components/Filters/Filters";
 import RaceList from "../components/Races/RaceList";
 
 export default function CalendarPage() {
-  const { filterOptions, fetchedRaces } = useRaces();
+  const { filterOptions, fetchedData: races } = useRaces();
 
   return (
     <StyledWrapper>
@@ -25,7 +25,7 @@ export default function CalendarPage() {
           </PageTitle>
 
           <IntroText>
-            Explore our calendar with {fetchedRaces.length || 0} races from{" "}
+            Explore our calendar with {races.length || 0} races from{" "}
             {filterOptions.years[0]} to{" "}
             {filterOptions.years[filterOptions.years.length - 1]}, across{" "}
             {filterOptions.championships.length || 0} championships in{" "}
