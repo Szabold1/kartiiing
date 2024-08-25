@@ -3,14 +3,15 @@ import useRaces from "../hooks/useRaces";
 import StyledWrapper from "../components/styled/StyledWrapper";
 import { addStatusToRace, sortRaces } from "../helpers/racesFilterHelpers";
 import RaceOverviewSection from "../components/Races/RaceOverviewSection";
+import CircuitsNearby from "../components/Circuits/CircuitsNearby";
 
 const StyledRacesOverview = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
+  display: grid;
+  grid-gap: 1.6rem;
+  grid-template-columns: 1fr;
 
-  @media screen and (min-width: 70rem) {
-    flex-direction: row;
+  @media screen and (min-width: 67rem) {
+    grid-template-columns: 2fr 1fr;
   }
 `;
 
@@ -36,11 +37,17 @@ export default function HomePage() {
   return (
     <StyledWrapper>
       <StyledRacesOverview>
-        <RaceOverviewSection
-          title="Upcoming Races"
-          races={[...ongoingRaces, ...nextRaces]}
-        />
-        <RaceOverviewSection title="Recent Races" races={lastRaces} />
+        <div
+          style={{ display: "flex", flexDirection: "column", gap: "1.6rem" }}
+        >
+          <RaceOverviewSection
+            title="Upcoming Races"
+            races={[...ongoingRaces, ...nextRaces]}
+          />
+          <RaceOverviewSection title="Recent Races" races={lastRaces} />
+        </div>
+
+        <CircuitsNearby />
       </StyledRacesOverview>
     </StyledWrapper>
   );
