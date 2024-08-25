@@ -80,6 +80,8 @@ function DataProvider({
         groupedData,
         filterOptions,
         appliedFilters,
+        defaultFilterValues,
+        type,
         handleFilterChange,
         resetFilters,
       }}

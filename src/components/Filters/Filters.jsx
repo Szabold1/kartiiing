@@ -41,7 +41,7 @@ const StyledFiltersBar = styled.div`
   }
 `;
 
-export default function Filters() {
+export default function Filters({ context }) {
   const [showFilters, setShowFilters] = useState(false);
 
   // Show/hide filters
@@ -62,6 +62,7 @@ export default function Filters() {
         <FiltersModal
           showFilters={showFilters}
           onShowFiltersClick={handleShowFiltersClick}
+          context={context}
         />
       </ModalBackdrop>
     </StyledFilters>

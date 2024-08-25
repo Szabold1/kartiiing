@@ -44,7 +44,7 @@ function applyCircuitsFilters(circuits, filters) {
   if (filters.countries?.length > 0)
     filtered = filterByCountries(filtered, filters.countries);
 
-  return filtered;
+  return { filtered, groupedBy: null };
 }
 
 export { extractCircuitsFilterOptions, applyCircuitsFilters };

@@ -1,7 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import useRaces from "../../hooks/useRaces";
 import { IoClose } from "react-icons/io5";
 import FilterItem from "./FilterItem";
+import { useContext } from "react";
 
 const slideIn = keyframes`
   from {
@@ -132,8 +132,13 @@ const StyledFiltersFooter = styled.div`
   }
 `;
 
-export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
-  const { filterOptions, filteredRaces, resetFilters } = useRaces();
+export default function FiltersModal({
+  showFilters,
+  onShowFiltersClick,
+  context,
+}) {
+  const { filterOptions, filteredData, resetFilters, type } =
+    useContext(context);
 
   // Reset filters to default values
   function handleResetClick() {
@@ -150,6 +155,7 @@ export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
       <StyledFiltersContent>
         {Object.keys(filterOptions).map((filterName) => (
           <FilterItem
+            context={context}
             key={filterName}
             name={filterName}
             options={filterOptions[filterName]}
@@ -160,7 +166,7 @@ export default function FiltersWindow({ showFilters, onShowFiltersClick }) {
       <StyledFiltersFooter>
         <button onClick={handleResetClick}>Reset</button>
         <button onClick={onShowFiltersClick}>
-          Show {filteredRaces.length} races
+          Show {filteredData?.length} {type}
         </button>
       </StyledFiltersFooter>
     </StyledFiltersModal>

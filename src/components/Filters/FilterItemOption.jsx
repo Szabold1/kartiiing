@@ -29,13 +29,15 @@ export default function FilterItemOption({
   selectedValues,
   onOptionClick,
 }) {
+  const sortingValue = optionValue.slice(0, optionValue.indexOf(" "));
+
   return (
     <StyledOption
       onClick={() => onOptionClick(optionValue)}
       className={selectedValues.includes(optionValue) ? "chosen" : ""}
     >
       {optionName !== "sorting" && optionValue}
-      {optionName === "sorting" && optionValue.slice(0, 4)}
+      {optionName === "sorting" && sortingValue}
       {optionName === "sorting" && (
         <span style={{ marginRight: "-0.15rem", display: "flex" }}>
           {optionValue.includes("ascending") ? (

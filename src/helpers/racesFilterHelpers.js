@@ -179,7 +179,7 @@ function applyRacesFilters(races, filters) {
 
   const groupedByYear = sortIntoGroups(filtered, filters.sorting[0]);
 
-  return { filtered, groupedByYear };
+  return { filtered, groupedBy: groupedByYear };
 }
 
 export {
