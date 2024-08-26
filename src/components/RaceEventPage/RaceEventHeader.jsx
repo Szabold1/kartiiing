@@ -42,7 +42,8 @@ const StyledHeader = styled.header`
   background-color: rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
   padding: 0.7rem 1rem;
-  backdrop-filter: blur(0.2rem);
+  backdrop-filter: blur(0.15rem);
+  -webkit-backdrop-filter: blur(0.15rem);
   color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(241,241,241,0.85)" : "rgb(248, 248, 248)"};
 
