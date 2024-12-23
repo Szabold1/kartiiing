@@ -14,25 +14,33 @@ function formatDate(dateStr) {
   return `${year} ${month} ${day}`;
 }
 
-// Get date difference compared to current date in years and days
-function getYearsAndMonths(comparedDate) {
+// Get difference in years and days between two dates
+// Returns an object with the years and days difference
+// If the first date is in the past, the values will be negative
+// e.g. (2024-12-01, 2022-06-01) => { years: 2, days: 183 }
+function getYearsAndDaysDifference(date1, date2) {
   const MS_PER_DAY = 1000 * 60 * 60 * 24;
-  const compDate = removeTimeFromDate(comparedDate);
-  const today = removeTimeFromDate(new Date());
+  const DAYS_PER_YEAR = 365.25;
 
-  let years = today.getFullYear() - compDate.getFullYear();
+  // Remove time components from both dates for accurate calculations
+  const d1 = removeTimeFromDate(date1);
+  const d2 = removeTimeFromDate(date2);
 
-  const dateForCalcDays = new Date(compDate);
-  dateForCalcDays.setFullYear(today.getFullYear());
+  // Determine which date is earlier and which is later
+  const earlierDate = d1 < d2 ? d1 : d2;
+  const laterDate = d1 < d2 ? d2 : d1;
 
-  if (today < dateForCalcDays && years > 0) {
-    years--;
-    dateForCalcDays.setFullYear(today.getFullYear() - 1);
+  // Calculate the difference between the two dates in days and years
+  const differenceInDays = Math.floor(laterDate - earlierDate) / MS_PER_DAY;
+  const differenceInYears = Math.floor(differenceInDays / DAYS_PER_YEAR);
+  const days = Math.floor(differenceInDays % DAYS_PER_YEAR);
+
+  // Return negative values if first date is in the past
+  if (earlierDate === d1) {
+    return { years: -differenceInYears, days: -days };
   }
 
-  const days = Math.ceil(Math.abs((today - dateForCalcDays) / MS_PER_DAY));
-
-  return { years, days };
+  return { years: differenceInYears, days };
 }
 
-export { removeTimeFromDate, formatDate, getYearsAndMonths };
+export { removeTimeFromDate, formatDate, getYearsAndDaysDifference };

@@ -7,7 +7,7 @@ import {
 import {
   removeTimeFromDate,
   formatDate,
-  getYearsAndMonths,
+  getYearsAndDaysDifference,
 } from "../../helpers/dateHelpers";
 import { renderArray } from "../../helpers/helpers";
 import { openGoogleMaps } from "../../helpers/mapHelpers";
@@ -23,11 +23,11 @@ function renderTimeToRace(startDate, endDate) {
   const today = removeTimeFromDate(new Date());
 
   if (sDate > today) {
-    const { years, days } = getYearsAndMonths(sDate);
+    const { years, days } = getYearsAndDaysDifference(sDate, today);
     return renderFutureDate(years, days);
   } else if (eDate < today) {
-    const { years, days } = getYearsAndMonths(eDate);
-    return renderPastDate(years, days);
+    const { years, days } = getYearsAndDaysDifference(eDate, today);
+    return renderPastDate(-years, -days);
   } else {
     return "Live now!";
   }
