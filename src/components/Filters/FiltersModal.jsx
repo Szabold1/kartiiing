@@ -89,7 +89,6 @@ const StyledFiltersFooter = styled.div`
   display: flex;
   gap: 1.2rem;
   padding: 1rem;
-  background-color: ${({ theme }) => theme.colors.bg[3]};
   backdrop-filter: blur(10rem);
   -webkit-backdrop-filter: blur(10rem);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
