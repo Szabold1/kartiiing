@@ -13,8 +13,8 @@ const StyledBackdrop = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(0.1rem);
-  -webkit-backdrop-filter: blur(0.1rem);
+  backdrop-filter: blur(2rem);
+  -webkit-backdrop-filter: blur(2rem);
   transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};

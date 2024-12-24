@@ -29,8 +29,6 @@ const StyledFiltersModal = styled.div`
   height: 100dvh;
   background-color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(241, 241, 241, 0.9)"};
-  backdrop-filter: blur(10rem);
-  -webkit-backdrop-filter: blur(10rem);
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   overflow-y: auto;
   animation: ${({ $show }) => ($show ? slideIn : slideOut)} 0.25s forwards;
