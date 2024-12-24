@@ -10,7 +10,6 @@ const StyledHeader = styled.header`
   left: 0;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.bg[5]};
-  backdrop-filter: blur(1rem);
   color: ${({ theme }) =>
     theme.name === "dark" ? "rgba(241, 241, 241, 0.9)" : theme.colors.text[1]};
   box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
