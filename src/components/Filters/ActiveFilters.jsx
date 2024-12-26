@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import useRaces from "../../hooks/useRaces";
 import { IoArrowUpOutline, IoArrowDownOutline } from "react-icons/io5";
 
 const StyledActiveFilters = styled.div`
@@ -32,9 +31,7 @@ const StyledIcon = styled.span`
   margin-right: -0.15rem;
 `;
 
-export default function ActiveFilters() {
-  const { appliedFilters } = useRaces();
-
+export default function ActiveFilters({ appliedFilters }) {
   return (
     <StyledActiveFilters>
       {Object.entries(appliedFilters).map(([key, values]) => {

@@ -41,7 +41,7 @@ const StyledFiltersBar = styled.div`
   }
 `;
 
-export default function Filters({ context }) {
+export default function Filters({ context, appliedFilters }) {
   const [showFilters, setShowFilters] = useState(false);
 
   // Show/hide filters
@@ -56,7 +56,7 @@ export default function Filters({ context }) {
         <IoOptions size="20" />
       </StyledFiltersBar>
 
-      <ActiveFilters />
+      <ActiveFilters appliedFilters={appliedFilters} />
 
       <ModalBackdrop show={showFilters} onClose={handleShowFiltersClick}>
         <FiltersModal

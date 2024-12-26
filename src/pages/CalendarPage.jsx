@@ -12,7 +12,7 @@ import RaceList from "../components/Races/RaceList";
 import { RacesContext } from "../contexts/RacesContext";
 
 export default function CalendarPage() {
-  const { filterOptions, fetchedData: races } = useRaces();
+  const { filterOptions, appliedFilters, fetchedData: races } = useRaces();
 
   return (
     <StyledWrapper>
@@ -34,7 +34,7 @@ export default function CalendarPage() {
           </IntroText>
         </PageIntro>
 
-        <Filters context={RacesContext} />
+        <Filters context={RacesContext} appliedFilters={appliedFilters} />
       </PageHeader>
       <RaceList />
     </StyledWrapper>
