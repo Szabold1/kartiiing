@@ -39,7 +39,7 @@ export default function ActiveFilters({ appliedFilters }) {
           return values.map((value) => (
             <StyledActiveOption key={key + value}>
               {key !== "sorting" && value}
-              {key === "sorting" && value.slice(0, 4)}
+              {key === "sorting" && value.substring(0, value.indexOf(" "))}
               {key === "sorting" && (
                 <StyledIcon>
                   {value.includes("ascending") ? (
