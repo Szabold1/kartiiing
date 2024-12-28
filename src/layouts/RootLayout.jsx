@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Outlet } from "react-router-dom";
 import NavHeader from "../components/NavHeader/NavHeader";
 import { DataProviders } from "../contexts/DataProviders";
+import ScrollToTop from "../components/ScrollToTop";
 
 const StyledHeader = styled.header`
   z-index: 120;
@@ -18,6 +19,8 @@ const StyledHeader = styled.header`
 export default function RootLayout() {
   return (
     <>
+      <ScrollToTop />
+
       <StyledHeader>
         <NavHeader />
       </StyledHeader>
