@@ -10,7 +10,7 @@ import {
   getYearsAndDaysDifference,
 } from "../../helpers/dateHelpers";
 import { renderArray } from "../../helpers/helpers";
-import { openGoogleMaps } from "../../helpers/mapHelpers";
+import { openGoogleMaps } from "../../helpers/locationHelpers";
 import Section from "../Section/Section";
 import SummaryItem from "./SummaryItem";
 

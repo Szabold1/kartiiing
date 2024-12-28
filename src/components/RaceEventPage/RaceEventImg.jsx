@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import StyledMessage from "../styled/StyledMessage";
-import { openGoogleMaps } from "../../helpers/mapHelpers";
+import { openGoogleMaps } from "../../helpers/locationHelpers";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import useElementWidth from "../../hooks/useElementWidth";
 import { WidthProvider } from "../../contexts/WidthContext";
