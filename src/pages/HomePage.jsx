@@ -11,7 +11,7 @@ const StyledRacesOverview = styled.div`
   grid-template-columns: 1fr;
 
   @media screen and (min-width: 67rem) {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 6.5fr 3.5fr;
   }
 `;
 
@@ -21,7 +21,7 @@ function getRacesByStatus(status, limit, sortedRaces) {
 }
 
 export default function HomePage() {
-  const { fetchedData: races } = useRaces();
+  const { data: races } = useRaces();
   const racesWithStatus = races?.map((race) => addStatusToRace(race));
   const racesAscending = sortRaces(racesWithStatus, "ascending");
   const racesDescending = sortRaces(racesWithStatus, "descending");

@@ -12,7 +12,7 @@ import RaceList from "../components/Races/RaceList";
 import { RacesContext } from "../contexts/RacesContext";
 
 export default function CalendarPage() {
-  const { filterOptions, appliedFilters, fetchedData: races } = useRaces();
+  const { filterOptions, appliedFilters, data: races } = useRaces();
 
   return (
     <StyledWrapper>

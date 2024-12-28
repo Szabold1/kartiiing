@@ -36,8 +36,12 @@ const StyledDistance = styled.span`
   margin-left: auto;
 `;
 
-export default function CircuitItem({ locationDenied, ...circuit }) {
-  const { short_name, countries, distanceKm } = circuit;
+export default function CircuitItem({
+  showLength = false,
+  showDistance = false,
+  ...circuit
+}) {
+  const { short_name, countries, distanceKm, length } = circuit;
 
   return (
     <StyledItem>
@@ -51,9 +55,15 @@ export default function CircuitItem({ locationDenied, ...circuit }) {
 
       <StyledName>{short_name}</StyledName>
 
-      <StyledDistance>
-        {locationDenied ? "N/A" : distanceKm.toFixed(0)} km
-      </StyledDistance>
+      {showDistance && (
+        <StyledDistance>
+          {distanceKm ? distanceKm.toFixed(0) + " km" : "-"}
+        </StyledDistance>
+      )}
+
+      {showLength && (
+        <StyledDistance>{length ? length + " m" : "-"}</StyledDistance>
+      )}
     </StyledItem>
   );
 }

@@ -6,15 +6,13 @@ function DataProvider({
   children,
   type, // races, circuits
   context, // context to pass to children (CircuitsContext, RacesContext)
-  fetchData, // function to fetch data from Supabase (fetchRaces, fetchCircuits)
+  data, // e.g. circuits, races
+  isFetching,
   extractFilterOptions, // function to extract filter options
   applyFilters, // function to apply filters
   filterKeys,
   defaultFilterValues,
 }) {
-  const [fetchedData, setFetchedData] = useState([]);
-  const [isFetching, setIsFetching] = useState(true);
-
   const [filteredData, setFilteredData] = useState([]);
   const [groupedData, setGroupedData] = useState(new Map());
 
@@ -26,34 +24,17 @@ function DataProvider({
     ...defaultFilterValues,
   });
 
-  // Fetch data from Supabase
-  useEffect(() => {
-    async function fetchDataFromSupabase() {
-      setIsFetching(true);
-      const { data, error } = await fetchData();
-      if (error) {
-        console.error(`Error fetching ${type}`, error);
-      } else {
-        console.log(`${type} fetched successfully`, data);
-        setFetchedData(data);
-      }
-      setIsFetching(false);
-    }
-
-    fetchDataFromSupabase();
-  }, [fetchData, type]);
-
   // Update filter options when data changes
   useEffect(() => {
-    setFilterOptions(extractFilterOptions(fetchedData));
-  }, [fetchedData, extractFilterOptions]);
+    setFilterOptions(extractFilterOptions(data));
+  }, [data, extractFilterOptions]);
 
   // Update the filtered and grouped data when the filters or data change
   useEffect(() => {
-    const { filtered, groupedBy } = applyFilters(fetchedData, appliedFilters);
+    const { filtered, groupedBy } = applyFilters(data, appliedFilters);
     setFilteredData(filtered);
     setGroupedData(groupedBy);
-  }, [appliedFilters, fetchedData, applyFilters]);
+  }, [appliedFilters, data, applyFilters]);
 
   // Handle filter changes
   function handleFilterChange(filterName, value) {
@@ -74,14 +55,14 @@ function DataProvider({
   return (
     <context.Provider
       value={{
-        fetchedData,
+        type,
+        data,
         isFetching,
         filteredData,
         groupedData,
         filterOptions,
         appliedFilters,
         defaultFilterValues,
-        type,
         handleFilterChange,
         resetFilters,
       }}

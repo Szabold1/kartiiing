@@ -1,5 +1,6 @@
 import { RacesProvider } from "./RacesContext";
 import { CircuitsProvider } from "./CircuitsContext";
+import { LocationProvider } from "./LocationContext";
 import {
   raceFilterKeys,
   defaultRaceFilterValues,
@@ -14,12 +15,14 @@ function DataProviders({ children }) {
       filterKeys={raceFilterKeys}
       defaultFilterValues={defaultRaceFilterValues}
     >
-      <CircuitsProvider
-        filterKeys={circuitFilterKeys}
-        defaultFilterValues={defaultCircuitFilterValues}
-      >
-        {children}
-      </CircuitsProvider>
+      <LocationProvider>
+        <CircuitsProvider
+          filterKeys={circuitFilterKeys}
+          defaultFilterValues={defaultCircuitFilterValues}
+        >
+          {children}
+        </CircuitsProvider>
+      </LocationProvider>
     </RacesProvider>
   );
 }
