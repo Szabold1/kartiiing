@@ -10,7 +10,11 @@ function renderArray(arr, sort = false) {
       {sortedArr.map((item, index) => (
         <React.Fragment key={index}>
           <span>{item}</span>
-          {index < arr.length - 1 ? <span className="separator">-</span> : ""}
+          {index < arr.length - 1 ? (
+            <span className="separator">&middot;</span>
+          ) : (
+            ""
+          )}
         </React.Fragment>
       ))}
     </>

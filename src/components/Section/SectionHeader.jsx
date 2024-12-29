@@ -8,6 +8,10 @@ const StyledHeader = styled.h2`
   background-color: inherit;
   z-index: 5;
   line-height: 1.3;
+
+  @media screen and (min-width: 70rem) {
+    top: 4.5rem;
+  }
 `;
 
 export default function SectionHeader({ title, fontSize = "1.5rem", sticky }) {

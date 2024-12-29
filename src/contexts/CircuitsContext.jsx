@@ -32,18 +32,16 @@ function CircuitsProvider({ children, filterKeys, defaultFilterValues }) {
         return;
       }
 
-      // Add distances if user location is available
-      const enrichedCircuits = userLocation
-        ? data.map((circuit) => {
-            const distanceKm = calculateDistance(
-              userLocation.lat,
-              userLocation.lon,
-              circuit.latitude,
-              circuit.longitude
-            );
-            return { ...circuit, distanceKm };
-          })
-        : data;
+      // Add distances to circuits
+      const enrichedCircuits = data.map((circuit) => {
+        const distanceKm = calculateDistance(
+          userLocation?.lat,
+          userLocation?.lon,
+          circuit.latitude,
+          circuit.longitude
+        );
+        return { ...circuit, distanceKm };
+      });
 
       setCircuits(enrichedCircuits);
       setIsFetching(false);
