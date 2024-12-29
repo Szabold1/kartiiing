@@ -6,8 +6,11 @@ const LocationContext = createContext();
 
 // Create a provider
 function LocationProvider({ children }) {
-  const [userLocation, setUserLocation] = useState(null);
-  const [locationName, setLocationName] = useState("nowhere");
+  const [userLocation, setUserLocation] = useState({
+    lat: 45.4593,
+    lon: 10.4865,
+  });
+  const [locationName, setLocationName] = useState("Lonato del Garda");
   const [locationDenied, setLocationDenied] = useState(true);
 
   // Handle location fetching and updating
@@ -37,15 +40,6 @@ function LocationProvider({ children }) {
       }
     );
   }, []);
-
-  // Set default location if user denies location access
-  useEffect(() => {
-    if (locationDenied) {
-      const defaultLocation = { lat: 45.4593, lon: 10.4865 }; // Lonato del Garda
-      setUserLocation(defaultLocation);
-      setLocationName("Lonato del Garda");
-    }
-  }, [locationDenied]);
 
   return (
     <LocationContext.Provider
