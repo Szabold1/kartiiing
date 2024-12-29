@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
+import CircuitItemContent from "./CircuitItemContent";
 
 const StyledItem = styled.li`
   display: flex;
@@ -26,13 +27,7 @@ const FlagContainer = styled.div`
   }
 `;
 
-const StyledName = styled.h4`
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.03rem;
-`;
-
-const StyledDistance = styled.span`
+const StyledNumData = styled.span`
   margin-left: auto;
 `;
 
@@ -41,7 +36,7 @@ export default function CircuitItem({
   showDistance = false,
   ...circuit
 }) {
-  const { short_name, countries, distanceKm, length } = circuit;
+  const { countries, distanceKm, length } = circuit;
 
   return (
     <StyledItem>
@@ -53,16 +48,16 @@ export default function CircuitItem({
         />
       </FlagContainer>
 
-      <StyledName>{short_name}</StyledName>
+      <CircuitItemContent {...circuit} />
 
       {showDistance && (
-        <StyledDistance>
+        <StyledNumData>
           {distanceKm ? distanceKm.toFixed(0) + " km" : "-"}
-        </StyledDistance>
+        </StyledNumData>
       )}
 
       {showLength && (
-        <StyledDistance>{length ? length + " m" : "-"}</StyledDistance>
+        <StyledNumData>{length ? length + " m" : "-"}</StyledNumData>
       )}
     </StyledItem>
   );
