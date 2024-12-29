@@ -7,10 +7,12 @@ const LocationContext = createContext();
 // Create a provider
 function LocationProvider({ children }) {
   const [userLocation, setUserLocation] = useState({
-    lat: 45.4593,
-    lon: 10.4865,
+    lat: import.meta.env.VITE_LOCATION_DEFAULT_LATITUDE || 45.4593,
+    lon: import.meta.env.VITE_LOCATION_DEFAULT_LONGITUDE || 10.4865,
   });
-  const [locationName, setLocationName] = useState("Lonato del Garda");
+  const [locationName, setLocationName] = useState(
+    import.meta.env.VITE_LOCATION_DEFAULT_NAME || "Lonato del Garda"
+  );
   const [locationDenied, setLocationDenied] = useState(true);
 
   // Handle location fetching and updating

@@ -69,13 +69,13 @@ export default function RaceEventImg({ ...race }) {
   useEffect(() => {
     const width = containerWidth > 1200 ? 1200 : containerWidth;
     const height = 420;
-    const mapStyle = "streets-v12";
+    const mapStyle = import.meta.env.VITE_MAPBOX_STYLE;
     const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
     if (latitude && longitude) {
       const adjustedLatitude = latitude + 0.4;
       const zoom = 6;
-      const url = `https://api.mapbox.com/styles/v1/mapbox/${mapStyle}/static/pin-s+FA3200(${longitude},${latitude})/${longitude},${adjustedLatitude},${zoom}/${width}x${height}@2x?access_token=${mapboxToken}`;
+      const url = `https://api.mapbox.com/styles/v1/${mapStyle}/static/pin-s+FA3200(${longitude},${latitude})/${longitude},${adjustedLatitude},${zoom}/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
     } else {
       const url = `https://api.mapbox.com/styles/v1/mapbox/${mapStyle}/static/0,0,0/${width}x${height}@2x?access_token=${mapboxToken}`;
