@@ -35,7 +35,7 @@ export default function ActiveFilters({ appliedFilters }) {
   return (
     <StyledActiveFilters>
       {Object.entries(appliedFilters).map(([key, values]) => {
-        if (values.length > 0) {
+        if (values?.length > 0) {
           return values.map((value) => (
             <StyledActiveOption key={key + value}>
               {key !== "sorting" && value}
