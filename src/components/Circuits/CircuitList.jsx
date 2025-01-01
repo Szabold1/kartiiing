@@ -2,7 +2,6 @@ import styled from "styled-components";
 import CircuitItem from "./CircuitItem";
 import StyledMessage from "../styled/StyledMessage";
 import Section from "../Section/Section";
-import useCircuits from "../../hooks/useCircuits";
 import useLocation from "../../hooks/useLocation";
 
 const StyledContainer = styled.div`
@@ -11,8 +10,7 @@ const StyledContainer = styled.div`
   gap: 1.6rem;
 `;
 
-export default function CircuitList() {
-  const { appliedFilters, filteredData: circuits, isFetching } = useCircuits();
+export default function CircuitList({ appliedFilters, isFetching, circuits }) {
   const { locationName } = useLocation();
 
   const filterName = appliedFilters.sorting.toString().toLowerCase();
