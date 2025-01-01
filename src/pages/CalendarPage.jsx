@@ -12,7 +12,8 @@ import RaceList from "../components/Races/RaceList";
 import { RacesContext } from "../contexts/RacesContext";
 
 export default function CalendarPage() {
-  const { filterOptions, appliedFilters, data: races } = useRaces();
+  const { filterOptions, appliedFilters, data, groupedData, isFetching } =
+    useRaces();
 
   return (
     <StyledWrapper>
@@ -26,7 +27,7 @@ export default function CalendarPage() {
           </PageTitle>
 
           <IntroText>
-            Explore our calendar with {races.length || 0} races from{" "}
+            Explore our calendar with {data.length || 0} races from{" "}
             {filterOptions.years[0]} to{" "}
             {filterOptions.years[filterOptions.years.length - 1]}, across{" "}
             {filterOptions.championships.length || 0} championships in{" "}
@@ -36,7 +37,8 @@ export default function CalendarPage() {
 
         <Filters context={RacesContext} appliedFilters={appliedFilters} />
       </PageHeader>
-      <RaceList />
+
+      <RaceList groupedRaces={groupedData} isFetching={isFetching} />
     </StyledWrapper>
   );
 }

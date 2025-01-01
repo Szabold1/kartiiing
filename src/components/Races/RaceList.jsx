@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import useRaces from "../../hooks/useRaces";
 import RaceItem from "./RaceItem";
 import StyledMessage from "../styled/StyledMessage";
 import Section from "../Section/Section";
@@ -10,13 +9,11 @@ const StyledContainer = styled.div`
   gap: 1.6rem;
 `;
 
-export default function RaceList() {
-  const { groupedData: groupedRaces, isFetching, data: races } = useRaces();
-
+export default function RaceList({ groupedRaces, isFetching }) {
   if (isFetching) {
     return <StyledMessage>Loading...</StyledMessage>;
   }
-  if (races.length === 0) {
+  if (groupedRaces.size === 0) {
     return <StyledMessage>No races found</StyledMessage>;
   }
 
