@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NavMobile from "./NavMobile";
 import NavDesktop from "./NavDesktop";
 import StyledNavLink from "../styled/StyledNavLink";
+import useNavLinks from "../../hooks/useNavLinks";
 
 const StyledNavHeader = styled.nav`
   background-color: ${({ theme }) => theme.colors.bg[5]};
@@ -48,25 +49,19 @@ const StyledIconContainer = styled.div`
   }
 `;
 
-const navLinks = [
-  { path: "/calendar", label: "Calendar" },
-  { path: "/results", label: "Results" },
-  { path: "/circuits", label: "Circuits" },
-  { path: "/engines-categories", label: "Engines & Categories" },
-  { path: "/championships", label: "Championships" },
-  { path: "/teams", label: "Teams" },
-];
-
 export default function NavHeader() {
+  const navigate = useNavigate();
+  const navLinks = useNavLinks();
+  const iconRef = useRef();
+
   const [showNav, setShowNav] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1120); // 70rem
-  const navigate = useNavigate();
-  const iconRef = useRef();
 
   function handleNavClick() {
     setShowNav((prev) => !prev);
   }
 
+  // Update isMobile and showNav states on window resize
   useEffect(() => {
     function handleResize() {
       setIsMobile(window.innerWidth < 1120);
@@ -93,8 +88,8 @@ export default function NavHeader() {
         <NavMobile
           showNav={showNav}
           setShowNav={setShowNav}
-          navLinks={navLinks}
           iconRef={iconRef}
+          navLinks={navLinks}
         />
       )}
 

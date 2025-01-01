@@ -21,11 +21,11 @@ export default function RootLayout() {
     <>
       <ScrollToTop />
 
-      <StyledHeader>
-        <NavHeader />
-      </StyledHeader>
-
       <DataProviders>
+        <StyledHeader>
+          <NavHeader />
+        </StyledHeader>
+
         <main>
           <Outlet />
         </main>

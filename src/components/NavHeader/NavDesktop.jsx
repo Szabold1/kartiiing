@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const StyledNavDesktop = styled.ul`
   display: flex;
@@ -24,13 +24,16 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function NavDesktop({ navLinks }) {
-  const navigate = useNavigate();
-
   return (
     <StyledNavDesktop>
       {navLinks.map((link) => (
-        <li key={link.path} onClick={() => navigate(link.path)}>
-          <StyledNavLink to={link.path}>{link.label}</StyledNavLink>
+        <li key={link.path}>
+          <StyledNavLink
+            to={link.path}
+            onClick={() => link.resetFilters && link.resetFilters()}
+          >
+            {link.label}
+          </StyledNavLink>
         </li>
       ))}
     </StyledNavDesktop>

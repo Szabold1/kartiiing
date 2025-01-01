@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useEffect, useRef } from "react";
 
 const slideIn = keyframes`
@@ -79,8 +79,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export default function NavMobile({ showNav, setShowNav, navLinks, iconRef }) {
-  const navigate = useNavigate();
+export default function NavMobile({ showNav, setShowNav, iconRef, navLinks }) {
   const linksRef = useRef();
 
   // Close navigation if clicked outside of a link and disable scrolling when open
@@ -109,17 +108,19 @@ export default function NavMobile({ showNav, setShowNav, navLinks, iconRef }) {
     };
   }, [showNav, setShowNav, iconRef]);
 
-  function handleClick(path) {
+  function handleClick(link) {
+    link.resetFilters && link.resetFilters(link.path);
     setShowNav(false);
-    navigate(path);
   }
 
   return (
     <StyledNavMobile $show={showNav}>
       <ul ref={linksRef}>
         {navLinks.map((link) => (
-          <li key={link.path} onClick={() => handleClick(link.path)}>
-            <StyledNavLink to={link.path}>{link.label}</StyledNavLink>
+          <li key={link.path}>
+            <StyledNavLink to={link.path} onClick={() => handleClick(link)}>
+              {link.label}
+            </StyledNavLink>
           </li>
         ))}
       </ul>
