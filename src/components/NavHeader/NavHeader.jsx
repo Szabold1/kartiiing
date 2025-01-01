@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import NavMobile from "./NavMobile";
 import NavDesktop from "./NavDesktop";
 import StyledNavLink from "../styled/StyledNavLink";
@@ -50,12 +49,18 @@ const StyledIconContainer = styled.div`
 `;
 
 export default function NavHeader() {
-  const navigate = useNavigate();
   const navLinks = useNavLinks();
   const iconRef = useRef();
 
   const [showNav, setShowNav] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1120); // 70rem
+
+  function handleHomeClick() {
+    if (navLinks?.[0]?.resetFilters) {
+      navLinks[0].resetFilters();
+    }
+    setShowNav(false);
+  }
 
   function handleNavClick() {
     setShowNav((prev) => !prev);
@@ -74,8 +79,8 @@ export default function NavHeader() {
 
   return (
     <StyledNavHeader>
-      <h1 onClick={() => navigate("/")}>
-        <StyledNavLink to={"/"}>
+      <h1>
+        <StyledNavLink to={"/"} onClick={handleHomeClick}>
           Kart<span>iiing</span>
         </StyledNavLink>
       </h1>

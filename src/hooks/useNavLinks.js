@@ -7,6 +7,11 @@ export default function useNavLinks() {
 
   return [
     {
+      path: "/",
+      label: "Home",
+      resetFilters: () => resetCircuitFilters("toDefault"),
+    },
+    {
       path: "/calendar",
       label: "Calendar",
       resetFilters: () => resetRacesFilters("toDefault"),

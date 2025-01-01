@@ -26,16 +26,18 @@ const StyledNavLink = styled(NavLink)`
 export default function NavDesktop({ navLinks }) {
   return (
     <StyledNavDesktop>
-      {navLinks.map((link) => (
-        <li key={link.path}>
-          <StyledNavLink
-            to={link.path}
-            onClick={() => link.resetFilters && link.resetFilters()}
-          >
-            {link.label}
-          </StyledNavLink>
-        </li>
-      ))}
+      {navLinks.map((link) =>
+        link.path !== "/" ? (
+          <li key={link.path}>
+            <StyledNavLink
+              to={link.path}
+              onClick={() => link.resetFilters && link.resetFilters()}
+            >
+              {link.label}
+            </StyledNavLink>
+          </li>
+        ) : null
+      )}
     </StyledNavDesktop>
   );
 }
