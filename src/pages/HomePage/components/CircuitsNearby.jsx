@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import Section from "@components/Section/Section";
 import StyledMessage from "@components/styled/StyledMessage";
 import CircuitItem from "@components/Circuits/CircuitItem/CircuitItem";
@@ -30,8 +31,17 @@ const StyledLink = styled.a`
 `;
 
 export default function CircuitsNearby() {
+  const navigate = useNavigate();
   const { locationName } = useLocation();
-  const { filteredData, isFetching } = useCircuits();
+  const { filteredData, isFetching, resetFilters, handleFilterChange } =
+    useCircuits();
+
+  function handleViewAllClick() {
+    resetFilters();
+    handleFilterChange("sorting", ["Distance ascending"]);
+
+    navigate("/circuits");
+  }
 
   const circuits = filteredData?.sort((a, b) => a.distanceKm - b.distanceKm);
 
@@ -55,7 +65,7 @@ export default function CircuitsNearby() {
         </StyledItems>
       )}
 
-      <StyledLink>View all</StyledLink>
+      <StyledLink onClick={handleViewAllClick}>View all</StyledLink>
     </Section>
   );
 }
