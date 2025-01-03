@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createInitialFilters } from "../helpers/filterHelpers";
+import { createInitialFilters } from "@utils/filters";
 
 // Create a provider for data
 function DataProvider({

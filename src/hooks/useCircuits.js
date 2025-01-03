@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CircuitsContext } from "../contexts/CircuitsContext";
+import { CircuitsContext } from "@contexts/CircuitsContext";
 
 export default function useCircuits() {
   const context = useContext(CircuitsContext);

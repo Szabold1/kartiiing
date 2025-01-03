@@ -1,24 +1,19 @@
-import { RacesProvider } from "./RacesContext";
-import { CircuitsProvider } from "./CircuitsContext";
-import { LocationProvider } from "./LocationContext";
-import {
-  raceFilterKeys,
-  defaultRaceFilterValues,
-  circuitFilterKeys,
-  defaultCircuitFilterValues,
-} from "../data";
+import { RacesProvider } from "@contexts/RacesContext";
+import { CircuitsProvider } from "@contexts/CircuitsContext";
+import { LocationProvider } from "@contexts/LocationContext";
+import data from "@data/index";
 
-// Provider for both races and circuits
+// Provider for races, circuits and locations
 function DataProviders({ children }) {
   return (
     <RacesProvider
-      filterKeys={raceFilterKeys}
-      defaultFilterValues={defaultRaceFilterValues}
+      filterKeys={data.races.filterKeys}
+      defaultFilterValues={data.races.defaultValues}
     >
       <LocationProvider>
         <CircuitsProvider
-          filterKeys={circuitFilterKeys}
-          defaultFilterValues={defaultCircuitFilterValues}
+          filterKeys={data.circuits.filterKeys}
+          defaultFilterValues={data.circuits.defaultValues}
         >
           {children}
         </CircuitsProvider>

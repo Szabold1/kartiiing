@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RacesContext } from "../contexts/RacesContext";
+import { RacesContext } from "@contexts/RacesContext";
 
 export default function useRaces() {
   const context = useContext(RacesContext);

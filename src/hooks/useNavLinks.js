@@ -1,5 +1,5 @@
-import useCircuits from "./useCircuits";
-import useRaces from "./useRaces";
+import useCircuits from "@hooks/useCircuits";
+import useRaces from "@hooks/useRaces";
 
 export default function useNavLinks() {
   const { resetFilters: resetCircuitFilters } = useCircuits();
@@ -12,8 +12,8 @@ export default function useNavLinks() {
       resetFilters: () => resetCircuitFilters("toDefault"),
     },
     {
-      path: "/calendar",
-      label: "Calendar",
+      path: "/races",
+      label: "Races",
       resetFilters: () => resetRacesFilters("toDefault"),
     },
     {

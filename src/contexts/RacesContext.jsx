@@ -1,10 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { DataProvider } from "./DataContext";
-import supabase from "../config/supabaseClient";
+import supabase from "@config/supabaseClient";
+import { DataProvider } from "@contexts/DataContext";
 import {
   extractRacesFilterOptions,
   applyRacesFilters,
-} from "../helpers/racesFilterHelpers";
+} from "@utils/racesFilter";
 
 // Context for races
 const RacesContext = createContext();

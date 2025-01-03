@@ -1,12 +1,12 @@
 import { createContext, useEffect, useState } from "react";
-import { DataProvider } from "./DataContext";
-import supabase from "../config/supabaseClient";
+import supabase from "@config/supabaseClient";
+import { DataProvider } from "@contexts/DataContext";
+import useLocation from "@hooks/useLocation";
+import { calculateDistance } from "@utils/location";
 import {
   extractCircuitsFilterOptions,
   applyCircuitsFilters,
-} from "../helpers/circuitsFilterHelpers";
-import { calculateDistance } from "../helpers/locationHelpers";
-import useLocation from "../hooks/useLocation";
+} from "@utils/circuitsFilter";
 
 // Context for circuits
 const CircuitsContext = createContext();

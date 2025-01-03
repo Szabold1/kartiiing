@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { lightTheme, darkTheme } from "../styles/theme";
+import { lightTheme, darkTheme } from "@styles/theme";
 
 export default function useThemeMode() {
   // set theme based on prefers-color-scheme

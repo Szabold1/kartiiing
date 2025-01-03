@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { getLocationName } from "../helpers/locationHelpers";
+import { getLocationName } from "@utils/location";
 
 // Create a context
 const LocationContext = createContext();
