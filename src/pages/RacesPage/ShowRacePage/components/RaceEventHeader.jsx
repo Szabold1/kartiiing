@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
-import CircuitMapImg from "@components/Circuits/CircuitMapImg";
+import MapImg from "@components/Map/MapImg";
 import PageTitle from "@components/PageHeader/PageTitle";
 import RenderArray from "@components/RenderArray";
 
@@ -89,11 +89,15 @@ const StyledLocation = styled.div`
 `;
 
 export default function RaceEventHeader({ ...race }) {
-  const { series, circuits } = race;
+  const { series, circuits: circuit } = race;
 
   return (
     <StyledContainer>
-      <CircuitMapImg circuit={circuits} />
+      <MapImg
+        latitude={circuit.latitude}
+        longitude={circuit.longitude}
+        locationName={`${circuit.long_name}, ${circuit.short_name}`}
+      />
 
       <StyledHeader>
         <PageTitle size={["1.6rem", "1.8rem"]}>
@@ -105,12 +109,12 @@ export default function RaceEventHeader({ ...race }) {
         <StyledLocation>
           <FlagContainer>
             <ReactCountryFlag
-              countryCode={circuits.countries.code}
+              countryCode={circuit.countries.code}
               svg
               style={{ height: "100%", width: "100%" }}
             />
           </FlagContainer>
-          <span>{circuits.short_name}</span>
+          <span>{circuit.short_name}</span>
         </StyledLocation>
       </StyledHeader>
     </StyledContainer>

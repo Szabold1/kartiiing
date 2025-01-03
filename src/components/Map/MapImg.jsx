@@ -58,8 +58,12 @@ const StyledMapBtn = styled.button`
   }
 `;
 
-export default function CircuitMapImg({ circuit }) {
-  const { latitude, longitude } = circuit;
+export default function MapImg({
+  latitude,
+  longitude,
+  locationName,
+  zoom = 6,
+}) {
   const [mapSrc, setMapSrc] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const { ref, width: containerWidth } = useElementWidth();
@@ -73,14 +77,13 @@ export default function CircuitMapImg({ circuit }) {
 
     if (latitude && longitude) {
       const adjustedLatitude = latitude + 0.4;
-      const zoom = 6;
       const url = `https://api.mapbox.com/styles/v1/${mapStyle}/static/pin-s+FA3200(${longitude},${latitude})/${longitude},${adjustedLatitude},${zoom}/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
     } else {
       const url = `https://api.mapbox.com/styles/v1/mapbox/${mapStyle}/static/0,0,0/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
     }
-  }, [latitude, longitude, containerWidth]);
+  }, [latitude, longitude, containerWidth, zoom]);
 
   return (
     <WidthProvider width={containerWidth}>
@@ -88,17 +91,13 @@ export default function CircuitMapImg({ circuit }) {
         {!isLoaded && <StyledMsg>Loading...</StyledMsg>}
 
         <StyledImg
-          alt={"Map for " + circuit.long_name}
+          alt={"Map for " + locationName}
           src={mapSrc}
           onLoad={() => setIsLoaded(true)}
           $isLoaded={isLoaded}
         />
 
-        <StyledMapBtn
-          onClick={() =>
-            openGoogleMaps(`${circuit.long_name}, ${circuit.countries.name}`)
-          }
-        >
+        <StyledMapBtn onClick={() => openGoogleMaps(locationName)}>
           Google Maps
           <span style={{ marginRight: "-0.15rem", display: "flex" }}>
             <IoArrowForwardOutline />
