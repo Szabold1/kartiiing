@@ -51,7 +51,7 @@ const StyledLive = styled.div`
 `;
 
 export default function ShowRacePage() {
-  const { series_date: url } = useParams();
+  const { raceName_date: url } = useParams();
   const { data: races, isFetching } = useRaces();
 
   // Find the race based on the url
