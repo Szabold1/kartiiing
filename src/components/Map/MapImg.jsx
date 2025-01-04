@@ -6,6 +6,33 @@ import { openGoogleMaps } from "@utils/location";
 import useElementWidth from "@hooks/useElementWidth";
 import { WidthProvider } from "@contexts/WidthContext";
 
+const StyledWrapper = styled.div`
+  position: relative;
+  height: 20rem;
+  width: 100vw;
+  background: linear-gradient(
+    to bottom right,
+    ${({ theme }) => theme.colors.bg[0]},
+    ${({ theme }) => theme.colors.accent[2]} 50%
+  );
+
+  @media screen and (min-width: 40rem) {
+    height: 22rem;
+  }
+
+  @media screen and (min-width: 50rem) {
+    height: 25rem;
+  }
+
+  @media screen and (min-width: 60rem) {
+    height: 27rem;
+  }
+
+  @media screen and (min-width: 70rem) {
+    height: 30rem;
+  }
+`;
+
 const StyledContainer = styled.div`
   position: relative;
   width: 100%;
@@ -32,8 +59,9 @@ const StyledImg = styled.img`
 
 const StyledMapBtn = styled.button`
   position: absolute;
-  bottom: 2.25rem;
-  right: 0.25rem;
+  bottom: 0.5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
 
   background-color: rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
@@ -52,17 +80,16 @@ const StyledMapBtn = styled.button`
   align-items: center;
   gap: 0.3rem;
 
-  @media screen and (min-width: 70rem) {
-    right: 0.5rem;
-    bottom: 0.5rem;
+  @media screen and (min-width: 55rem) {
+    bottom: 2.25rem;
   }
 `;
 
 export default function MapImg({
   latitude,
   longitude,
-  locationName,
-  zoom = 6,
+  locationSearchName,
+  children,
 }) {
   const [mapSrc, setMapSrc] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -74,36 +101,41 @@ export default function MapImg({
     const height = 420;
     const mapStyle = import.meta.env.VITE_MAPBOX_STYLE;
     const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    const zoom = 6;
 
     if (latitude && longitude) {
-      const adjustedLatitude = latitude + 0.4;
+      const adjustedLatitude = latitude + (width < 800 ? 0.46 : 0.37);
       const url = `https://api.mapbox.com/styles/v1/${mapStyle}/static/pin-s+FA3200(${longitude},${latitude})/${longitude},${adjustedLatitude},${zoom}/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
     } else {
       const url = `https://api.mapbox.com/styles/v1/mapbox/${mapStyle}/static/0,0,0/${width}x${height}@2x?access_token=${mapboxToken}`;
       setMapSrc(url);
     }
-  }, [latitude, longitude, containerWidth, zoom]);
+  }, [latitude, longitude, containerWidth]);
 
   return (
-    <WidthProvider width={containerWidth}>
-      <StyledContainer ref={ref}>
-        {!isLoaded && <StyledMsg>Loading...</StyledMsg>}
+    <StyledWrapper>
+      <WidthProvider width={containerWidth}>
+        <StyledContainer ref={ref}>
+          {!isLoaded && <StyledMsg>Loading...</StyledMsg>}
 
-        <StyledImg
-          alt={"Map for " + locationName}
-          src={mapSrc}
-          onLoad={() => setIsLoaded(true)}
-          $isLoaded={isLoaded}
-        />
+          <StyledImg
+            alt={"Map for " + locationSearchName}
+            src={mapSrc}
+            onLoad={() => setIsLoaded(true)}
+            $isLoaded={isLoaded}
+          />
 
-        <StyledMapBtn onClick={() => openGoogleMaps(locationName)}>
-          Google Maps
-          <span style={{ marginRight: "-0.15rem", display: "flex" }}>
-            <IoArrowForwardOutline />
-          </span>
-        </StyledMapBtn>
-      </StyledContainer>
-    </WidthProvider>
+          <StyledMapBtn onClick={() => openGoogleMaps(locationSearchName)}>
+            Google Maps
+            <span style={{ marginRight: "-0.15rem", display: "flex" }}>
+              <IoArrowForwardOutline />
+            </span>
+          </StyledMapBtn>
+        </StyledContainer>
+      </WidthProvider>
+
+      {children}
+    </StyledWrapper>
   );
 }

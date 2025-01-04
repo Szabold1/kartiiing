@@ -39,7 +39,7 @@ const StyledResultsDropdown = styled.div`
   }
 `;
 
-export default function RaceEventBtnResults({ results, openLink }) {
+export default function ShowRaceResultsBtn({ results, openLink }) {
   const ref = useRef();
   const [showModal, setShowModal] = useState(false);
 

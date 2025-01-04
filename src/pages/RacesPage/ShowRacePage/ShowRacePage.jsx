@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import useRaces from "@hooks/useRaces";
 import StyledMessage from "@components/styled/StyledMessage";
-import RaceEventSummary from "@pages/RacesPage/ShowRacePage/components/RaceEventSummary";
-import RaceEventBtns from "@pages/RacesPage/ShowRacePage/components/RaceEventBtns";
-import RaceEventHeader from "@pages/RacesPage/ShowRacePage/components/RaceEventHeader";
+import ShowRaceSummary from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummary";
+import ShowRaceBtns from "@pages/RacesPage/ShowRacePage/components/ShowRaceBtns";
+import ShowRaceHeader from "@pages/RacesPage/ShowRacePage/components/ShowRaceHeader";
 import { addStatusToRace } from "@utils/racesFilter";
 
 const StyledContent = styled.div`
   max-width: 55rem;
   margin: 0 auto;
-  margin-top: -2rem;
+  margin-top: 0;
   margin-bottom: 2rem;
   padding: 1.3rem 1rem;
   background-color: ${({ theme }) =>
@@ -22,6 +22,7 @@ const StyledContent = styled.div`
     padding: 1.6rem;
   }
   @media screen and (min-width: 55rem) {
+    margin-top: -2rem;
     border-radius: 1.2rem;
   }
 `;
@@ -74,12 +75,12 @@ export default function ShowRacePage() {
   const { status } = race;
   return (
     <>
-      <RaceEventHeader {...race} />
+      <ShowRaceHeader {...race} />
       <StyledContent>
         {status === "ongoing" && <StyledLive>live</StyledLive>}
 
-        <RaceEventBtns {...race} />
-        <RaceEventSummary {...race} />
+        <ShowRaceBtns {...race} />
+        <ShowRaceSummary {...race} />
       </StyledContent>
     </>
   );

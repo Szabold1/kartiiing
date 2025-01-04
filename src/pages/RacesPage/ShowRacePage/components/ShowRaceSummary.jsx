@@ -12,7 +12,7 @@ import {
 import { openGoogleMaps } from "@utils/location";
 import RenderArray from "@components/RenderArray";
 import Section from "@components/Section/Section";
-import RaceEventSummaryItem from "@pages/RacesPage/ShowRacePage/components/RaceEventSummaryItem";
+import ShowRaceSummaryItem from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummaryItem";
 
 // render the text based on the time to the race
 function renderTimeToRace(startDate, endDate) {
@@ -58,42 +58,42 @@ function renderPastDate(years, days) {
   }
 }
 
-export default function RaceEventSummary({ ...race }) {
+export default function ShowRaceSummary({ ...race }) {
   const { start_date, end_date, circuits, engine_type, categories } = race;
   const formattedStartDate = formatDate(start_date);
   const formattedEndDate = formatDate(end_date);
 
   return (
     <Section title="Summary" titleSize="1.25rem" stickyHeader={false}>
-      <RaceEventSummaryItem icon={IoCalendarOutline}>
+      <ShowRaceSummaryItem icon={IoCalendarOutline}>
         <span>
           {formattedStartDate === null ? "" : formattedStartDate + " - "}
           {formattedEndDate === null ? "" : formattedEndDate + " "}
         </span>
         <span>({renderTimeToRace(start_date, end_date)})</span>
-      </RaceEventSummaryItem>
+      </ShowRaceSummaryItem>
 
       {circuits && circuits.long_name && circuits.countries?.name && (
-        <RaceEventSummaryItem
+        <ShowRaceSummaryItem
           icon={IoLocationOutline}
           onClick={() =>
             openGoogleMaps(`${circuits.long_name}, ${circuits.countries.name}`)
           }
         >
           {circuits.long_name}, {circuits.countries.name}
-        </RaceEventSummaryItem>
+        </ShowRaceSummaryItem>
       )}
 
       {engine_type && engine_type.length > 0 && (
-        <RaceEventSummaryItem icon={IoSpeedometerOutline}>
+        <ShowRaceSummaryItem icon={IoSpeedometerOutline}>
           <RenderArray array={engine_type} sort />
-        </RaceEventSummaryItem>
+        </ShowRaceSummaryItem>
       )}
 
       {categories && categories.length > 0 && (
-        <RaceEventSummaryItem icon={IoListOutline}>
+        <ShowRaceSummaryItem icon={IoListOutline}>
           <RenderArray array={categories} sort />
-        </RaceEventSummaryItem>
+        </ShowRaceSummaryItem>
       )}
     </Section>
   );

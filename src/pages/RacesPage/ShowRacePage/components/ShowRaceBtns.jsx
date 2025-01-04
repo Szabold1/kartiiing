@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import RaceEventBtnResults from "@pages/RacesPage/ShowRacePage/components/RaceEventBtnResults";
+import ShowRaceResultsBtn from "@pages/RacesPage/ShowRacePage/components/ShowRaceResultsBtn";
 import Btn from "@components/Btn";
 
-const StyledRaceEventBtns = styled.div`
+const StyledBtns = styled.div`
   margin-bottom: ${({ $noBtns }) => ($noBtns ? "0" : "1rem")};
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
 `;
 
-export default function RaceEventBtns({ ...race }) {
+export default function ShowRaceBtns({ ...race }) {
   const { status, results_links, live_links } = race;
 
   const isLive = status === "ongoing";
@@ -25,7 +25,7 @@ export default function RaceEventBtns({ ...race }) {
   }
 
   return (
-    <StyledRaceEventBtns $noBtns={noBtns}>
+    <StyledBtns $noBtns={noBtns}>
       {showTimingBtn && (
         <Btn live={true} onClick={() => openLink(liveTime.url)}>
           Live Timing
@@ -39,8 +39,8 @@ export default function RaceEventBtns({ ...race }) {
       )}
 
       {results_links && (
-        <RaceEventBtnResults results={results_links} openLink={openLink} />
+        <ShowRaceResultsBtn results={results_links} openLink={openLink} />
       )}
-    </StyledRaceEventBtns>
+    </StyledBtns>
   );
 }
