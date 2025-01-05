@@ -5,7 +5,7 @@ import {
   IoChevronUpOutline,
   IoArrowForwardOutline,
 } from "react-icons/io5";
-import Btn from "@components/Btn";
+import Btn from "@components/General/Btn";
 
 const StyledResultsDropdown = styled.div`
   position: absolute;

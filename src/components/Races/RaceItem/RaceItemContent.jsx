@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import ReactCountryFlag from "react-country-flag";
 import { WidthContext } from "@contexts/WidthContext";
-import RenderArray from "@components/RenderArray";
+import RenderArray from "@components/General/RenderArray";
 
 const StyledContent = styled.div`
   display: flex;

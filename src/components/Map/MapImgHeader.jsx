@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PageTitle from "@components/PageHeader/PageTitle";
-import RenderArray from "@components/RenderArray";
+import RenderArray from "@components/General/RenderArray";
 
 const StyledHeader = styled.header`
   position: absolute;

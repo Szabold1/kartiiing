@@ -34,7 +34,7 @@ const StyledSummaryText = styled.span`
   }
 `;
 
-export default function ShowRaceSummaryItem({ icon: Icon, onClick, children }) {
+export default function SummaryItem({ icon: Icon, onClick, children }) {
   return (
     <StyledSummaryItem>
       {Icon && (

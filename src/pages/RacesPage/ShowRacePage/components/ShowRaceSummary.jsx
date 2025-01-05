@@ -10,9 +10,9 @@ import {
   getYearsAndDaysDifference,
 } from "@utils/date";
 import { openGoogleMaps } from "@utils/location";
-import RenderArray from "@components/RenderArray";
+import RenderArray from "@components/General/RenderArray";
 import Section from "@components/Section/Section";
-import ShowRaceSummaryItem from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummaryItem";
+import SummaryItem from "@components/General/SummaryItem";
 
 // render the text based on the time to the race
 function renderTimeToRace(startDate, endDate) {
@@ -71,35 +71,35 @@ export default function ShowRaceSummary({ race }) {
 
   return (
     <Section title="Summary" titleSize="1.25rem" stickyHeader={false}>
-      <ShowRaceSummaryItem icon={IoCalendarOutline}>
+      <SummaryItem icon={IoCalendarOutline}>
         <span>
           {formattedStartDate === null ? "" : formattedStartDate + " - "}
           {formattedEndDate === null ? "" : formattedEndDate + " "}
         </span>
         <span>({renderTimeToRace(start_date, end_date)})</span>
-      </ShowRaceSummaryItem>
+      </SummaryItem>
 
       {circuit && circuit.circuit_name && circuit.countries?.name && (
-        <ShowRaceSummaryItem
+        <SummaryItem
           icon={IoLocationOutline}
           onClick={() =>
             openGoogleMaps(`${circuit.circuit_name}, ${circuit.countries.name}`)
           }
         >
           {circuit.circuit_name}, {circuit.countries.name}
-        </ShowRaceSummaryItem>
+        </SummaryItem>
       )}
 
       {engine_type && engine_type.length > 0 && (
-        <ShowRaceSummaryItem icon={IoSpeedometerOutline}>
+        <SummaryItem icon={IoSpeedometerOutline}>
           <RenderArray array={engine_type} sort />
-        </ShowRaceSummaryItem>
+        </SummaryItem>
       )}
 
       {categories && categories.length > 0 && (
-        <ShowRaceSummaryItem icon={IoListOutline}>
+        <SummaryItem icon={IoListOutline}>
           <RenderArray array={categories} sort />
-        </ShowRaceSummaryItem>
+        </SummaryItem>
       )}
     </Section>
   );

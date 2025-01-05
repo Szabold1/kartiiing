@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ShowRaceResultsBtn from "@pages/RacesPage/ShowRacePage/components/ShowRaceResultsBtn";
-import Btn from "@components/Btn";
+import Btn from "@components/General/Btn";
 
 const StyledBtns = styled.div`
   margin-bottom: ${({ $noBtns }) => ($noBtns ? "0" : "1rem")};
