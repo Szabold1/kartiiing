@@ -46,7 +46,7 @@ export default function RaceOverviewSection({ title, races }) {
       )}
 
       {!isFetching &&
-        races?.map((race) => <RaceItem key={race.id} {...race} />)}
+        races?.map((race) => <RaceItem key={race.id} race={race} />)}
 
       <StyledLink onClick={() => handleViewAllClick(title)}>
         View all

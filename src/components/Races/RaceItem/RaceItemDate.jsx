@@ -35,11 +35,10 @@ function formatDate(date) {
   return { day, month };
 }
 
-export default function RaceItemDate({ ...race }) {
-  const { end_date } = race;
-  const { day: dayEnd, month: monthEnd } = formatDate(end_date);
+export default function RaceItemDate({ date }) {
+  const { day, month } = formatDate(date);
 
-  if (!end_date) {
+  if (!date) {
     return (
       <StyledDate>
         <span style={{ fontSize: "0.9rem" }}>TBD</span>
@@ -49,8 +48,8 @@ export default function RaceItemDate({ ...race }) {
 
   return (
     <StyledDate>
-      <span className="month">{monthEnd}</span>
-      <span>{dayEnd}</span>
+      <span className="month">{month}</span>
+      <span>{day}</span>
     </StyledDate>
   );
 }

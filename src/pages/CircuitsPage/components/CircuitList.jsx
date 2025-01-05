@@ -35,7 +35,7 @@ export default function CircuitList({ appliedFilters, isFetching, circuits }) {
         {circuits.map((circuit) => (
           <CircuitItem
             key={circuit.id}
-            {...circuit}
+            circuit={circuit}
             showLength={showLength}
             showDistance={showDistance}
           />

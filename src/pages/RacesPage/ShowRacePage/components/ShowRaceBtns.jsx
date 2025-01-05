@@ -9,7 +9,7 @@ const StyledBtns = styled.div`
   flex-wrap: wrap;
 `;
 
-export default function ShowRaceBtns({ ...race }) {
+export default function ShowRaceBtns({ race }) {
   const { status, results_links, live_links } = race;
 
   const isLive = status === "ongoing";

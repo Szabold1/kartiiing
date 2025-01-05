@@ -34,7 +34,7 @@ const StyledItem = styled.li`
   }
 `;
 
-export default function RaceItem({ ...race }) {
+export default function RaceItem({ race }) {
   const { status } = race;
   const containerWidth = useContext(WidthContext);
   const navigate = useNavigate();
@@ -48,8 +48,8 @@ export default function RaceItem({ ...race }) {
     <StyledItem $cWidth={containerWidth} onClick={handleClick}>
       {status === "ongoing" ? <span className="live">live</span> : null}
 
-      <RaceItemDate {...race} />
-      <RaceItemContent {...race} />
+      <RaceItemDate date={race.end_date} />
+      <RaceItemContent race={race} />
     </StyledItem>
   );
 }

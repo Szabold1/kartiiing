@@ -35,7 +35,7 @@ const StyledNumData = styled.span`
 export default function CircuitItem({
   showLength = false,
   showDistance = false,
-  ...circuit
+  circuit,
 }) {
   const navigate = useNavigate();
   const { countries, distanceKm, length } = circuit;
@@ -55,7 +55,7 @@ export default function CircuitItem({
         />
       </FlagContainer>
 
-      <CircuitItemContent {...circuit} />
+      <CircuitItemContent circuit={circuit} />
 
       {showDistance && (
         <StyledNumData>

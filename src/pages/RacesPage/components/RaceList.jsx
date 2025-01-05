@@ -22,7 +22,7 @@ export default function RaceList({ groupedRaces, isFetching }) {
       {Array.from(groupedRaces.keys()).map((year) => (
         <Section key={year} title={year}>
           {groupedRaces.get(year).map((race) => (
-            <RaceItem key={race.id} {...race} />
+            <RaceItem key={race.id} race={race} />
           ))}
         </Section>
       ))}

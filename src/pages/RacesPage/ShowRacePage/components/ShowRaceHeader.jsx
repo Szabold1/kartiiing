@@ -25,7 +25,7 @@ const StyledLocation = styled.div`
   margin: 0.3rem 0 0.2rem 0;
 `;
 
-export default function ShowRaceHeader({ ...race }) {
+export default function ShowRaceHeader({ race }) {
   const { series, circuits: circuit } = race;
 
   return (

@@ -58,8 +58,14 @@ function renderPastDate(years, days) {
   }
 }
 
-export default function ShowRaceSummary({ ...race }) {
-  const { start_date, end_date, circuits, engine_type, categories } = race;
+export default function ShowRaceSummary({ race }) {
+  const {
+    start_date,
+    end_date,
+    circuits: circuit,
+    engine_type,
+    categories,
+  } = race;
   const formattedStartDate = formatDate(start_date);
   const formattedEndDate = formatDate(end_date);
 
@@ -73,14 +79,14 @@ export default function ShowRaceSummary({ ...race }) {
         <span>({renderTimeToRace(start_date, end_date)})</span>
       </ShowRaceSummaryItem>
 
-      {circuits && circuits.long_name && circuits.countries?.name && (
+      {circuit && circuit.long_name && circuit.countries?.name && (
         <ShowRaceSummaryItem
           icon={IoLocationOutline}
           onClick={() =>
-            openGoogleMaps(`${circuits.long_name}, ${circuits.countries.name}`)
+            openGoogleMaps(`${circuit.long_name}, ${circuit.countries.name}`)
           }
         >
-          {circuits.long_name}, {circuits.countries.name}
+          {circuit.long_name}, {circuit.countries.name}
         </ShowRaceSummaryItem>
       )}
 

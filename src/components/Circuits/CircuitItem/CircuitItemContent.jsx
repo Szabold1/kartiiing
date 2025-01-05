@@ -11,7 +11,7 @@ const StyledContent = styled.div`
   letter-spacing: 0.03rem;
 `;
 
-export default function CircuitItemContent({ ...circuit }) {
+export default function CircuitItemContent({ circuit }) {
   const width = useContext(WidthContext);
 
   return (

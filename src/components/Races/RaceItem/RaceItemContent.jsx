@@ -67,8 +67,8 @@ const StyledCategories = styled.div`
   margin-right: 0.5rem;
 `;
 
-export default function RaceItemContent({ ...race }) {
-  const { circuits, series, engine_type } = race;
+export default function RaceItemContent({ race }) {
+  const { circuits: circuit, series, engine_type } = race;
   const containerWidth = useContext(WidthContext);
 
   return (
@@ -80,12 +80,12 @@ export default function RaceItemContent({ ...race }) {
       <StyledLocation $cWidth={containerWidth}>
         <FlagContainer $cWidth={containerWidth}>
           <ReactCountryFlag
-            countryCode={circuits.countries.code}
+            countryCode={circuit.countries.code}
             svg
             style={{ height: "100%", width: "100%" }}
           />
         </FlagContainer>
-        <span>{circuits.short_name}</span>
+        <span>{circuit.short_name}</span>
       </StyledLocation>
 
       <StyledCategories $cWidth={containerWidth}>

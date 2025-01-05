@@ -56,12 +56,12 @@ export default function ShowRacePage() {
   const { status } = race;
   return (
     <>
-      <ShowRaceHeader {...race} />
+      <ShowRaceHeader race={race} />
       <StyledPageContentWrapper>
         {status === "ongoing" && <StyledLive>live</StyledLive>}
 
-        <ShowRaceBtns {...race} />
-        <ShowRaceSummary {...race} />
+        <ShowRaceBtns race={race} />
+        <ShowRaceSummary race={race} />
       </StyledPageContentWrapper>
     </>
   );
