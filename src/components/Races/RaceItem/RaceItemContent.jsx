@@ -85,7 +85,7 @@ export default function RaceItemContent({ race }) {
             style={{ height: "100%", width: "100%" }}
           />
         </FlagContainer>
-        <span>{circuit.short_name}</span>
+        <span>{circuit.location_name}</span>
       </StyledLocation>
 
       <StyledCategories $cWidth={containerWidth}>

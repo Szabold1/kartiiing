@@ -41,7 +41,7 @@ export default function CircuitItem({
   const { countries, distanceKm, length } = circuit;
 
   function handleClick() {
-    const circuitName = circuit.long_name.toLowerCase().replaceAll(" ", "_");
+    const circuitName = circuit.circuit_name.toLowerCase().replaceAll(" ", "_");
     navigate(`/circuits/${circuitName}`);
   }
 

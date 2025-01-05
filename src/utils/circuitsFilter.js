@@ -27,11 +27,11 @@ function sortCircuits(circuits, sorting) {
   switch (sorting.toLowerCase()) {
     case "name ascending":
       return circuitsCopy.sort((a, b) =>
-        a.short_name.localeCompare(b.short_name)
+        a.location_name.localeCompare(b.location_name)
       );
     case "name descending":
       return circuitsCopy.sort((a, b) =>
-        b.short_name.localeCompare(a.short_name)
+        b.location_name.localeCompare(a.location_name)
       );
     case "length ascending":
       return circuitsCopy.sort((a, b) => a.length - b.length);

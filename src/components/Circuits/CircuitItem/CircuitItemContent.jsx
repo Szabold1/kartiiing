@@ -16,11 +16,11 @@ export default function CircuitItemContent({ circuit }) {
 
   return (
     <StyledContent>
-      <h4 style={{ fontWeight: "500" }}>{circuit.short_name}</h4>
+      <h4 style={{ fontWeight: "500" }}>{circuit.location_name}</h4>
       {width > 640 && (
         <>
           <span style={{ color: "rgb(0, 180, 180)" }}>&middot;</span>
-          <span>{circuit.long_name}</span>
+          <span>{circuit.circuit_name}</span>
         </>
       )}
     </StyledContent>

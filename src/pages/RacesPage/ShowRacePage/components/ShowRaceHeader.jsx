@@ -32,7 +32,7 @@ export default function ShowRaceHeader({ race }) {
     <MapImg
       latitude={circuit.latitude}
       longitude={circuit.longitude}
-      locationSearchName={`${circuit.long_name}, ${circuit.short_name}`}
+      locationSearchName={`${circuit.circuit_name}, ${circuit.location_name}`}
     >
       <MapImgHeader titleAsArray={series}>
         <StyledLocation>
@@ -43,7 +43,7 @@ export default function ShowRaceHeader({ race }) {
               style={{ height: "100%", width: "100%" }}
             />
           </FlagContainer>
-          <span>{circuit.short_name}</span>
+          <span>{circuit.location_name}</span>
         </StyledLocation>
       </MapImgHeader>
     </MapImg>

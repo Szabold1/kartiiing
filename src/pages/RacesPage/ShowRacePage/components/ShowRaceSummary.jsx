@@ -79,14 +79,14 @@ export default function ShowRaceSummary({ race }) {
         <span>({renderTimeToRace(start_date, end_date)})</span>
       </ShowRaceSummaryItem>
 
-      {circuit && circuit.long_name && circuit.countries?.name && (
+      {circuit && circuit.circuit_name && circuit.countries?.name && (
         <ShowRaceSummaryItem
           icon={IoLocationOutline}
           onClick={() =>
-            openGoogleMaps(`${circuit.long_name}, ${circuit.countries.name}`)
+            openGoogleMaps(`${circuit.circuit_name}, ${circuit.countries.name}`)
           }
         >
-          {circuit.long_name}, {circuit.countries.name}
+          {circuit.circuit_name}, {circuit.countries.name}
         </ShowRaceSummaryItem>
       )}
 
