@@ -5,6 +5,7 @@ import HomePage from "@pages/HomePage/HomePage";
 import RacesPage from "@pages/RacesPage/RacesPage";
 import ShowRacePage from "@pages/RacesPage/ShowRacePage/ShowRacePage";
 import CircuitsPage from "@pages/CircuitsPage/CircuitsPage";
+import ShowCircuitPage from "@pages/CircuitsPage/ShowCircuitPage/ShowCircuitPage";
 
 export const routesConfig = [
   {
@@ -16,6 +17,7 @@ export const routesConfig = [
       { path: "races", element: <RacesPage /> },
       { path: "races/:raceName_date", element: <ShowRacePage /> },
       { path: "circuits", element: <CircuitsPage /> },
+      { path: "circuits/:circuitName", element: <ShowCircuitPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
