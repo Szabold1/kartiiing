@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useRaces from "@hooks/useRaces";
 import StyledWrapper from "@components/styled/StyledWrapper";
-import { addStatusToRace, sortRaces } from "@utils/racesFilter";
+import { sortRaces, getRacesByStatus } from "@utils/racesFilter";
 import RaceOverviewSection from "@pages/HomePage/components/RaceOverviewSection";
 import CircuitsNearby from "@pages/HomePage/components/CircuitsNearby";
 
@@ -15,16 +15,10 @@ const StyledRacesOverview = styled.div`
   }
 `;
 
-// Return first 'limit' number of races with 'status' from 'sortedRaces'
-function getRacesByStatus(status, limit, sortedRaces) {
-  return sortedRaces.filter((race) => race.status === status).slice(0, limit);
-}
-
 export default function HomePage() {
   const { data: races } = useRaces();
-  const racesWithStatus = races?.map((race) => addStatusToRace(race));
-  const racesAscending = sortRaces(racesWithStatus, "ascending");
-  const racesDescending = sortRaces(racesWithStatus, "descending");
+  const racesAscending = sortRaces(races, "ascending");
+  const racesDescending = sortRaces(races, "descending");
 
   const ongoingRaces = getRacesByStatus("ongoing", 5, racesAscending);
   const nextRaces = getRacesByStatus(

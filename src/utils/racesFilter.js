@@ -129,7 +129,7 @@ function sortIntoGroups(races, sorting) {
   return sortedGroupedByYear;
 }
 
-// Add 'status' property to race object and return the updated object
+// Expand the race object with 'status' property and return it as a new object
 function addStatusToRace(race) {
   if (!race || race.status) return race;
   const currentDate = removeTimeFromDate(new Date());
@@ -147,14 +147,31 @@ function addStatusToRace(race) {
   return { ...race, status };
 }
 
+// Return first 'limit' number of races with 'status' from 'sortedRaces'
+function getRacesByStatus(status, limit, sortedRaces) {
+  return sortedRaces.filter((race) => race.status === status).slice(0, limit);
+}
+
+// Expand the race object with 'championships' property and return it as a new object
+function addChampionshipsToRace(race) {
+  if (!race || race.championships) return race;
+
+  const championships = [];
+  race.series.forEach((series) => {
+    data.championships.forEach((championship) => {
+      if (series.toLowerCase().includes(championship.toLowerCase())) {
+        championships.push(championship);
+      }
+    });
+  });
+
+  return { ...race, championships };
+}
+
 // Filter the races based on the filters selected
 // Returns 'filtered' (array of filtered races) and 'groupedByYear' (map of sorted races grouped by year)
 function applyRacesFilters(races, filters) {
   let filtered = races;
-
-  const racesWithStatus = races.map((race) => addStatusToRace(race));
-
-  filtered = racesWithStatus;
 
   if (filters.sorting?.length > 0)
     filtered = sortRaces(filtered, filters.sorting[0]);
@@ -186,5 +203,9 @@ export {
   extractRacesFilterOptions,
   applyRacesFilters,
   addStatusToRace,
+  getRacesByStatus,
+  addChampionshipsToRace,
   sortRaces,
+  sortIntoGroups,
+  filterByChampionships,
 };

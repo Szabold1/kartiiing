@@ -4,6 +4,8 @@ import { DataProvider } from "@contexts/DataContext";
 import {
   extractRacesFilterOptions,
   applyRacesFilters,
+  addStatusToRace,
+  addChampionshipsToRace,
 } from "@utils/racesFilter";
 
 // Context for races
@@ -22,7 +24,6 @@ function RacesProvider({ children, filterKeys, defaultFilterValues }) {
       const { data, error } = await supabase
         .from("races")
         .select(`*, circuits (*, countries (*))`);
-
       if (error) {
         console.error("Error fetching races:", error);
         setRaces([]);
@@ -30,7 +31,15 @@ function RacesProvider({ children, filterKeys, defaultFilterValues }) {
         return;
       }
 
-      setRaces(data);
+      // Add status and championships to races
+      const enrichedRaces = data.map((race) => {
+        const raceWithStatus = addStatusToRace(race);
+        const raceWithChampionships = addChampionshipsToRace(raceWithStatus);
+
+        return raceWithChampionships;
+      });
+
+      setRaces(enrichedRaces);
       setIsFetching(false);
     }
 
