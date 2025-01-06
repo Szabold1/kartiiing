@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Btn from "@components/Btn/Btn";
-import Dropdown from "@components/General/Dropdown";
+import Dropdown from "@components/Btn/BtnDropdown";
 
 const StyledBtns = styled.div`
   margin-bottom: ${({ $noBtns }) => ($noBtns ? "0" : "1rem")};
