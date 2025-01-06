@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import ShowRaceResultsBtn from "@pages/RacesPage/ShowRacePage/components/ShowRaceResultsBtn";
-import Btn from "@components/General/Btn";
+import Btn from "@components/Btn/Btn";
+import Dropdown from "@components/General/Dropdown";
 
 const StyledBtns = styled.div`
   margin-bottom: ${({ $noBtns }) => ($noBtns ? "0" : "1rem")};
@@ -31,15 +31,22 @@ export default function ShowRaceBtns({ race }) {
           Live Timing
         </Btn>
       )}
-
       {showStreamingBtn && (
         <Btn live={true} onClick={() => openLink(liveStream.url)}>
           Live Streaming
         </Btn>
       )}
 
-      {results_links && (
-        <ShowRaceResultsBtn results={results_links} openLink={openLink} />
+      {results_links?.length === 1 && (
+        <Btn onClick={() => openLink(results_links[0].url)}>Results</Btn>
+      )}
+      {results_links?.length > 1 && (
+        <Dropdown
+          items={results_links}
+          onItemSelect={(item) => openLink(item.url)}
+          buttonLabel="Results"
+          itemLabel="category"
+        />
       )}
     </StyledBtns>
   );
