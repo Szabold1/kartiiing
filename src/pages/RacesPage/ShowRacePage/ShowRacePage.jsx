@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import useRaces from "@hooks/useRaces";
 import StyledMessage from "@components/styled/StyledMessage";
 import StyledPageContentWrapper from "@components/styled/StyledPageContentWrapper";
-import ShowRaceSummary from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummary";
 import ShowRaceBtns from "@pages/RacesPage/ShowRacePage/components/ShowRaceBtns";
 import ShowRaceHeader from "@pages/RacesPage/ShowRacePage/components/ShowRaceHeader";
-import { addStatusToRace } from "@utils/racesFilter";
+import ShowRaceSummary from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummary";
+import ShowChampionships from "@pages/RacesPage/ShowRacePage/components/Championships/ShowChampionships";
 
 const StyledLive = styled.div`
   z-index: 2;
@@ -32,18 +32,22 @@ const StyledLive = styled.div`
   }
 `;
 
+const StyledTables = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+`;
+
 export default function ShowRacePage() {
   const { raceName_date: url } = useParams();
   const { data: races, isFetching } = useRaces();
 
   // Find the race based on the url
   const [seriesName, endDate] = url.split("_");
-  const race = addStatusToRace(
-    races.find(
-      (race) =>
-        race.series.sort()[0].replaceAll(" ", "-").toLowerCase() ===
-          seriesName && race.end_date === endDate
-    )
+  const race = races.find(
+    (race) =>
+      race.series.sort()[0].replaceAll(" ", "-").toLowerCase() === seriesName &&
+      race.end_date === endDate
   );
 
   if (isFetching) {
@@ -53,15 +57,17 @@ export default function ShowRacePage() {
     return <StyledMessage>No race found</StyledMessage>;
   }
 
-  const { status } = race;
   return (
     <>
       <ShowRaceHeader race={race} />
       <StyledPageContentWrapper>
-        {status === "ongoing" && <StyledLive>live</StyledLive>}
+        {race.status === "ongoing" && <StyledLive>live</StyledLive>}
 
         <ShowRaceBtns race={race} />
-        <ShowRaceSummary race={race} />
+        <StyledTables>
+          <ShowRaceSummary race={race} />
+          <ShowChampionships race={race} />
+        </StyledTables>
       </StyledPageContentWrapper>
     </>
   );
