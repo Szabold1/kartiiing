@@ -15,7 +15,6 @@ const StyledNavHeader = styled.nav`
   align-items: center;
 
   > h1 {
-    padding: 1rem;
     font-size: 1.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -27,6 +26,7 @@ const StyledNavHeader = styled.nav`
     @media screen and (min-width: 70rem) {
       font-size: 1.9rem;
       letter-spacing: 0.2rem;
+      padding-left: 0.2rem;
     }
   }
 
@@ -80,7 +80,11 @@ export default function NavHeader() {
   return (
     <StyledNavHeader>
       <h1>
-        <StyledNavLink to={"/"} onClick={handleHomeClick}>
+        <StyledNavLink
+          to={"/"}
+          onClick={handleHomeClick}
+          style={{ padding: "1rem" }}
+        >
           Kart<span>iiing</span>
         </StyledNavLink>
       </h1>
