@@ -18,7 +18,7 @@ export default function ChampionshipRaces({ championship, data, initialYear }) {
 
   return (
     <SectionWithDropdown
-      title={`${championship} in`}
+      title={championship}
       titleSize="1.25rem"
       items={Array.from(sortedRaces.keys())}
       btnLabel={activeYear}

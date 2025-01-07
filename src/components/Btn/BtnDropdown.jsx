@@ -14,6 +14,9 @@ const StyledDropdown = styled.div`
   padding: 0.3rem;
   z-index: 10;
   width: max-content;
+  max-height: 12rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
   transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
   pointer-events: ${({ $show }) => ($show ? "auto" : "none")};
   visibility: ${({ $show }) => ($show ? "visible" : "hidden")};

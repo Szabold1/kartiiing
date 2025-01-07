@@ -5,6 +5,7 @@ const StyledSummaryItem = styled.div`
   grid-template-columns: 2rem 1fr;
   align-items: center;
   padding: 0rem 0.7rem;
+  font-size: 1.05rem;
 
   &:first-child {
     margin-top: 0.2rem;
@@ -24,7 +25,7 @@ const StyledSummaryText = styled.span`
   gap: 0.3rem;
   flex-wrap: wrap;
   line-height: 1.05;
-  padding: 0.5rem 0;
+  padding: 0.55rem 0;
   width: fit-content;
   cursor: ${({ $onClick }) => ($onClick ? "pointer" : "text")};
 

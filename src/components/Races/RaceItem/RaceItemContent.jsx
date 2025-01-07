@@ -17,7 +17,7 @@ const StyledContent = styled.div`
 
 const StyledRaceName = styled.h4`
   order: ${({ $cWidth }) => ($cWidth < 600 ? "1" : "2")};
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 500;
   letter-spacing: 0.04rem;
   display: flex;
@@ -25,7 +25,7 @@ const StyledRaceName = styled.h4`
   gap: 0.3rem;
 
   > span {
-    display: ${({ $cWidth }) => ($cWidth < 850 ? "none" : "flex")};
+    display: ${({ $cWidth }) => ($cWidth < 810 ? "none" : "flex")};
   }
 
   > span:first-of-type {
@@ -38,7 +38,7 @@ const StyledLocation = styled.div`
   align-items: center;
   gap: ${({ $cWidth }) => ($cWidth < 600 ? "0.4rem" : "0.5rem")};
   order: ${({ $cWidth }) => ($cWidth < 600 ? "2" : "1")};
-  font-size: ${({ $cWidth }) => ($cWidth < 600 ? "0.9rem" : "1rem")};
+  font-size: ${({ $cWidth }) => ($cWidth < 600 ? "0.95rem" : "1rem")};
 
   > span {
     text-transform: uppercase;

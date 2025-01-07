@@ -35,18 +35,18 @@ const StyledItem = styled.li`
 `;
 
 export default function RaceItem({ race }) {
-  const { status } = race;
-  const containerWidth = useContext(WidthContext);
   const navigate = useNavigate();
+  const containerWidth = useContext(WidthContext);
 
   function handleClick() {
+    // Get the series name and end date and navigate to the show race page
     const seriesName = race.series[0].replaceAll(" ", "-").toLowerCase();
     navigate(`/races/${seriesName}_${race.end_date}`);
   }
 
   return (
     <StyledItem $cWidth={containerWidth} onClick={handleClick}>
-      {status === "ongoing" ? <span className="live">live</span> : null}
+      {race.status === "ongoing" ? <span className="live">live</span> : null}
 
       <RaceItemDate date={race.end_date} />
       <RaceItemContent race={race} />

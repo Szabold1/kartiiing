@@ -23,7 +23,7 @@ export const data = {
     },
   },
   championships: [
-    "Champions of the future",
+    "Champions of the Future",
     "FIA Academy Trophy",
     "FIA CEZ",
     "FIA Endurance Championship",

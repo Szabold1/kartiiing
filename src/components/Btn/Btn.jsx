@@ -8,7 +8,7 @@ const StyledBtn = styled.button`
     $live ? theme.colors.live[0] : theme.colors.accent[0]};
   background-color: ${({ theme }) => theme.colors.bg[1]};
 
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 0.9rem;
   min-width: max-content;
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
