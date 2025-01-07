@@ -109,16 +109,16 @@ const StyledFiltersFooter = styled.div`
       &:hover {
         background-color: ${({ theme }) =>
           theme.name === "dark" ? "rgba(241, 241, 241, 0.5)" : "inherit"};
-        border-color: ${({ theme }) => theme.colors.accent[0]};
+        border-color: ${({ theme }) => theme.colors.cyan[0]};
       }
     }
 
     &:nth-child(2) {
-      background-color: ${({ theme }) => theme.colors.accent[0]};
+      background-color: ${({ theme }) => theme.colors.cyan[0]};
       color: rgb(241, 241, 241);
 
       &:hover {
-        background-color: ${({ theme }) => theme.colors.accent[1]};
+        background-color: ${({ theme }) => theme.colors.cyan[1]};
       }
     }
   }

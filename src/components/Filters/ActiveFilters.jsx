@@ -19,7 +19,7 @@ const StyledActiveOption = styled.span`
   gap: 0.4rem;
   padding: 0.7rem 0.9rem;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.accent[2]};
+  background-color: ${({ theme }) => theme.colors.cyan[2]};
   letter-spacing: 0.05rem;
   cursor: default;
   transition: all 0.15s ease-in-out;

@@ -22,6 +22,7 @@ export default function SectionWithDropdown({
   items = [],
   btnLabel,
   onItemSelect,
+  color = "cyan",
 }) {
   return (
     <SectionContainer>
@@ -31,9 +32,10 @@ export default function SectionWithDropdown({
           items={items}
           onItemSelect={onItemSelect}
           buttonLabel={btnLabel}
+          color={color}
         />
       </StyledHeader>
-      <SectionContent>{children}</SectionContent>
+      <SectionContent color={color}>{children}</SectionContent>
     </SectionContainer>
   );
 }

@@ -27,12 +27,12 @@ export default function ShowRaceBtns({ race }) {
   return (
     <StyledBtns $noBtns={noBtns}>
       {showTimingBtn && (
-        <Btn live={true} onClick={() => openLink(liveTime.url)}>
+        <Btn color="red" onClick={() => openLink(liveTime.url)}>
           Live Timing
         </Btn>
       )}
       {showStreamingBtn && (
-        <Btn live={true} onClick={() => openLink(liveStream.url)}>
+        <Btn color="red" onClick={() => openLink(liveStream.url)}>
           Live Streaming
         </Btn>
       )}

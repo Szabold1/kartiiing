@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 const StyledBtn = styled.button`
-  border: 1.5px solid
-    ${({ $live, theme }) =>
-      $live ? theme.colors.live[0] : theme.colors.accent[0]};
-  color: ${({ $live, theme }) =>
-    $live ? theme.colors.live[0] : theme.colors.accent[0]};
+  border: 1.5px solid ${({ $color, theme }) => theme.colors[$color][0]};
+  color: ${({ $color, theme }) => theme.colors[$color][0]};
   background-color: ${({ theme }) => theme.colors.bg[1]};
 
   padding: 0.5rem 0.9rem;
@@ -25,8 +22,7 @@ const StyledBtn = styled.button`
 
   &:hover {
     color: ${({ theme }) => theme.colors.text[1]};
-    background-color: ${({ $live, theme }) =>
-      $live ? theme.colors.live[0] : theme.colors.accent[0]};
+    background-color: ${({ $color, theme }) => theme.colors[$color][0]};
   }
 
   &:disabled,
@@ -37,9 +33,9 @@ const StyledBtn = styled.button`
   }
 `;
 
-export default function Btn({ children, live = false, onClick }) {
+export default function Btn({ children, onClick, color = "cyan" }) {
   return (
-    <StyledBtn $live={live} onClick={onClick}>
+    <StyledBtn $color={color} onClick={onClick}>
       {children}
     </StyledBtn>
   );

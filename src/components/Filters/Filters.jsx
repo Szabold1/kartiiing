@@ -25,7 +25,7 @@ const StyledFiltersBar = styled.div`
   width: 100%;
   padding: 0.6rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.accent[0]};
+  background-color: ${({ theme }) => theme.colors.cyan[0]};
   color: ${({ theme }) => theme.colors.text[1]};
   font-size: 1.1rem;
   letter-spacing: 0.05rem;
@@ -33,7 +33,7 @@ const StyledFiltersBar = styled.div`
   transition: background-color 0.15s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.accent[1]};
+    background-color: ${({ theme }) => theme.colors.cyan[1]};
   }
 
   @media screen and (min-width: 70rem) {

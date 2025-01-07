@@ -11,7 +11,7 @@ const StyledContent = styled.div`
   width: 100%;
 
   .separator {
-    color: ${({ theme }) => theme.colors.accent[0]};
+    color: ${({ theme }) => theme.colors.cyan[0]};
   }
 `;
 

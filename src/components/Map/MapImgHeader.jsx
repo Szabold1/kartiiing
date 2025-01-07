@@ -33,7 +33,7 @@ const StyledTitle = styled.h3`
   line-height: 1.25;
 
   .separator {
-    color: ${({ theme }) => theme.colors.accent[1]};
+    color: ${({ theme }) => theme.colors.cyan[1]};
   }
 `;
 

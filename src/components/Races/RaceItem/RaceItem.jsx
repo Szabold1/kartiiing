@@ -27,10 +27,11 @@ const StyledItem = styled.li`
     font-weight: 700;
     letter-spacing: 0.02rem;
     text-transform: uppercase;
-    background-color: ${({ theme }) => theme.colors.live[0]};
+    background-color: ${({ theme }) => theme.colors.red[0]};
     padding: 0.2rem 0.3rem;
     border-radius: 0.2rem;
-    color: ${({ theme }) => theme.colors.text[1]};
+    color: ${({ theme }) =>
+      theme.name === "light" ? theme.colors.text[1] : theme.colors.text[0]};
   }
 `;
 

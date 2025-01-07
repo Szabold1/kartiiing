@@ -23,6 +23,7 @@ export default function ChampionshipRaces({ championship, data, initialYear }) {
       items={Array.from(sortedRaces.keys())}
       btnLabel={activeYear}
       onItemSelect={(year) => setActiveYear(year)}
+      color="orange"
     >
       {sortedRaces.get(activeYear)?.map((race) => {
         if (race.championships.includes(championship)) {

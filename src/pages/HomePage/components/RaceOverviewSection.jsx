@@ -7,7 +7,7 @@ import StyledMessage from "@components/styled/StyledMessage";
 
 const StyledLink = styled.a`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.accent[0]};
+  color: ${({ theme }) => theme.colors.cyan[0]};
   padding: 0.6rem 0 0.5rem 0;
   text-align: center;
   border-radius: 0.5rem;
@@ -15,7 +15,7 @@ const StyledLink = styled.a`
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.accent[1]};
+    color: ${({ theme }) => theme.colors.cyan[1]};
   }
 `;
 

@@ -5,9 +5,9 @@ const StyledContent = styled.ul`
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.bg[1]};
   padding-top: 0.7rem;
-  border-top: 1px solid ${({ theme }) => theme.colors.accent[1]};
+  border-top: 1px solid ${({ theme, $color }) => theme.colors[$color][1]};
 `;
 
-export default function SectionContent({ children }) {
-  return <StyledContent>{children}</StyledContent>;
+export default function SectionContent({ color = "cyan", children }) {
+  return <StyledContent $color={color}>{children}</StyledContent>;
 }

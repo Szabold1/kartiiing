@@ -13,7 +13,7 @@ const StyledWrapper = styled.div`
   background: linear-gradient(
     to bottom right,
     ${({ theme }) => theme.colors.bg[0]},
-    ${({ theme }) => theme.colors.accent[2]} 50%
+    ${({ theme }) => theme.colors.cyan[2]} 50%
   );
 
   @media screen and (min-width: 40rem) {

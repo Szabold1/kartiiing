@@ -17,7 +17,7 @@ const StyledSummaryItem = styled.div`
 `;
 
 const StyledIconContainer = styled.span`
-  color: ${({ theme }) => theme.colors.accent[0]};
+  color: ${({ theme }) => theme.colors.cyan[0]};
 `;
 
 const StyledSummaryText = styled.span`
@@ -31,7 +31,7 @@ const StyledSummaryText = styled.span`
 
   &:hover {
     color: ${({ $onClick, theme }) =>
-      $onClick ? theme.colors.accent[0] : theme.colors.text[0]};
+      $onClick ? theme.colors.cyan[0] : theme.colors.text[0]};
   }
 `;
 

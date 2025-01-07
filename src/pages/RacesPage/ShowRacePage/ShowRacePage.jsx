@@ -19,10 +19,11 @@ const StyledLive = styled.div`
   font-weight: 700;
   letter-spacing: 0.02rem;
   text-transform: uppercase;
-  background-color: ${({ theme }) => theme.colors.live[0]};
+  background-color: ${({ theme }) => theme.colors.red[0]};
   padding: 0.3rem 0.5rem;
   border-radius: 0.3rem;
-  color: ${({ theme }) => theme.colors.text[1]};
+  color: ${({ theme }) =>
+    theme.name === "light" ? theme.colors.text[1] : theme.colors.text[0]};
 
   @media screen and (min-width: 50rem) {
     left: 1.6rem;

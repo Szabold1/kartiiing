@@ -11,7 +11,7 @@ const StyledDate = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.accent[2]};
+  background-color: ${({ theme }) => theme.colors.cyan[2]};
   box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
   font-weight: 500;
   position: relative;

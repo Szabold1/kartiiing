@@ -15,7 +15,7 @@ const StyledHeader = styled.h3`
   text-transform: uppercase;
   margin: 0.8rem 0 -0.1rem 0;
   padding: 0.15rem 0.9rem;
-  border-left: 0.2rem solid ${({ theme }) => theme.colors.accent[0]};
+  border-left: 0.2rem solid ${({ theme }) => theme.colors.orange[0]};
 `;
 
 export default function ShowChampionships({ race }) {

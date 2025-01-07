@@ -8,7 +8,7 @@ const StyledDropdown = styled.div`
   left: 0;
   top: 3rem;
   background-color: ${({ theme }) => theme.colors.bg[1]};
-  border: 1.5px solid ${({ theme }) => theme.colors.accent[0]};
+  border: 1.5px solid ${({ theme, $color }) => theme.colors[$color][0]};
   box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   padding: 0.3rem;
@@ -29,11 +29,11 @@ const StyledDropdown = styled.div`
     padding: 0.6rem;
     border-radius: 0.4rem;
     cursor: pointer;
-    color: ${({ theme }) => theme.colors.accent[0]};
+    color: ${({ theme, $color }) => theme.colors[$color][0]};
     transition: all 0.15s ease-in-out;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.accent[2]};
+      background-color: ${({ theme, $color }) => theme.colors[$color][2]};
     }
   }
 `;
@@ -43,6 +43,7 @@ export default function BtnDropdown({
   onItemSelect,
   buttonLabel,
   itemLabel,
+  color = "cyan",
 }) {
   const ref = useRef();
   const [showDropdown, setShowDropdown] = useState(false);
@@ -76,14 +77,14 @@ export default function BtnDropdown({
 
   return (
     <div style={{ position: "relative" }} ref={ref}>
-      <Btn onClick={handleButtonClick}>
+      <Btn onClick={handleButtonClick} color={color}>
         {buttonLabel}
         <span style={{ marginRight: "-0.15rem", display: "flex" }}>
           {showDropdown ? <IoChevronUpOutline /> : <IoChevronDownOutline />}
         </span>
       </Btn>
 
-      <StyledDropdown $show={showDropdown}>
+      <StyledDropdown $show={showDropdown} $color={color}>
         {items?.map((item, index) => (
           <span key={index} onClick={() => handleItemClick(item)}>
             {item[itemLabel] ? item[itemLabel] : item}

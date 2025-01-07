@@ -71,11 +71,11 @@ const StyledNavLink = styled(NavLink)`
   transition: all 0.25s ease-in-out;
 
   &.active {
-    background-color: ${({ theme }) => theme.colors.accent[1]};
+    background-color: ${({ theme }) => theme.colors.cyan[1]};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.accent[2]};
+    background-color: ${({ theme }) => theme.colors.cyan[2]};
   }
 `;
 
