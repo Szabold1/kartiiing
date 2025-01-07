@@ -9,7 +9,7 @@ import {
   formatDate,
   getYearsAndDaysDifference,
 } from "@utils/date";
-import { openGoogleMaps } from "@utils/location";
+import { useNavigate } from "react-router-dom";
 import RenderArray from "@components/General/RenderArray";
 import Section from "@components/Section/Section";
 import SummaryItem from "@components/General/SummaryItem";
@@ -59,6 +59,7 @@ function renderPastDate(years, days) {
 }
 
 export default function ShowRaceSummary({ race }) {
+  const navigate = useNavigate();
   const {
     start_date,
     end_date,
@@ -68,6 +69,14 @@ export default function ShowRaceSummary({ race }) {
   } = race;
   const formattedStartDate = formatDate(start_date);
   const formattedEndDate = formatDate(end_date);
+
+  function getCircuitPageName(circuit) {
+    const formattedCircuitName = circuit.circuit_name
+      .toLowerCase()
+      .replaceAll(" ", "-");
+
+    return `/circuits/${formattedCircuitName}`;
+  }
 
   return (
     <Section title="Summary" titleSize="1.25rem" stickyHeader={false}>
@@ -82,9 +91,7 @@ export default function ShowRaceSummary({ race }) {
       {circuit && circuit.circuit_name && circuit.countries?.name && (
         <SummaryItem
           icon={IoLocationOutline}
-          onClick={() =>
-            openGoogleMaps(`${circuit.circuit_name}, ${circuit.countries.name}`)
-          }
+          onClick={() => navigate(getCircuitPageName(circuit))}
         >
           {circuit.circuit_name}, {circuit.countries.name}
         </SummaryItem>

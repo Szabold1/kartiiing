@@ -12,7 +12,7 @@ export default function ShowCircuitPage() {
 
   // Find the circuit based on the url
   const circuit = circuits.find(
-    (circuit) => circuit.circuit_name.toLowerCase().replaceAll(" ", "_") === url
+    (circuit) => circuit.circuit_name.toLowerCase().replaceAll(" ", "-") === url
   );
 
   if (isFetching) {
