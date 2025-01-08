@@ -23,6 +23,10 @@ export const data = {
     },
   },
   championships: [
+    "BKC Rotax",
+    "BKC IAME",
+    "BKC KZ2",
+    "BKC Honda",
     "Champions of the Future",
     "FIA Academy Trophy",
     "FIA CEZ",
@@ -40,6 +44,7 @@ export const data = {
     "RMC Euro Trophy",
     "RMC Germany",
     "RMC Grand Finals",
+    "RMC Grand Festival",
     "RMC Hungary",
     "RMC International Trophy",
     "RMC SSC",
