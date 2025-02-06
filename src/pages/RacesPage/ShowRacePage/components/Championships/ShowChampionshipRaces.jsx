@@ -7,12 +7,15 @@ import {
   filterByChampionships,
 } from "@utils/racesFilter";
 
-export default function ChampionshipRaces({ championship, data, initialYear }) {
+export default function ShowChampionshipRaces({
+  championship,
+  data,
+  initialYear,
+}) {
   const [activeYear, setActiveYear] = useState(initialYear);
 
-  const filtered = filterByChampionships(data, [championship]);
   const sortedRaces = sortIntoGroups(
-    sortRaces(filtered, "ascending"),
+    sortRaces(filterByChampionships(data, [championship]), "ascending"),
     "ascending"
   );
 
