@@ -5,6 +5,7 @@ import StyledMessage from "@components/styled/StyledMessage";
 import StyledPageContentWrapper from "@components/styled/StyledPageContentWrapper";
 import ShowCircuitHeader from "@pages/CircuitsPage/ShowCircuitPage/components/ShowCircuitHeader";
 import ShowCircuitSummary from "@pages/CircuitsPage/ShowCircuitPage/components/ShowCircuitSummary";
+import ShowCircuitRaces from "@components/Circuits/ShowCircuitRaces";
 
 export default function ShowCircuitPage() {
   const { circuitName: url } = useParams();
@@ -25,8 +26,11 @@ export default function ShowCircuitPage() {
   return (
     <>
       <ShowCircuitHeader circuit={circuit} />
-      <StyledPageContentWrapper>
+      <StyledPageContentWrapper
+        style={{ display: "flex", flexDirection: "column", gap: "1.8rem" }}
+      >
         <ShowCircuitSummary circuit={circuit} />
+        <ShowCircuitRaces circuitName={circuit.location_name} />
       </StyledPageContentWrapper>
     </>
   );

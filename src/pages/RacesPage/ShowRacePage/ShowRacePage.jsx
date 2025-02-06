@@ -7,6 +7,8 @@ import ShowRaceBtns from "@pages/RacesPage/ShowRacePage/components/ShowRaceBtns"
 import ShowRaceHeader from "@pages/RacesPage/ShowRacePage/components/ShowRaceHeader";
 import ShowRaceSummary from "@pages/RacesPage/ShowRacePage/components/ShowRaceSummary";
 import ShowChampionships from "@pages/RacesPage/ShowRacePage/components/Championships/ShowChampionships";
+import ShowCircuitRaces from "@components/Circuits/ShowCircuitRaces";
+import StyledH3 from "@components/styled/StyledH3";
 
 const StyledLive = styled.div`
   z-index: 2;
@@ -68,6 +70,15 @@ export default function ShowRacePage() {
         <StyledTables>
           <ShowRaceSummary race={race} />
           <ShowChampionships race={race} />
+          <div
+            style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
+          >
+            <StyledH3 color="lime">Circuit</StyledH3>
+            <ShowCircuitRaces
+              circuitName={race.circuits.location_name}
+              initialYear={race.end_date.slice(0, 4)}
+            />
+          </div>
         </StyledTables>
       </StyledPageContentWrapper>
     </>

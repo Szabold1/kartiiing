@@ -111,6 +111,14 @@ function filterByCountries(races, countries) {
   );
 }
 
+// Takes 'races' (array of races (objects)) and 'circuit' (string containing circuit name)
+function filterByCircuit(races, circuit) {
+  console.log(races);
+  return races.filter((race) =>
+    race.circuits.location_name.toLowerCase().includes(circuit.toLowerCase())
+  );
+}
+
 // Takes 'races' (array of races (objects)) and 'sorting' (string containing 'ascending' or 'descending')
 // Returns sorted races by year as a map
 function sortIntoGroups(races, sorting) {
@@ -208,4 +216,5 @@ export {
   sortRaces,
   sortIntoGroups,
   filterByChampionships,
+  filterByCircuit,
 };
