@@ -4,6 +4,7 @@ const StyledHeader = styled.h2`
   font-weight: 500;
   letter-spacing: 0.04rem;
   padding: 0.5rem 0.75rem;
+  margin-bottom: 0.25rem;
   top: 4.15rem;
   background-color: inherit;
   z-index: 5;

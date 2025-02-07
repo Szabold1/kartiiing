@@ -7,11 +7,12 @@ export default function Section({
   title,
   titleSize = "1.5rem",
   stickyHeader = true,
+  color = "cyan",
 }) {
   return (
     <SectionContainer>
       <SectionHeader title={title} fontSize={titleSize} sticky={stickyHeader} />
-      <SectionContent>{children}</SectionContent>
+      <SectionContent color={color}>{children}</SectionContent>
     </SectionContainer>
   );
 }

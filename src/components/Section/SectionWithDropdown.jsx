@@ -8,7 +8,7 @@ const StyledHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.15rem;
 
   > :last-child {
     padding-right: 0.15rem;
