@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useRaces from "@hooks/useRaces";
 import StyledMessage from "@components/styled/StyledMessage";
 import SectionWithDropdown from "@components/Section/SectionWithDropdown";
@@ -18,12 +18,18 @@ export default function ShowCircuitRaces({
   );
 
   const availableYears = Array.from(sortedRaces.keys());
+  const [activeYear, setActiveYear] = useState(initialYear);
 
-  const [activeYear, setActiveYear] = useState(
-    availableYears.includes(initialYear)
-      ? initialYear
-      : availableYears[availableYears.length - 1]
-  );
+  // Update active year if the initial year is not available
+  useEffect(() => {
+    if (availableYears.length > 0) {
+      setActiveYear((prev) =>
+        availableYears.includes(prev)
+          ? prev
+          : availableYears[availableYears.length - 1]
+      );
+    }
+  }, [availableYears]);
 
   if (isFetching) {
     return <StyledMessage>Loading...</StyledMessage>;
