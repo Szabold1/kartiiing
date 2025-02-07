@@ -113,9 +113,9 @@ function filterByCountries(races, countries) {
 
 // Takes 'races' (array of races (objects)) and 'circuit' (string containing circuit name)
 function filterByCircuit(races, circuit) {
-  console.log(races);
-  return races.filter((race) =>
-    race.circuits.location_name.toLowerCase().includes(circuit.toLowerCase())
+  return races.filter(
+    (race) =>
+      race.circuits.location_name.toLowerCase() === circuit.toLowerCase()
   );
 }
 
