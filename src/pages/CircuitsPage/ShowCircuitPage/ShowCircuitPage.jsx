@@ -6,6 +6,7 @@ import StyledPageContentWrapper from "@components/styled/StyledPageContentWrappe
 import ShowCircuitHeader from "@pages/CircuitsPage/ShowCircuitPage/components/ShowCircuitHeader";
 import ShowCircuitSummary from "@pages/CircuitsPage/ShowCircuitPage/components/ShowCircuitSummary";
 import ShowCircuitRaces from "@components/Circuits/ShowCircuitRaces";
+import ShowCircuitsNearby from "@components/Circuits/ShowCircuitsNearby";
 
 export default function ShowCircuitPage() {
   const { circuitName: url } = useParams();
@@ -31,6 +32,7 @@ export default function ShowCircuitPage() {
       >
         <ShowCircuitSummary circuit={circuit} />
         <ShowCircuitRaces circuitName={circuit.location_name} />
+        <ShowCircuitsNearby circuit={circuit} />
       </StyledPageContentWrapper>
     </>
   );

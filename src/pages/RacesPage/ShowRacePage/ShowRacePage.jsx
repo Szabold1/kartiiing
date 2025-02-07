@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import useRaces from "@hooks/useRaces";
+import useCircuits from "@hooks/useCircuits";
 import StyledMessage from "@components/styled/StyledMessage";
 import StyledPageContentWrapper from "@components/styled/StyledPageContentWrapper";
 import ShowRaceBtns from "@pages/RacesPage/ShowRacePage/components/ShowRaceBtns";
@@ -9,6 +10,7 @@ import ShowRaceSummary from "@pages/RacesPage/ShowRacePage/components/ShowRaceSu
 import ShowChampionships from "@pages/RacesPage/ShowRacePage/components/Championships/ShowChampionships";
 import ShowCircuitRaces from "@components/Circuits/ShowCircuitRaces";
 import StyledH3 from "@components/styled/StyledH3";
+import ShowCircuitsNearby from "@components/Circuits/ShowCircuitsNearby";
 
 const StyledLive = styled.div`
   z-index: 2;
@@ -44,6 +46,7 @@ const StyledTables = styled.div`
 export default function ShowRacePage() {
   const { raceName_date: url } = useParams();
   const { data: races, isFetching } = useRaces();
+  const { data: circuits } = useCircuits();
 
   // Find the race based on the url
   const [seriesName, endDate] = url.split("_");
@@ -77,7 +80,11 @@ export default function ShowRacePage() {
             <ShowCircuitRaces
               circuitName={race.circuits.location_name}
               initialYear={race.end_date.slice(0, 4)}
-              title={`More Races in ${race.circuits.location_name}`}
+            />
+            <ShowCircuitsNearby
+              circuit={circuits.find(
+                (circuit) => circuit.id === race.circuits.id
+              )}
             />
           </div>
         </StyledTables>
