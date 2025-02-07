@@ -7,6 +7,7 @@ import { sortRaces, sortIntoGroups, filterByCircuit } from "@utils/racesFilter";
 
 export default function ShowCircuitRaces({
   circuitName,
+  title = `Races in ${circuitName}`,
   initialYear = new Date().getFullYear().toString(),
 }) {
   const { data: races, isFetching } = useRaces();
@@ -33,7 +34,7 @@ export default function ShowCircuitRaces({
 
   return (
     <SectionWithDropdown
-      title={`More races in ${circuitName}`}
+      title={title}
       titleSize="1.25rem"
       items={Array.from(sortedRaces.keys())}
       btnLabel={activeYear}

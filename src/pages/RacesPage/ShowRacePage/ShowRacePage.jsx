@@ -77,6 +77,7 @@ export default function ShowRacePage() {
             <ShowCircuitRaces
               circuitName={race.circuits.location_name}
               initialYear={race.end_date.slice(0, 4)}
+              title={`More Races in ${race.circuits.location_name}`}
             />
           </div>
         </StyledTables>
