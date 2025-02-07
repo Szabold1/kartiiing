@@ -35,10 +35,11 @@ const StyledNumData = styled.span`
 export default function CircuitItem({
   showLength = false,
   showDistance = false,
+  distanceKm,
   circuit,
 }) {
   const navigate = useNavigate();
-  const { countries, distanceKm, length } = circuit;
+  const { countries, length } = circuit;
 
   function handleClick() {
     const circuitName = circuit.circuit_name.toLowerCase().replaceAll(" ", "-");

@@ -38,6 +38,7 @@ export default function CircuitList({ appliedFilters, isFetching, circuits }) {
             circuit={circuit}
             showLength={showLength}
             showDistance={showDistance}
+            distanceKm={circuit.distanceKm}
           />
         ))}
       </Section>

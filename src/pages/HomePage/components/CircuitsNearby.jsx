@@ -60,7 +60,12 @@ export default function CircuitsNearby() {
       {!isFetching && (
         <StyledItems>
           {circuits?.map((circuit) => (
-            <CircuitItem key={circuit.id} showDistance circuit={circuit} />
+            <CircuitItem
+              key={circuit.id}
+              showDistance
+              distanceKm={circuit.distanceKm}
+              circuit={circuit}
+            />
           ))}
         </StyledItems>
       )}
