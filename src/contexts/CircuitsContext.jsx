@@ -32,15 +32,33 @@ function CircuitsProvider({ children, filterKeys, defaultFilterValues }) {
         return;
       }
 
-      // Add distances to circuits
-      const enrichedCircuits = data.map((circuit) => {
+      // For each circuit, add the distances to all other circuits and the distance to the user
+      const enrichedCircuits = data.map((circuitA) => {
+        const distances = data
+          .filter((circuitB) => circuitA.id !== circuitB.id)
+          .map((circuitB) => {
+            if (circuitA.id === circuitB.id) return {};
+
+            const id = circuitB.id;
+            const distanceKm = calculateDistance(
+              circuitA.latitude,
+              circuitA.longitude,
+              circuitB.latitude,
+              circuitB.longitude
+            );
+
+            return { id, distanceKm };
+          })
+          .sort((a, b) => a.distanceKm - b.distanceKm);
+
         const distanceKm = calculateDistance(
           userLocation?.lat,
           userLocation?.lon,
-          circuit.latitude,
-          circuit.longitude
+          circuitA.latitude,
+          circuitA.longitude
         );
-        return { ...circuit, distanceKm };
+
+        return { ...circuitA, distanceKm, distancesToOtherCircuits: distances };
       });
 
       setCircuits(enrichedCircuits);
