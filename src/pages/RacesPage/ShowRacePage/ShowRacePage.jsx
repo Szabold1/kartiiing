@@ -76,7 +76,7 @@ export default function ShowRacePage() {
           <div
             style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
           >
-            <StyledH3 color="lime">Circuit</StyledH3>
+            <StyledH3 color="green">Circuit</StyledH3>
             <ShowCircuitRaces
               circuitName={race.circuits.location_name}
               initialYear={race.end_date.slice(0, 4)}

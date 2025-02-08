@@ -10,6 +10,6 @@ const StyledHeader = styled.h3`
   border-left: 0.2rem solid ${({ theme, $color }) => theme.colors[$color][0]};
 `;
 
-export default function StyledH3({ children, color = "cyan" }) {
+export default function StyledH3({ children, color = "blue" }) {
   return <StyledHeader $color={color}>{children}</StyledHeader>;
 }

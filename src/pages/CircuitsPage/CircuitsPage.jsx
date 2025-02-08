@@ -15,7 +15,11 @@ export default function CircuitsPage() {
   return (
     <StyledWrapper>
       <PageHeader title="Circuits" introText={introText}>
-        <Filters context={CircuitsContext} appliedFilters={appliedFilters} />
+        <Filters
+          context={CircuitsContext}
+          appliedFilters={appliedFilters}
+          color="green"
+        />
       </PageHeader>
 
       <CircuitList

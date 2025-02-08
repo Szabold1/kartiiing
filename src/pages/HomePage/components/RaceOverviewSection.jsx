@@ -1,23 +1,9 @@
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import useRaces from "@hooks/useRaces";
 import Section from "@components/Section/Section";
 import RaceItem from "@components/Races/RaceItem/RaceItem";
 import StyledMessage from "@components/styled/StyledMessage";
-
-const StyledLink = styled.a`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.cyan[0]};
-  padding: 0.6rem 0 0.5rem 0;
-  text-align: center;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.cyan[1]};
-  }
-`;
+import StyledLink from "@components/styled/StyledLink";
 
 export default function RaceOverviewSection({ title, races }) {
   const { isFetching, resetFilters, handleFilterChange } = useRaces();

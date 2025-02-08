@@ -12,7 +12,7 @@ const StyledItem = styled.li`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.bg[2]};
+    background-color: ${({ theme }) => theme.colors.bg[3]};
   }
 `;
 

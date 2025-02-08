@@ -17,7 +17,7 @@ const StyledSummaryItem = styled.div`
 `;
 
 const StyledIconContainer = styled.span`
-  color: ${({ theme }) => theme.colors.cyan[0]};
+  color: ${({ theme, $color }) => theme.colors[$color][0]};
 `;
 
 const StyledSummaryText = styled.span`
@@ -30,21 +30,26 @@ const StyledSummaryText = styled.span`
   cursor: ${({ $onClick }) => ($onClick ? "pointer" : "text")};
 
   &:hover {
-    color: ${({ $onClick, theme }) =>
-      $onClick ? theme.colors.cyan[0] : theme.colors.text[0]};
+    color: ${({ $onClick, theme, $color }) =>
+      $onClick ? theme.colors[$color][0] : theme.colors.text[0]};
   }
 `;
 
-export default function SummaryItem({ icon: Icon, onClick, children }) {
+export default function SummaryItem({
+  icon: Icon,
+  onClick,
+  color = "blue",
+  children,
+}) {
   return (
     <StyledSummaryItem>
       {Icon && (
-        <StyledIconContainer>
+        <StyledIconContainer $color={color}>
           <Icon size={22} />
         </StyledIconContainer>
       )}
 
-      <StyledSummaryText $onClick={onClick} onClick={onClick}>
+      <StyledSummaryText $onClick={onClick} onClick={onClick} $color={color}>
         {children}
       </StyledSummaryText>
     </StyledSummaryItem>

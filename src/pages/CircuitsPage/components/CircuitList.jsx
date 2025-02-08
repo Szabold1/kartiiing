@@ -31,7 +31,7 @@ export default function CircuitList({ appliedFilters, isFetching, circuits }) {
 
   return (
     <StyledContainer>
-      <Section title={title}>
+      <Section title={title} color="green">
         {circuits.map((circuit) => (
           <CircuitItem
             key={circuit.id}

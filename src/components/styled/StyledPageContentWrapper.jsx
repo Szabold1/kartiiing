@@ -6,8 +6,7 @@ const StyledPageContentWrapper = styled.div`
   margin-top: 0;
   margin-bottom: 2rem;
   padding: 1.3rem 1rem;
-  background-color: ${({ theme }) =>
-    theme.name === "dark" ? "rgb(0, 17, 27)" : "rgb(240, 244, 244)"};
+  background-color: ${({ theme }) => theme.colors.bg[0]};
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
   position: relative;
 

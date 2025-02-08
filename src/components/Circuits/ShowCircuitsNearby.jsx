@@ -26,7 +26,7 @@ export default function ShowCircuitsNearby({ circuit }) {
       title={`Circuits near ${circuit.location_name}`}
       titleSize={"1.25rem"}
       stickyHeader={false}
-      color="lime"
+      color="green"
     >
       {isFetching && (
         <StyledMessage style={{ margin: "8rem 0", fontSize: "1.25rem" }}>

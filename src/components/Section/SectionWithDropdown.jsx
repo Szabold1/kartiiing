@@ -22,7 +22,7 @@ export default function SectionWithDropdown({
   items = [],
   btnLabel,
   onItemSelect,
-  color = "cyan",
+  color = "blue",
 }) {
   return (
     <SectionContainer>

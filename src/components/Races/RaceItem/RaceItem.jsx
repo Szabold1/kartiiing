@@ -15,7 +15,7 @@ const StyledItem = styled.li`
   border-radius: 0.6rem;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.bg[2]};
+    background-color: ${({ theme }) => theme.colors.bg[3]};
   }
 
   > .live {
@@ -35,7 +35,7 @@ const StyledItem = styled.li`
   }
 `;
 
-export default function RaceItem({ race }) {
+export default function RaceItem({ race, color = "blue" }) {
   const navigate = useNavigate();
   const containerWidth = useContext(WidthContext);
 
@@ -49,8 +49,8 @@ export default function RaceItem({ race }) {
     <StyledItem $cWidth={containerWidth} onClick={handleClick}>
       {race.status === "ongoing" ? <span className="live">live</span> : null}
 
-      <RaceItemDate date={race.end_date} />
-      <RaceItemContent race={race} />
+      <RaceItemDate date={race.end_date} color={color} />
+      <RaceItemContent race={race} color={color} />
     </StyledItem>
   );
 }

@@ -38,10 +38,13 @@ export default function ShowRaceBtns({ race }) {
       )}
 
       {results_links?.length === 1 && (
-        <Btn onClick={() => openLink(results_links[0].url)}>Results</Btn>
+        <Btn color="cyan" onClick={() => openLink(results_links[0].url)}>
+          Results
+        </Btn>
       )}
       {results_links?.length > 1 && (
         <Dropdown
+          color="cyan"
           items={results_links}
           onItemSelect={(item) => openLink(item.url)}
           buttonLabel="Results"

@@ -9,16 +9,19 @@ export default function useNavLinks() {
     {
       path: "/",
       label: "Home",
+      color: "gray",
       resetFilters: () => resetCircuitFilters("toDefault"),
     },
     {
       path: "/races",
       label: "Races",
+      color: "blue",
       resetFilters: () => resetRacesFilters("toDefault"),
     },
     {
       path: "/circuits",
       label: "Circuits",
+      color: "green",
       resetFilters: () => resetCircuitFilters("toDefault"),
     },
     // { path: "/results", label: "Results" },

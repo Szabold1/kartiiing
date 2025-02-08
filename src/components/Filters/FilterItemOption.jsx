@@ -7,7 +7,7 @@ const StyledOption = styled.span`
   gap: 0.4rem;
   padding: 0.6rem 0.85rem;
   border-radius: 0.5rem;
-  border: 1.5px solid ${({ theme }) => theme.colors.cyan[1]};
+  border: 1.5px solid ${({ theme, $color }) => theme.colors[$color][1]};
   font-size: 1.1rem;
   letter-spacing: 0.05rem;
   cursor: pointer;
@@ -15,11 +15,12 @@ const StyledOption = styled.span`
   min-width: max-content;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.cyan[2]};
+    background-color: ${({ theme, $color }) => theme.colors[$color][2]};
   }
 
   &.chosen {
-    background-color: ${({ theme }) => theme.colors.cyan[1]};
+    background-color: ${({ theme, $color }) => theme.colors[$color][1]};
+    color: ${({ theme }) => theme.colors.text[1]};
   }
 `;
 
@@ -28,11 +29,13 @@ export default function FilterItemOption({
   optionValue,
   selectedValues,
   onOptionClick,
+  color = "blue",
 }) {
   const sortingValue = optionValue.slice(0, optionValue.indexOf(" "));
 
   return (
     <StyledOption
+      $color={color}
       onClick={() => onOptionClick(optionValue)}
       className={selectedValues.includes(optionValue) ? "chosen" : ""}
     >

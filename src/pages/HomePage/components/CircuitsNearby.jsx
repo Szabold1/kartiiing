@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import Section from "@components/Section/Section";
 import StyledMessage from "@components/styled/StyledMessage";
+import StyledLink from "@components/styled/StyledLink";
 import CircuitItem from "@components/Circuits/CircuitItem/CircuitItem";
 import useLocation from "@hooks/useLocation";
 import useCircuits from "@hooks/useCircuits";
@@ -12,21 +13,6 @@ const StyledItems = styled.ol`
 
   @media screen and (min-width: 67rem) {
     max-height: 42rem;
-  }
-`;
-
-const StyledLink = styled.a`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.cyan[0]};
-  padding: 0.6rem 0 0.5rem 0;
-  text-align: center;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  margin-top: auto;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.cyan[1]};
   }
 `;
 
@@ -50,6 +36,7 @@ export default function CircuitsNearby() {
       title={`Circuits near ${locationName}`}
       titleSize={"1.25rem"}
       stickyHeader={false}
+      color="green"
     >
       {isFetching && (
         <StyledMessage style={{ margin: "8rem 0", fontSize: "1.25rem" }}>
@@ -70,7 +57,9 @@ export default function CircuitsNearby() {
         </StyledItems>
       )}
 
-      <StyledLink onClick={handleViewAllClick}>View all</StyledLink>
+      <StyledLink onClick={handleViewAllClick} color="green">
+        View all
+      </StyledLink>
     </Section>
   );
 }

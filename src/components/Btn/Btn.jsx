@@ -33,7 +33,7 @@ const StyledBtn = styled.button`
   }
 `;
 
-export default function Btn({ children, onClick, color = "cyan" }) {
+export default function Btn({ children, onClick, color = "blue" }) {
   return (
     <StyledBtn $color={color} onClick={onClick}>
       {children}

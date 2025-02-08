@@ -11,7 +11,7 @@ const StyledDate = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.cyan[2]};
+  background-color: ${({ theme, $color }) => theme.colors[$color][2]};
   box-shadow: 0 0 0.1rem rgba(0, 0, 0, 0.1);
   font-weight: 500;
   position: relative;
@@ -35,19 +35,19 @@ function formatDate(date) {
   return { day, month };
 }
 
-export default function RaceItemDate({ date }) {
+export default function RaceItemDate({ date, color = "blue" }) {
   const { day, month } = formatDate(date);
 
   if (!date) {
     return (
-      <StyledDate>
+      <StyledDate $color={color}>
         <span style={{ fontSize: "0.9rem" }}>TBD</span>
       </StyledDate>
     );
   }
 
   return (
-    <StyledDate>
+    <StyledDate $color={color}>
       <span className="month">{month}</span>
       <span>{day}</span>
     </StyledDate>

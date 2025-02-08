@@ -7,7 +7,7 @@ import StyledNavLink from "@components/styled/StyledNavLink";
 import useNavLinks from "@hooks/useNavLinks";
 
 const StyledNavHeader = styled.nav`
-  background-color: ${({ theme }) => theme.colors.bg[5]};
+  background-color: ${({ theme }) => theme.colors.bg[0]};
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
@@ -19,9 +19,6 @@ const StyledNavHeader = styled.nav`
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     cursor: pointer;
-    & span {
-      color: rgb(0, 222, 222);
-    }
 
     @media screen and (min-width: 70rem) {
       font-size: 1.9rem;
@@ -85,7 +82,12 @@ export default function NavHeader() {
           onClick={handleHomeClick}
           style={{ padding: "1rem" }}
         >
-          Kart<span>iiing</span>
+          Kart
+          <span style={{ color: "rgb(229,44,44) " }}>i</span>
+          <span style={{ color: "rgb(0, 110, 229)" }}>i</span>
+          <span style={{ color: "rgb(255, 215, 0)" }}>i</span>
+          <span style={{ color: "rgb(0,229,91)" }}>n</span>
+          <span style={{ color: "rgb(255,107,0)" }}>g</span>
         </StyledNavLink>
       </h1>
 

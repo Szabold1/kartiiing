@@ -9,17 +9,25 @@ const StyledContent = styled.div`
 
   font-size: 1.1rem;
   letter-spacing: 0.03rem;
+
+  h4 {
+    font-weight: 500;
+  }
+
+  span.separator {
+    color: ${({ theme, $color }) => theme.colors[$color][0]};
+  }
 `;
 
-export default function CircuitItemContent({ circuit }) {
+export default function CircuitItemContent({ circuit, color = "green" }) {
   const width = useContext(WidthContext);
 
   return (
-    <StyledContent>
-      <h4 style={{ fontWeight: "500" }}>{circuit.location_name}</h4>
+    <StyledContent $color={color}>
+      <h4>{circuit.location_name}</h4>
       {width > 640 && (
         <>
-          <span style={{ color: "rgb(0, 180, 180)" }}>&middot;</span>
+          <span className="separator">&middot;</span>
           <span>{circuit.circuit_name}</span>
         </>
       )}

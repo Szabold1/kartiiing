@@ -19,7 +19,7 @@ const StyledActiveOption = styled.span`
   gap: 0.4rem;
   padding: 0.7rem 0.9rem;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.cyan[2]};
+  background-color: ${({ theme, $color }) => theme.colors[$color][2]};
   letter-spacing: 0.05rem;
   cursor: default;
   transition: all 0.15s ease-in-out;
@@ -31,13 +31,13 @@ const StyledIcon = styled.span`
   margin-right: -0.15rem;
 `;
 
-export default function ActiveFilters({ appliedFilters }) {
+export default function ActiveFilters({ appliedFilters, color = "blue" }) {
   return (
     <StyledActiveFilters>
       {Object.entries(appliedFilters).map(([key, values]) => {
         if (values?.length > 0) {
           return values.map((value) => (
-            <StyledActiveOption key={key + value}>
+            <StyledActiveOption key={key + value} $color={color}>
               {key !== "sorting" && value}
               {key === "sorting" && value.substring(0, value.indexOf(" "))}
               {key === "sorting" && (

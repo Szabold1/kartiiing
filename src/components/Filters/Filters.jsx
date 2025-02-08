@@ -25,7 +25,7 @@ const StyledFiltersBar = styled.div`
   width: 100%;
   padding: 0.6rem 1.5rem;
   border-radius: 0.5rem;
-  background-color: ${({ theme }) => theme.colors.cyan[0]};
+  background-color: ${({ theme, $color }) => theme.colors[$color][0]};
   color: ${({ theme }) => theme.colors.text[1]};
   font-size: 1.1rem;
   letter-spacing: 0.05rem;
@@ -33,7 +33,7 @@ const StyledFiltersBar = styled.div`
   transition: background-color 0.15s ease-in-out;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.cyan[1]};
+    background-color: ${({ theme, $color }) => theme.colors[$color][1]};
   }
 
   @media screen and (min-width: 70rem) {
@@ -41,7 +41,7 @@ const StyledFiltersBar = styled.div`
   }
 `;
 
-export default function Filters({ context, appliedFilters }) {
+export default function Filters({ context, appliedFilters, color = "blue" }) {
   const [showFilters, setShowFilters] = useState(false);
 
   // Show/hide filters
@@ -51,18 +51,19 @@ export default function Filters({ context, appliedFilters }) {
 
   return (
     <StyledFilters>
-      <StyledFiltersBar onClick={handleShowFiltersClick}>
+      <StyledFiltersBar $color={color} onClick={handleShowFiltersClick}>
         <span>Filter & Sort</span>
         <IoOptions size="20" />
       </StyledFiltersBar>
 
-      <ActiveFilters appliedFilters={appliedFilters} />
+      <ActiveFilters appliedFilters={appliedFilters} color={color} />
 
       <ModalBackdrop show={showFilters} onClose={handleShowFiltersClick}>
         <FiltersModal
           showFilters={showFilters}
           onShowFiltersClick={handleShowFiltersClick}
           context={context}
+          color={color}
         />
       </ModalBackdrop>
     </StyledFilters>

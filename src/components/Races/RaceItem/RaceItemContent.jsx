@@ -11,7 +11,7 @@ const StyledContent = styled.div`
   width: 100%;
 
   .separator {
-    color: ${({ theme }) => theme.colors.cyan[0]};
+    color: ${({ theme, $color }) => theme.colors[$color][0]};
   }
 `;
 
@@ -67,12 +67,12 @@ const StyledCategories = styled.div`
   margin-right: 0.5rem;
 `;
 
-export default function RaceItemContent({ race }) {
+export default function RaceItemContent({ race, color = "blue" }) {
   const { circuits: circuit, series, engine_type } = race;
   const containerWidth = useContext(WidthContext);
 
   return (
-    <StyledContent $cWidth={containerWidth}>
+    <StyledContent $cWidth={containerWidth} $color={color}>
       <StyledRaceName $cWidth={containerWidth}>
         <RenderArray array={series} sort />
       </StyledRaceName>

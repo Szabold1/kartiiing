@@ -14,7 +14,7 @@ const StyledDropdown = styled.div`
   padding: 0.3rem;
   z-index: 10;
   width: max-content;
-  max-height: 12rem;
+  max-height: 13.2rem;
   overflow-y: auto;
   scrollbar-width: thin;
   transition: visibility 0.15s ease-in-out, opacity 0.15s ease-in-out;
@@ -26,7 +26,7 @@ const StyledDropdown = styled.div`
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.6rem;
+    padding: 0.65rem;
     border-radius: 0.4rem;
     cursor: pointer;
     color: ${({ theme, $color }) => theme.colors[$color][0]};
@@ -43,7 +43,7 @@ export default function BtnDropdown({
   onItemSelect,
   buttonLabel,
   itemLabel,
-  color = "cyan",
+  color = "blue",
 }) {
   const ref = useRef();
   const [showDropdown, setShowDropdown] = useState(false);

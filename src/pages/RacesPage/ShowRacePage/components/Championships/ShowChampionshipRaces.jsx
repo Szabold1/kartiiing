@@ -30,7 +30,7 @@ export default function ShowChampionshipRaces({
     >
       {sortedRaces.get(activeYear)?.map((race) => {
         if (race.championships.includes(championship)) {
-          return <RaceItem key={race.id} race={race} />;
+          return <RaceItem key={race.id} race={race} color="orange" />;
         }
       })}
     </SectionWithDropdown>

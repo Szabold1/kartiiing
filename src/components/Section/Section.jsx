@@ -7,7 +7,7 @@ export default function Section({
   title,
   titleSize = "1.5rem",
   stickyHeader = true,
-  color = "cyan",
+  color = "blue",
 }) {
   return (
     <SectionContainer>

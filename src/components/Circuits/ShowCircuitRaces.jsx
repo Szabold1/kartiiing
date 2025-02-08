@@ -45,10 +45,10 @@ export default function ShowCircuitRaces({
       items={Array.from(sortedRaces.keys())}
       btnLabel={activeYear}
       onItemSelect={(year) => setActiveYear(year)}
-      color="lime"
+      color="green"
     >
       {sortedRaces.get(activeYear)?.map((race) => {
-        return <RaceItem key={race.id} race={race} />;
+        return <RaceItem key={race.id} race={race} color="green" />;
       })}
     </SectionWithDropdown>
   );

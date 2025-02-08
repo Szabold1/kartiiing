@@ -21,7 +21,7 @@ const StyledOptions = styled.div`
   gap: 0.5rem;
 `;
 
-export default function FilterItem({ context, name, options }) {
+export default function FilterItem({ context, name, options, color = "blue" }) {
   const { handleFilterChange, appliedFilters, defaultFilterValues } =
     useContext(context);
   const [selectedValues, setSelectedValues] = useState(
@@ -67,6 +67,7 @@ export default function FilterItem({ context, name, options }) {
             optionValue={option}
             selectedValues={selectedValues}
             onOptionClick={handleOptionClick}
+            color={color}
           />
         ))}
       </StyledOptions>

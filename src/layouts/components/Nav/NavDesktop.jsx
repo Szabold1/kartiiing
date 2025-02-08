@@ -14,12 +14,20 @@ const StyledNavLink = styled(NavLink)`
   cursor: pointer;
   transition: all 0.25s ease-in-out;
 
+  span {
+    padding: 0.35rem;
+  }
+
   &.active {
-    color: rgb(0, 222, 222);
+    span {
+      border-bottom: 2px solid ${({ theme, $color }) => theme.colors[$color][0]};
+    }
   }
 
   &:hover {
-    color: rgba(0, 222, 222, 0.75);
+    span {
+      border-bottom: 2px solid ${({ theme, $color }) => theme.colors[$color][0]};
+    }
   }
 `;
 
@@ -31,9 +39,10 @@ export default function NavDesktop({ navLinks }) {
           <li key={link.path}>
             <StyledNavLink
               to={link.path}
+              $color={link.color}
               onClick={() => link.resetFilters && link.resetFilters()}
             >
-              {link.label}
+              <span>{link.label}</span>
             </StyledNavLink>
           </li>
         ) : null

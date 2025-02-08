@@ -109,16 +109,16 @@ const StyledFiltersFooter = styled.div`
       &:hover {
         background-color: ${({ theme }) =>
           theme.name === "dark" ? "rgba(241, 241, 241, 0.5)" : "inherit"};
-        border-color: ${({ theme }) => theme.colors.cyan[0]};
+        border-color: ${({ theme, $color }) => theme.colors[$color][0]};
       }
     }
 
     &:nth-child(2) {
-      background-color: ${({ theme }) => theme.colors.cyan[0]};
+      background-color: ${({ theme, $color }) => theme.colors[$color][0]};
       color: rgb(241, 241, 241);
 
       &:hover {
-        background-color: ${({ theme }) => theme.colors.cyan[1]};
+        background-color: ${({ theme, $color }) => theme.colors[$color][1]};
       }
     }
   }
@@ -133,6 +133,7 @@ export default function FiltersModal({
   showFilters,
   onShowFiltersClick,
   context,
+  color = "blue",
 }) {
   const { filterOptions, filteredData, resetFilters, type } =
     useContext(context);
@@ -156,11 +157,12 @@ export default function FiltersModal({
             key={filterName}
             name={filterName}
             options={filterOptions[filterName]}
+            color={color}
           />
         ))}
       </StyledFiltersContent>
 
-      <StyledFiltersFooter>
+      <StyledFiltersFooter $color={color}>
         <button onClick={handleResetClick}>Reset</button>
         <button onClick={onShowFiltersClick}>
           Show {filteredData?.length} {type}

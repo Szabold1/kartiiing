@@ -57,7 +57,8 @@ const StyledNavMobile = styled.div`
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: inherit;
+  color: ${({ theme }) =>
+    theme.name === "dark" ? theme.colors.text[0] : theme.colors.text[1]};
   display: block;
   max-width: 22rem;
   width: 100%;
@@ -71,11 +72,11 @@ const StyledNavLink = styled(NavLink)`
   transition: all 0.25s ease-in-out;
 
   &.active {
-    background-color: ${({ theme }) => theme.colors.cyan[1]};
+    background-color: ${({ theme, $color }) => theme.colors[$color][0]};
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.cyan[2]};
+    background-color: ${({ theme, $color }) => theme.colors[$color][1]};
   }
 `;
 
@@ -118,7 +119,11 @@ export default function NavMobile({ showNav, setShowNav, iconRef, navLinks }) {
       <ul ref={linksRef}>
         {navLinks.map((link) => (
           <li key={link.path}>
-            <StyledNavLink to={link.path} onClick={() => handleClick(link)}>
+            <StyledNavLink
+              to={link.path}
+              onClick={() => handleClick(link)}
+              $color={link.color}
+            >
               {link.label}
             </StyledNavLink>
           </li>

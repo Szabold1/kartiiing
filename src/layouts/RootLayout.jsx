@@ -10,10 +10,11 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.bg[5]};
-  color: ${({ theme }) =>
-    theme.name === "dark" ? "rgba(241, 241, 241, 0.9)" : theme.colors.text[1]};
-  box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid
+    ${({ theme }) =>
+      theme.name === "dark" ? theme.colors.bg[3] : "transparent"};
+  background-color: ${({ theme }) => theme.colors.bg[0]};
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.15);
 `;
 
 export default function RootLayout() {

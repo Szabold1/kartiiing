@@ -8,6 +8,6 @@ const StyledContent = styled.ul`
   border-top: 1px solid ${({ theme, $color }) => theme.colors[$color][1]};
 `;
 
-export default function SectionContent({ color = "cyan", children }) {
+export default function SectionContent({ color = "blue", children }) {
   return <StyledContent $color={color}>{children}</StyledContent>;
 }
